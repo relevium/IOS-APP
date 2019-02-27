@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */; };
+		8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CA8221DDBB600D6A55C /* AppDelegate.swift */; };
+		8F927CAB221DDBB600D6A55C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CAA221DDBB600D6A55C /* ViewController.swift */; };
+		8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAC221DDBB600D6A55C /* Main.storyboard */; };
+		8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAF221DDBB700D6A55C /* Assets.xcassets */; };
+		8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */; };
+		8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC9C16022268D1200C7597C /* ButtonLayout.swift */; };
+		8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3C6FB2223087100975659 /* ChatEntity.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = TwitterSentimentClassifier.mlmodel; path = "ReleviumApp/Supporting Files/TwitterSentimentClassifier.mlmodel"; sourceTree = SOURCE_ROOT; };
+		8F927CA5221DDBB600D6A55C /* ReleviumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReleviumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F927CA8221DDBB600D6A55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8F927CAA221DDBB600D6A55C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8F927CAD221DDBB600D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8F927CAF221DDBB700D6A55C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F927CB2221DDBB700D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8F927CB4221DDBB700D6A55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FC9C16022268D1200C7597C /* ButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
+		8FD3C6FB2223087100975659 /* ChatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntity.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F927CA2221DDBB600D6A55C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F927C9C221DDBB600D6A55C = {
+			isa = PBXGroup;
+			children = (
+				8F927CA7221DDBB600D6A55C /* ReleviumApp */,
+				8F927CA6221DDBB600D6A55C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8F927CA6221DDBB600D6A55C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F927CA5221DDBB600D6A55C /* ReleviumApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F927CA7221DDBB600D6A55C /* ReleviumApp */ = {
+			isa = PBXGroup;
+			children = (
+				8F927CA8221DDBB600D6A55C /* AppDelegate.swift */,
+				8F927CBB221DDC0200D6A55C /* View */,
+				8F927CBC221DDC0D00D6A55C /* Controller */,
+				8F927CBA221DDBF700D6A55C /* Model */,
+				8FADB5152226824700D53FB1 /* Supporting Files */,
+				8F927CAC221DDBB600D6A55C /* Main.storyboard */,
+				8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */,
+				8F927CB4221DDBB700D6A55C /* Info.plist */,
+			);
+			path = ReleviumApp;
+			sourceTree = "<group>";
+		};
+		8F927CBA221DDBF700D6A55C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8FD3C6FB2223087100975659 /* ChatEntity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F927CBB221DDC0200D6A55C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8FC9C16022268D1200C7597C /* ButtonLayout.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F927CBC221DDC0D00D6A55C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F927CAA221DDBB600D6A55C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8FADB5152226824700D53FB1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */,
+				8F927CAF221DDBB700D6A55C /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F927CA4221DDBB600D6A55C /* ReleviumApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F927CB7221DDBB700D6A55C /* Build configuration list for PBXNativeTarget "ReleviumApp" */;
+			buildPhases = (
+				8F927CA1221DDBB600D6A55C /* Sources */,
+				8F927CA2221DDBB600D6A55C /* Frameworks */,
+				8F927CA3221DDBB600D6A55C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReleviumApp;
+			productName = ReleviumApp;
+			productReference = 8F927CA5221DDBB600D6A55C /* ReleviumApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F927C9D221DDBB600D6A55C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = MrRadix;
+				TargetAttributes = {
+					8F927CA4221DDBB600D6A55C = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 8F927CA0221DDBB600D6A55C /* Build configuration list for PBXProject "ReleviumApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8F927C9C221DDBB600D6A55C;
+			productRefGroup = 8F927CA6221DDBB600D6A55C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8F927CA4221DDBB600D6A55C /* ReleviumApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F927CA3221DDBB600D6A55C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */,
+				8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */,
+				8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F927CA1221DDBB600D6A55C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */,
+				8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */,
+				8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */,
+				8F927CAB221DDBB600D6A55C /* ViewController.swift in Sources */,
+				8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8F927CAC221DDBB600D6A55C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F927CAD221DDBB600D6A55C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F927CB2221DDBB700D6A55C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8F927CB5221DDBB700D6A55C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8F927CB6221DDBB700D6A55C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8F927CB8221DDBB700D6A55C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TPMJ9P566X;
+				INFOPLIST_FILE = ReleviumApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MrRadix.ReleviumApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F927CB9221DDBB700D6A55C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TPMJ9P566X;
+				INFOPLIST_FILE = ReleviumApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MrRadix.ReleviumApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F927CA0221DDBB600D6A55C /* Build configuration list for PBXProject "ReleviumApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F927CB5221DDBB700D6A55C /* Debug */,
+				8F927CB6221DDBB700D6A55C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F927CB7221DDBB700D6A55C /* Build configuration list for PBXNativeTarget "ReleviumApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F927CB8221DDBB700D6A55C /* Debug */,
+				8F927CB9221DDBB700D6A55C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8F927C9D221DDBB600D6A55C /* Project object */;
+}
