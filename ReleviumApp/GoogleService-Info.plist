@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>689851479055-fsbtv8dq71ol0rqem9csqlb86qndu8sl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.689851479055-fsbtv8dq71ol0rqem9csqlb86qndu8sl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDCij_OPKXEDMegfGmND_3PCOGsDgq4MAw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>689851479055</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.MrRadix.ReleviumApp</string>
+	<key>PROJECT_ID</key>
+	<string>releviumios</string>
+	<key>STORAGE_BUCKET</key>
+	<string>releviumios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:689851479055:ios:544903f67363a3fa</string>
+	<key>DATABASE_URL</key>
+	<string>https://releviumios.firebaseio.com</string>
+</dict>
+</plist>

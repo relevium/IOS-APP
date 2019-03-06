@@ -41,12 +41,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "queryCell", for: indexPath)
         let message = messages[indexPath.row]
-        
         cell.textLabel?.text = message.getMessage()
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
         cell.textLabel?.textAlignment = message.isUser() ? .left : .right
-        
         return cell
     }
     

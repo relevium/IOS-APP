@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88390299C16E8E342FEF34A1 /* Pods_ReleviumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5C21823886026B89720CF3 /* Pods_ReleviumApp.framework */; };
 		8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */; };
 		8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CA8221DDBB600D6A55C /* AppDelegate.swift */; };
 		8F927CAB221DDBB600D6A55C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CAA221DDBB600D6A55C /* ViewController.swift */; };
@@ -14,10 +15,15 @@
 		8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAF221DDBB700D6A55C /* Assets.xcassets */; };
 		8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */; };
 		8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC9C16022268D1200C7597C /* ButtonLayout.swift */; };
+		8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1017F222B30C200D5D130 /* RegisterViewController.swift */; };
+		8FD10182222B30D500D5D130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD10181222B30D500D5D130 /* LoginViewController.swift */; };
+		8FD10184222B328400D5D130 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD10183222B328400D5D130 /* WelcomeViewController.swift */; };
+		8FD10186222B395E00D5D130 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD10185222B395E00D5D130 /* GoogleService-Info.plist */; };
 		8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3C6FB2223087100975659 /* ChatEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		596BA5510A80FD41027EB28D /* Pods-ReleviumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.release.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.release.xcconfig"; sourceTree = "<group>"; };
 		8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = TwitterSentimentClassifier.mlmodel; path = "ReleviumApp/Supporting Files/TwitterSentimentClassifier.mlmodel"; sourceTree = SOURCE_ROOT; };
 		8F927CA5221DDBB600D6A55C /* ReleviumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReleviumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F927CA8221DDBB600D6A55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +33,13 @@
 		8F927CB2221DDBB700D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F927CB4221DDBB700D6A55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FC9C16022268D1200C7597C /* ButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
+		8FD1017F222B30C200D5D130 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8FD10181222B30D500D5D130 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8FD10183222B328400D5D130 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8FD10185222B395E00D5D130 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8FD3C6FB2223087100975659 /* ChatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntity.swift; sourceTree = "<group>"; };
+		92B09504ECA24C659E4304F4 /* Pods-ReleviumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.debug.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.debug.xcconfig"; sourceTree = "<group>"; };
+		9E5C21823886026B89720CF3 /* Pods_ReleviumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReleviumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +47,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88390299C16E8E342FEF34A1 /* Pods_ReleviumApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B43E428AD5CDE5F82C42F94 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92B09504ECA24C659E4304F4 /* Pods-ReleviumApp.debug.xcconfig */,
+				596BA5510A80FD41027EB28D /* Pods-ReleviumApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8F927C9C221DDBB600D6A55C = {
 			isa = PBXGroup;
 			children = (
 				8F927CA7221DDBB600D6A55C /* ReleviumApp */,
 				8F927CA6221DDBB600D6A55C /* Products */,
+				3B43E428AD5CDE5F82C42F94 /* Pods */,
+				8FF9626F600D81FE5461F9A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +93,7 @@
 				8F927CAC221DDBB600D6A55C /* Main.storyboard */,
 				8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */,
 				8F927CB4221DDBB700D6A55C /* Info.plist */,
+				8FD10185222B395E00D5D130 /* GoogleService-Info.plist */,
 			);
 			path = ReleviumApp;
 			sourceTree = "<group>";
@@ -92,6 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				8F927CAA221DDBB600D6A55C /* ViewController.swift */,
+				8FD1017F222B30C200D5D130 /* RegisterViewController.swift */,
+				8FD10181222B30D500D5D130 /* LoginViewController.swift */,
+				8FD10183222B328400D5D130 /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -105,6 +134,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8FF9626F600D81FE5461F9A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E5C21823886026B89720CF3 /* Pods_ReleviumApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F927CB7221DDBB700D6A55C /* Build configuration list for PBXNativeTarget "ReleviumApp" */;
 			buildPhases = (
+				88E2C39BFB472AAC5001ED18 /* [CP] Check Pods Manifest.lock */,
 				8F927CA1221DDBB600D6A55C /* Sources */,
 				8F927CA2221DDBB600D6A55C /* Frameworks */,
 				8F927CA3221DDBB600D6A55C /* Resources */,
+				DC73B5667A4141D197F2BE53 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -164,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */,
+				8FD10186222B395E00D5D130 /* GoogleService-Info.plist in Resources */,
 				8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */,
 				8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */,
 			);
@@ -171,14 +211,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		88E2C39BFB472AAC5001ED18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReleviumApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC73B5667A4141D197F2BE53 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8F927CA1221DDBB600D6A55C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD10182222B30D500D5D130 /* LoginViewController.swift in Sources */,
+				8FD10184222B328400D5D130 /* WelcomeViewController.swift in Sources */,
 				8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */,
 				8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */,
 				8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */,
+				8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */,
 				8F927CAB221DDBB600D6A55C /* ViewController.swift in Sources */,
 				8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */,
 			);
@@ -324,11 +424,13 @@
 		};
 		8F927CB8221DDBB700D6A55C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92B09504ECA24C659E4304F4 /* Pods-ReleviumApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TPMJ9P566X;
 				INFOPLIST_FILE = ReleviumApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,11 +444,13 @@
 		};
 		8F927CB9221DDBB700D6A55C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 596BA5510A80FD41027EB28D /* Pods-ReleviumApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TPMJ9P566X;
 				INFOPLIST_FILE = ReleviumApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

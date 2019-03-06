@@ -10,6 +10,110 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--login-->
+        <scene sceneID="rgB-kP-b9Q">
+            <objects>
+                <viewController id="dOy-BX-BMT" userLabel="login" customClass="LoginViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iwT-eG-PdH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-ua-7RA">
+                                <rect key="frame" x="20" y="193" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0cd-9j-J0E">
+                                <rect key="frame" x="20" y="245" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zck-qJ-FQV" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="346" width="374" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="dOy-BX-BMT" eventType="touchUpInside" id="z3j-XE-BVP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0cd-9j-J0E" firstAttribute="top" secondItem="OJn-ua-7RA" secondAttribute="bottom" constant="22" id="1tC-0z-8EW"/>
+                            <constraint firstItem="OJn-ua-7RA" firstAttribute="leading" secondItem="zck-qJ-FQV" secondAttribute="leading" id="4fQ-vy-koo"/>
+                            <constraint firstItem="OJn-ua-7RA" firstAttribute="leading" secondItem="iwT-eG-PdH" secondAttribute="leadingMargin" id="8tA-mT-lop"/>
+                            <constraint firstItem="OJn-ua-7RA" firstAttribute="trailing" secondItem="0cd-9j-J0E" secondAttribute="trailing" id="I9X-V2-SEC"/>
+                            <constraint firstItem="OJn-ua-7RA" firstAttribute="trailing" secondItem="zck-qJ-FQV" secondAttribute="trailing" id="JdA-3I-ovn"/>
+                            <constraint firstItem="zck-qJ-FQV" firstAttribute="top" secondItem="0cd-9j-J0E" secondAttribute="bottom" constant="71" id="Xle-Zx-03b"/>
+                            <constraint firstItem="OJn-ua-7RA" firstAttribute="trailing" secondItem="iwT-eG-PdH" secondAttribute="trailingMargin" id="bSO-35-7c3"/>
+                            <constraint firstItem="OJn-ua-7RA" firstAttribute="top" secondItem="Zlv-sN-sjw" secondAttribute="top" constant="105" id="cAs-78-4Gq"/>
+                            <constraint firstItem="OJn-ua-7RA" firstAttribute="leading" secondItem="0cd-9j-J0E" secondAttribute="leading" id="f52-bf-VfC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Zlv-sN-sjw"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="OJn-ua-7RA" id="SSE-aP-anU"/>
+                        <outlet property="passwordTextField" destination="0cd-9j-J0E" id="N9t-hj-TrI"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="loginToAgent" id="IrA-3T-wxp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pZ5-TY-tnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="728.98550724637687" y="-338.16964285714283"/>
+        </scene>
+        <!--register-->
+        <scene sceneID="BYG-gh-mPT">
+            <objects>
+                <viewController id="nXd-0V-bgQ" userLabel="register" customClass="RegisterViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0tk-4l-wrg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwU-vu-POg" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="346" width="374" height="30"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="r8g-pq-7rw"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDO-MH-7Py">
+                                <rect key="frame" x="20" y="193" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zV1-DQ-l3O">
+                                <rect key="frame" x="20" y="245" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oDO-MH-7Py" firstAttribute="leading" secondItem="0tk-4l-wrg" secondAttribute="leadingMargin" id="Bq4-hd-roq"/>
+                            <constraint firstItem="oDO-MH-7Py" firstAttribute="trailing" secondItem="zV1-DQ-l3O" secondAttribute="trailing" id="MQ9-Zw-EFa"/>
+                            <constraint firstItem="EwU-vu-POg" firstAttribute="top" secondItem="zV1-DQ-l3O" secondAttribute="bottom" constant="71" id="OE8-au-B0x"/>
+                            <constraint firstItem="oDO-MH-7Py" firstAttribute="trailing" secondItem="0tk-4l-wrg" secondAttribute="trailingMargin" id="Pzp-BU-5Ru"/>
+                            <constraint firstItem="zV1-DQ-l3O" firstAttribute="leading" secondItem="EwU-vu-POg" secondAttribute="leading" id="VPn-Tm-vgk"/>
+                            <constraint firstItem="oDO-MH-7Py" firstAttribute="top" secondItem="EE8-J9-TSQ" secondAttribute="top" constant="105" id="W4k-b8-dQk"/>
+                            <constraint firstItem="zV1-DQ-l3O" firstAttribute="trailing" secondItem="EwU-vu-POg" secondAttribute="trailing" id="dS5-Mg-cch"/>
+                            <constraint firstItem="oDO-MH-7Py" firstAttribute="leading" secondItem="zV1-DQ-l3O" secondAttribute="leading" id="tKO-NJ-p51"/>
+                            <constraint firstItem="zV1-DQ-l3O" firstAttribute="top" secondItem="oDO-MH-7Py" secondAttribute="bottom" constant="22" id="uEa-aX-wzu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EE8-J9-TSQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="oDO-MH-7Py" id="QQb-SK-312"/>
+                        <outlet property="passwordTextField" destination="zV1-DQ-l3O" id="rbg-KJ-301"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="registerToAgent" id="eQd-Kp-sY7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1xB-N6-zzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757.97101449275374" y="349.55357142857139"/>
+        </scene>
         <!--Ask ME-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -92,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071.0144927536232" y="132.58928571428572"/>
+            <point key="canvasLocation" x="1693" y="133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1pA-vZ-irx">
@@ -102,19 +206,101 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uhb-H1-3cJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Wjd-qI-oZV"/>
+                        <segue destination="0KE-IY-xnN" kind="relationship" relationship="rootViewController" id="Cap-QV-tR8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifM-KU-jRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="133"/>
+            <point key="canvasLocation" x="-1009" y="133"/>
+        </scene>
+        <!--Welcome-->
+        <scene sceneID="GBi-OJ-sMj">
+            <objects>
+                <viewController id="0KE-IY-xnN" userLabel="Welcome" customClass="WelcomeViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lm5-uS-kIC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zmt-1I-Hkc" userLabel="logoContainer">
+                                <rect key="frame" x="0.0" y="88" width="414" height="369"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="relevium" translatesAutoresizingMaskIntoConstraints="NO" id="9Hu-pT-Sxg">
+                                        <rect key="frame" x="87" y="120.5" width="240" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="4cX-g8-lUS"/>
+                                            <constraint firstAttribute="width" constant="240" id="m7i-jw-Sw7"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="9Hu-pT-Sxg" firstAttribute="centerY" secondItem="Zmt-1I-Hkc" secondAttribute="centerY" id="Ces-vs-EP9"/>
+                                    <constraint firstItem="9Hu-pT-Sxg" firstAttribute="centerX" secondItem="Zmt-1I-Hkc" secondAttribute="centerX" id="Sdp-Ik-I70"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mDh-HG-u8b" userLabel="ButtonsContainer">
+                                <rect key="frame" x="0.0" y="465" width="414" height="369"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8K-bp-Qdd" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="220" width="374" height="30"/>
+                                        <state key="normal" title="register">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="nXd-0V-bgQ" kind="show" identifier="toRegister" id="35a-3z-Krb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfo-1o-znP" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="169" width="374" height="30"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="dOy-BX-BMT" kind="show" identifier="toLogin" id="xvC-bo-SvF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vfo-1o-znP" secondAttribute="trailing" constant="20" id="7B1-40-3gd"/>
+                                    <constraint firstItem="vfo-1o-znP" firstAttribute="top" secondItem="mDh-HG-u8b" secondAttribute="top" constant="169" id="Ece-b0-z7y"/>
+                                    <constraint firstItem="Y8K-bp-Qdd" firstAttribute="top" secondItem="vfo-1o-znP" secondAttribute="bottom" constant="21" id="PoF-Ve-XoQ"/>
+                                    <constraint firstItem="Y8K-bp-Qdd" firstAttribute="leading" secondItem="mDh-HG-u8b" secondAttribute="leading" constant="20" id="W8E-cM-QPj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y8K-bp-Qdd" secondAttribute="bottom" constant="119" id="cf8-eR-pef"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y8K-bp-Qdd" secondAttribute="trailing" constant="20" id="f2m-HS-C6s"/>
+                                    <constraint firstItem="vfo-1o-znP" firstAttribute="leading" secondItem="mDh-HG-u8b" secondAttribute="leading" constant="20" id="qeF-CC-FSf"/>
+                                    <constraint firstItem="Y8K-bp-Qdd" firstAttribute="top" secondItem="vfo-1o-znP" secondAttribute="bottom" constant="21" id="ze3-FW-lVh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zmt-1I-Hkc" firstAttribute="top" secondItem="LqD-qR-v7z" secondAttribute="top" id="I0x-fq-rBl"/>
+                            <constraint firstItem="Zmt-1I-Hkc" firstAttribute="trailing" secondItem="LqD-qR-v7z" secondAttribute="trailing" id="Kx2-8V-c1Q"/>
+                            <constraint firstItem="Zmt-1I-Hkc" firstAttribute="leading" secondItem="LqD-qR-v7z" secondAttribute="leading" id="MQ7-JX-GwW"/>
+                            <constraint firstItem="LqD-qR-v7z" firstAttribute="bottom" secondItem="mDh-HG-u8b" secondAttribute="bottom" constant="28" id="R6W-S1-xzB"/>
+                            <constraint firstItem="mDh-HG-u8b" firstAttribute="leading" secondItem="LqD-qR-v7z" secondAttribute="leading" id="TwA-SO-Mqa"/>
+                            <constraint firstItem="mDh-HG-u8b" firstAttribute="top" secondItem="Zmt-1I-Hkc" secondAttribute="bottom" constant="8" id="rli-hb-Xfs"/>
+                            <constraint firstItem="mDh-HG-u8b" firstAttribute="trailing" secondItem="LqD-qR-v7z" secondAttribute="trailing" id="uf6-b5-RF9"/>
+                            <constraint firstItem="mDh-HG-u8b" firstAttribute="top" secondItem="Zmt-1I-Hkc" secondAttribute="bottom" constant="8" id="wsB-Xa-EKd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LqD-qR-v7z"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Welcome" id="HkY-tA-3TD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2sv-7K-K9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-120.28985507246378" y="132.58928571428572"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="relevium" width="77.5" height="60"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="IrA-3T-wxp"/>
+    </inferredMetricsTieBreakers>
 </document>
