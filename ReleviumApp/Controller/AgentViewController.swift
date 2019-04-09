@@ -9,13 +9,14 @@
 import UIKit
 import CoreML
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
+class AgentViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
     
     @IBOutlet weak var chatTable: UITableView!
     @IBOutlet weak var queryTextField: UITextField!
     @IBOutlet weak var queryViewConstraint: NSLayoutConstraint!
     var messages:[ChatEntity] = []
     var tempText: String = ""
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -66,17 +67,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.queryViewConstraint.constant = 35
         }
     }
+    
     //MARK: - TextField delegate Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         getInputFromUser()
         queryTextField.resignFirstResponder()
         return true
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let text = queryTextField.text{
             tempText = text
         }
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if tempText != "" {
             queryTextField.text = tempText
@@ -85,6 +89,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     //MARK: -Perfom Query triggerd
     @IBAction func askbuttonPressed(_ sender: UIButton) {
+        sender.flash()
         getInputFromUser()
     }
     

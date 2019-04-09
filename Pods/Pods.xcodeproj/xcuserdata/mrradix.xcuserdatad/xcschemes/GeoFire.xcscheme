@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FD939BF65EDA1677F017B5499AA6E11"
-               BuildableName = "Toast_Swift.framework"
-               BlueprintName = "Toast-Swift"
+               BlueprintIdentifier = "E62F9FA55BBC9AFD0A78A4469CA3079B"
+               BuildableName = "GeoFire.framework"
+               BlueprintName = "GeoFire"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FD939BF65EDA1677F017B5499AA6E11"
-            BuildableName = "Toast_Swift.framework"
-            BlueprintName = "Toast-Swift"
+            BlueprintIdentifier = "E62F9FA55BBC9AFD0A78A4469CA3079B"
+            BuildableName = "GeoFire.framework"
+            BlueprintName = "GeoFire"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

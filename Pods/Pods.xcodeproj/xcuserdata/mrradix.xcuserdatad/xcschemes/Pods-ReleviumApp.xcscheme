@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B502D1C0D5FB28C84A976B2AD1A3B681"
+               BlueprintIdentifier = "74D19CE803D24D795CE55633601BD92E"
                BuildableName = "Pods_ReleviumApp.framework"
                BlueprintName = "Pods-ReleviumApp"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B502D1C0D5FB28C84A976B2AD1A3B681"
+            BlueprintIdentifier = "74D19CE803D24D795CE55633601BD92E"
             BuildableName = "Pods_ReleviumApp.framework"
             BlueprintName = "Pods-ReleviumApp"
             ReferencedContainer = "container:Pods.xcodeproj">

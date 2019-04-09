@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import SVProgressHUD
-import Toast_Swift
 
 class RegisterViewController: UIViewController{
     
@@ -21,23 +20,21 @@ class RegisterViewController: UIViewController{
     }
     
     @IBAction func registerButtonPressed(_ sender: ButtonLayout) {
+        sender.flash()
         if let email = emailTextField.text, let password =  passwordTextField.text {
             SVProgressHUD.show()
             Auth.auth().createUser(withEmail: email, password: password) { (results, error) in
                 if error != nil{
                     SVProgressHUD.dismiss()
-                    self.view.makeToast("an error has occured, cheack email and password", duration: 0.5, position: .top)
+                    SVProgressHUD.showError(withStatus: "invalid email or password")
+                    SVProgressHUD.dismiss(withDelay: 0.5)
                     
                 }
                 else {
                     SVProgressHUD.dismiss()
-                    self.performSegue(withIdentifier: "registerToAgent", sender: self)
+                    self.performSegue(withIdentifier: "registerToMain", sender: self)
                 }
             }
         }
-        else{
-            self.view.makeToast("Please enter your email and password", duration: 0.5, position: .top)
-        }
-        
     }
 }

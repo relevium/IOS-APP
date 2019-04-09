@@ -7,39 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88390299C16E8E342FEF34A1 /* Pods_ReleviumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5C21823886026B89720CF3 /* Pods_ReleviumApp.framework */; };
 		8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */; };
+		8F7708FE225CD702002809D5 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */; };
 		8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CA8221DDBB600D6A55C /* AppDelegate.swift */; };
-		8F927CAB221DDBB600D6A55C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CAA221DDBB600D6A55C /* ViewController.swift */; };
+		8F927CAB221DDBB600D6A55C /* AgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CAA221DDBB600D6A55C /* AgentViewController.swift */; };
 		8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAC221DDBB600D6A55C /* Main.storyboard */; };
 		8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAF221DDBB700D6A55C /* Assets.xcassets */; };
 		8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */; };
+		8F96D86F2239303B005B7A54 /* ReleviumAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96D86E2239303B005B7A54 /* ReleviumAppTests.swift */; };
+		8F96D8972239D22F005B7A54 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96D8962239D22F005B7A54 /* Artwork.swift */; };
+		8FA0AE9322340146008D8D62 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AE9222340146008D8D62 /* MapViewController.swift */; };
+		8FABDEB72232FF3000019F1F /* GredientLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FABDEB62232FF3000019F1F /* GredientLayout.swift */; };
+		8FABDEB92233193600019F1F /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FABDEB82233193600019F1F /* TabBar.storyboard */; };
 		8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC9C16022268D1200C7597C /* ButtonLayout.swift */; };
 		8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1017F222B30C200D5D130 /* RegisterViewController.swift */; };
 		8FD10182222B30D500D5D130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD10181222B30D500D5D130 /* LoginViewController.swift */; };
-		8FD10184222B328400D5D130 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD10183222B328400D5D130 /* WelcomeViewController.swift */; };
 		8FD10186222B395E00D5D130 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FD10185222B395E00D5D130 /* GoogleService-Info.plist */; };
 		8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3C6FB2223087100975659 /* ChatEntity.swift */; };
+		D8FC01F96ECE30DDAAD8AF45 /* Pods_ReleviumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC0B480F0E3E3F3E140D3C4 /* Pods_ReleviumApp.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8F96D8712239303B005B7A54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F927C9D221DDBB600D6A55C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F927CA4221DDBB600D6A55C;
+			remoteInfo = ReleviumApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		596BA5510A80FD41027EB28D /* Pods-ReleviumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.release.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.release.xcconfig"; sourceTree = "<group>"; };
+		1499423FF7C3F742346EB025 /* Pods-ReleviumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.debug.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4B0E97F7EE8CE5036BC447AC /* Pods-ReleviumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.release.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.release.xcconfig"; sourceTree = "<group>"; };
 		8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = TwitterSentimentClassifier.mlmodel; path = "ReleviumApp/Supporting Files/TwitterSentimentClassifier.mlmodel"; sourceTree = SOURCE_ROOT; };
+		8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
 		8F927CA5221DDBB600D6A55C /* ReleviumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReleviumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F927CA8221DDBB600D6A55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F927CAA221DDBB600D6A55C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8F927CAA221DDBB600D6A55C /* AgentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentViewController.swift; sourceTree = "<group>"; };
 		8F927CAD221DDBB600D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F927CAF221DDBB700D6A55C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F927CB2221DDBB700D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F927CB4221DDBB700D6A55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F96D86C2239303B005B7A54 /* ReleviumAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReleviumAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F96D86E2239303B005B7A54 /* ReleviumAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleviumAppTests.swift; sourceTree = "<group>"; };
+		8F96D8702239303B005B7A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F96D8962239D22F005B7A54 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		8FA0AE9222340146008D8D62 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		8FABDEB62232FF3000019F1F /* GredientLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GredientLayout.swift; sourceTree = "<group>"; };
+		8FABDEB82233193600019F1F /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		8FC9C16022268D1200C7597C /* ButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
 		8FD1017F222B30C200D5D130 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8FD10181222B30D500D5D130 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		8FD10183222B328400D5D130 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8FD10185222B395E00D5D130 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8FD3C6FB2223087100975659 /* ChatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntity.swift; sourceTree = "<group>"; };
-		92B09504ECA24C659E4304F4 /* Pods-ReleviumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.debug.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.debug.xcconfig"; sourceTree = "<group>"; };
-		9E5C21823886026B89720CF3 /* Pods_ReleviumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReleviumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAC0B480F0E3E3F3E140D3C4 /* Pods_ReleviumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReleviumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,20 +69,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88390299C16E8E342FEF34A1 /* Pods_ReleviumApp.framework in Frameworks */,
+				D8FC01F96ECE30DDAAD8AF45 /* Pods_ReleviumApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F96D8692239303B005B7A54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B43E428AD5CDE5F82C42F94 /* Pods */ = {
+		3D0944CFEEFEDD991FF60852 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				92B09504ECA24C659E4304F4 /* Pods-ReleviumApp.debug.xcconfig */,
-				596BA5510A80FD41027EB28D /* Pods-ReleviumApp.release.xcconfig */,
+				AAC0B480F0E3E3F3E140D3C4 /* Pods_ReleviumApp.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DC48F4234B3B9207DC17FA6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1499423FF7C3F742346EB025 /* Pods-ReleviumApp.debug.xcconfig */,
+				4B0E97F7EE8CE5036BC447AC /* Pods-ReleviumApp.release.xcconfig */,
+			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -68,9 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				8F927CA7221DDBB600D6A55C /* ReleviumApp */,
+				8F96D86D2239303B005B7A54 /* ReleviumAppTests */,
 				8F927CA6221DDBB600D6A55C /* Products */,
-				3B43E428AD5CDE5F82C42F94 /* Pods */,
-				8FF9626F600D81FE5461F9A0 /* Frameworks */,
+				7DC48F4234B3B9207DC17FA6 /* Pods */,
+				3D0944CFEEFEDD991FF60852 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				8F927CA5221DDBB600D6A55C /* ReleviumApp.app */,
+				8F96D86C2239303B005B7A54 /* ReleviumAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,15 +123,16 @@
 		8F927CA7221DDBB600D6A55C /* ReleviumApp */ = {
 			isa = PBXGroup;
 			children = (
-				8F927CA8221DDBB600D6A55C /* AppDelegate.swift */,
 				8F927CBB221DDC0200D6A55C /* View */,
 				8F927CBC221DDC0D00D6A55C /* Controller */,
 				8F927CBA221DDBF700D6A55C /* Model */,
 				8FADB5152226824700D53FB1 /* Supporting Files */,
 				8F927CAC221DDBB600D6A55C /* Main.storyboard */,
+				8FABDEB82233193600019F1F /* TabBar.storyboard */,
 				8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */,
 				8F927CB4221DDBB700D6A55C /* Info.plist */,
 				8FD10185222B395E00D5D130 /* GoogleService-Info.plist */,
+				8F927CA8221DDBB600D6A55C /* AppDelegate.swift */,
 			);
 			path = ReleviumApp;
 			sourceTree = "<group>";
@@ -102,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD3C6FB2223087100975659 /* ChatEntity.swift */,
+				8F96D8962239D22F005B7A54 /* Artwork.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				8FC9C16022268D1200C7597C /* ButtonLayout.swift */,
+				8FABDEB62232FF3000019F1F /* GredientLayout.swift */,
+				8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,12 +159,21 @@
 		8F927CBC221DDC0D00D6A55C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8F927CAA221DDBB600D6A55C /* ViewController.swift */,
+				8F927CAA221DDBB600D6A55C /* AgentViewController.swift */,
 				8FD1017F222B30C200D5D130 /* RegisterViewController.swift */,
 				8FD10181222B30D500D5D130 /* LoginViewController.swift */,
-				8FD10183222B328400D5D130 /* WelcomeViewController.swift */,
+				8FA0AE9222340146008D8D62 /* MapViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F96D86D2239303B005B7A54 /* ReleviumAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				8F96D86E2239303B005B7A54 /* ReleviumAppTests.swift */,
+				8F96D8702239303B005B7A54 /* Info.plist */,
+			);
+			path = ReleviumAppTests;
 			sourceTree = "<group>";
 		};
 		8FADB5152226824700D53FB1 /* Supporting Files */ = {
@@ -134,14 +185,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8FF9626F600D81FE5461F9A0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9E5C21823886026B89720CF3 /* Pods_ReleviumApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,11 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F927CB7221DDBB700D6A55C /* Build configuration list for PBXNativeTarget "ReleviumApp" */;
 			buildPhases = (
-				88E2C39BFB472AAC5001ED18 /* [CP] Check Pods Manifest.lock */,
+				3E4B107CCC279D942A37204F /* [CP] Check Pods Manifest.lock */,
 				8F927CA1221DDBB600D6A55C /* Sources */,
 				8F927CA2221DDBB600D6A55C /* Frameworks */,
 				8F927CA3221DDBB600D6A55C /* Resources */,
-				DC73B5667A4141D197F2BE53 /* [CP] Embed Pods Frameworks */,
+				974AF25C42E34CCA74DC6159 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,6 +206,24 @@
 			productName = ReleviumApp;
 			productReference = 8F927CA5221DDBB600D6A55C /* ReleviumApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8F96D86B2239303B005B7A54 /* ReleviumAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F96D8752239303B005B7A54 /* Build configuration list for PBXNativeTarget "ReleviumAppTests" */;
+			buildPhases = (
+				8F96D8682239303B005B7A54 /* Sources */,
+				8F96D8692239303B005B7A54 /* Frameworks */,
+				8F96D86A2239303B005B7A54 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F96D8722239303B005B7A54 /* PBXTargetDependency */,
+			);
+			name = ReleviumAppTests;
+			productName = ReleviumAppTests;
+			productReference = 8F96D86C2239303B005B7A54 /* ReleviumAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -176,6 +237,12 @@
 				TargetAttributes = {
 					8F927CA4221DDBB600D6A55C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
+					};
+					8F96D86B2239303B005B7A54 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
+						TestTargetID = 8F927CA4221DDBB600D6A55C;
 					};
 				};
 			};
@@ -193,6 +260,7 @@
 			projectRoot = "";
 			targets = (
 				8F927CA4221DDBB600D6A55C /* ReleviumApp */,
+				8F96D86B2239303B005B7A54 /* ReleviumAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -202,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FABDEB92233193600019F1F /* TabBar.storyboard in Resources */,
 				8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */,
 				8FD10186222B395E00D5D130 /* GoogleService-Info.plist in Resources */,
 				8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */,
@@ -209,10 +278,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8F96D86A2239303B005B7A54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		88E2C39BFB472AAC5001ED18 /* [CP] Check Pods Manifest.lock */ = {
+		3E4B107CCC279D942A37204F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -234,7 +310,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC73B5667A4141D197F2BE53 /* [CP] Embed Pods Frameworks */ = {
+		974AF25C42E34CCA74DC6159 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,7 +322,6 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -257,7 +332,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -273,18 +347,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F96D8972239D22F005B7A54 /* Artwork.swift in Sources */,
 				8FD10182222B30D500D5D130 /* LoginViewController.swift in Sources */,
-				8FD10184222B328400D5D130 /* WelcomeViewController.swift in Sources */,
 				8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */,
+				8F7708FE225CD702002809D5 /* ButtonAnimationExtension.swift in Sources */,
 				8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */,
 				8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */,
+				8FA0AE9322340146008D8D62 /* MapViewController.swift in Sources */,
 				8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */,
-				8F927CAB221DDBB600D6A55C /* ViewController.swift in Sources */,
+				8F927CAB221DDBB600D6A55C /* AgentViewController.swift in Sources */,
+				8FABDEB72232FF3000019F1F /* GredientLayout.swift in Sources */,
 				8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8F96D8682239303B005B7A54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F96D86F2239303B005B7A54 /* ReleviumAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F96D8722239303B005B7A54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F927CA4221DDBB600D6A55C /* ReleviumApp */;
+			targetProxy = 8F96D8712239303B005B7A54 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8F927CAC221DDBB600D6A55C /* Main.storyboard */ = {
@@ -424,7 +517,7 @@
 		};
 		8F927CB8221DDBB700D6A55C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92B09504ECA24C659E4304F4 /* Pods-ReleviumApp.debug.xcconfig */;
+			baseConfigurationReference = 1499423FF7C3F742346EB025 /* Pods-ReleviumApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -437,14 +530,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MrRadix.ReleviumApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		8F927CB9221DDBB700D6A55C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 596BA5510A80FD41027EB28D /* Pods-ReleviumApp.release.xcconfig */;
+			baseConfigurationReference = 4B0E97F7EE8CE5036BC447AC /* Pods-ReleviumApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -457,8 +550,48 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.MrRadix.ReleviumApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8F96D8732239303B005B7A54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TPMJ9P566X;
+				INFOPLIST_FILE = ReleviumAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MrRadix.ReleviumAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReleviumApp.app/ReleviumApp";
+			};
+			name = Debug;
+		};
+		8F96D8742239303B005B7A54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TPMJ9P566X;
+				INFOPLIST_FILE = ReleviumAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.MrRadix.ReleviumAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReleviumApp.app/ReleviumApp";
 			};
 			name = Release;
 		};
@@ -479,6 +612,15 @@
 			buildConfigurations = (
 				8F927CB8221DDBB700D6A55C /* Debug */,
 				8F927CB9221DDBB700D6A55C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F96D8752239303B005B7A54 /* Build configuration list for PBXNativeTarget "ReleviumAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F96D8732239303B005B7A54 /* Debug */,
+				8F96D8742239303B005B7A54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
