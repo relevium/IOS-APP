@@ -1,6 +1,6 @@
 # Relevium App IOS Version
 
-#To Do
+# To Do
 
 * login with third parties
 * plot emergency location on map
@@ -8,11 +8,11 @@
 * user profile
 * tuning the UI
 
-#In Progress
+# In Progress
 
 * working on map
 
-#Done
+# Done
 
 * login
 * register with email
