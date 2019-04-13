@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k9F-dK-cY3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k9F-dK-cY3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +14,7 @@
         <scene sceneID="V5R-8A-x9b">
             <objects>
                 <tabBarController id="k9F-dK-cY3" userLabel="Main" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" id="aPT-Bh-1iO">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aPT-Bh-1iO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,13 +44,65 @@
                                     <outlet property="delegate" destination="E1k-vV-Ddo" id="wVc-rF-pM4"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMD-U2-D5m">
+                                <rect key="frame" x="293" y="550" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0Gj-JB-nzh"/>
+                                    <constraint firstAttribute="width" constant="50" id="X9e-aX-Kbg"/>
+                                </constraints>
+                                <state key="normal" image="addToMap"/>
+                                <connections>
+                                    <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="afb-dT-IsD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDd-vP-C8j">
+                                <rect key="frame" x="298" y="498" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KTR-tY-mYY"/>
+                                    <constraint firstAttribute="width" constant="40" id="ps2-Yy-lxD"/>
+                                </constraints>
+                                <state key="normal" image="location"/>
+                                <connections>
+                                    <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="77p-gS-nya"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehQ-77-cf4">
+                                <rect key="frame" x="298" y="436" width="40" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="3mU-lb-mF6"/>
+                                    <constraint firstAttribute="height" constant="50" id="ZnB-z3-rbE"/>
+                                </constraints>
+                                <state key="normal" image="fire"/>
+                                <connections>
+                                    <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="tqM-im-AES"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-Tw-9Ro">
+                                <rect key="frame" x="298" y="384" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hbP-xk-q64"/>
+                                    <constraint firstAttribute="width" constant="40" id="tWM-hU-mG2"/>
+                                </constraints>
+                                <state key="normal" image="warning"/>
+                                <connections>
+                                    <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="DpC-pk-clP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="L1x-ip-k3A" firstAttribute="trailing" secondItem="GiB-Ko-Z78" secondAttribute="trailing" id="8mS-3c-dje"/>
                             <constraint firstItem="L1x-ip-k3A" firstAttribute="leading" secondItem="GiB-Ko-Z78" secondAttribute="leading" id="9gI-93-ydQ"/>
+                            <constraint firstItem="WMD-U2-D5m" firstAttribute="top" secondItem="gDd-vP-C8j" secondAttribute="bottom" constant="12" id="A2N-1c-7BJ"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="WMD-U2-D5m" secondAttribute="bottom" constant="18" id="Hxc-fN-7R6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WMD-U2-D5m" secondAttribute="trailing" constant="16" id="Mjz-4s-Jcp"/>
+                            <constraint firstItem="ehQ-77-cf4" firstAttribute="top" secondItem="L2x-Tw-9Ro" secondAttribute="bottom" constant="12" id="R9x-bE-IQ0"/>
+                            <constraint firstItem="gDd-vP-C8j" firstAttribute="top" secondItem="ehQ-77-cf4" secondAttribute="bottom" constant="12" id="aFc-Oc-gsl"/>
                             <constraint firstItem="L1x-ip-k3A" firstAttribute="bottom" secondItem="GiB-Ko-Z78" secondAttribute="bottom" id="e94-iv-b1q"/>
+                            <constraint firstItem="GiB-Ko-Z78" firstAttribute="trailing" secondItem="gDd-vP-C8j" secondAttribute="trailing" constant="37" id="iei-Qs-Ayo"/>
+                            <constraint firstItem="GiB-Ko-Z78" firstAttribute="trailing" secondItem="ehQ-77-cf4" secondAttribute="trailing" constant="37" id="qXt-3o-a2Q"/>
                             <constraint firstItem="L1x-ip-k3A" firstAttribute="top" secondItem="GiB-Ko-Z78" secondAttribute="top" id="t11-OS-Imy"/>
+                            <constraint firstItem="GiB-Ko-Z78" firstAttribute="trailing" secondItem="L2x-Tw-9Ro" secondAttribute="trailing" constant="37" id="x2o-9f-Amx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GiB-Ko-Z78"/>
                     </view>
@@ -181,9 +233,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="collaboration" width="37.5" height="37.5"/>
-        <image name="processor" width="37.5" height="37.5"/>
-        <image name="region" width="37.5" height="37.5"/>
-        <image name="user-account" width="37.5" height="37.5"/>
+        <image name="addToMap" width="50" height="50"/>
+        <image name="collaboration" width="50" height="50"/>
+        <image name="fire" width="50" height="50"/>
+        <image name="location" width="50" height="50"/>
+        <image name="processor" width="50" height="50"/>
+        <image name="region" width="50" height="50"/>
+        <image name="user-account" width="50" height="50"/>
+        <image name="warning" width="50" height="50"/>
     </resources>
 </document>

@@ -24,11 +24,28 @@ class MapViewController: UIViewController {
         checkLocationService()
     }
     
-    func setupLocationManager(){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    //MARK: - ADD Emergency Pin to map
+    @IBAction func addToMapButtonPressed(_ sender: UIButton) {
+        let Glyphtitle = getTitle(tag: sender.tag)
+        let location = mapView.centerCoordinate
+        let artword = Artwork(title: Glyphtitle, coordinate: location)
+        mapView.addAnnotation(artword)
     }
     
+    func getTitle(tag: Int) -> String{
+        switch tag {
+        case 1:
+            return "Pin Location"
+        case 2:
+            return "Fire!"
+        case 3:
+            return "Warning!"
+        default:
+            return "Undefined"
+        }
+    }
+    
+    //MARK: - Preparing MapView and location Services
     func checkLocationService(){
         if CLLocationManager.locationServicesEnabled(){
             setupLocationManager()
@@ -38,6 +55,11 @@ class MapViewController: UIViewController {
             SVProgressHUD.showError(withStatus: "please Allow location Service from setting")
             SVProgressHUD.dismiss(withDelay: 0.5)
         }
+    }
+    
+    func setupLocationManager(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
     func centerViewOnUserLocation(){
@@ -69,25 +91,14 @@ class MapViewController: UIViewController {
             break
         }
     }
-    
-    func getUserName() -> String{
-        if let userId = Auth.auth().currentUser?.email{
-            print(userId)
-            return "userName: \(userId.dropLast(5))"
-        }
-        else {
-            return "username: unavailable"
-        }
-    }
-    
-
 }
 
+//MARK: - CoreLocation Delegate Extension
 extension MapViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{ return }
-        uploadUserLocation(location: location, userName: getUserName())
+        uploadGeoLocation(location: location, userId: getUserId(),child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 5.0)
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
@@ -98,43 +109,78 @@ extension MapViewController: CLLocationManagerDelegate{
         checkLocationAuthorization()
     }
     
-    func uploadUserLocation(location: CLLocation, userName:String){
-        let geofireRef = Database.database().reference().child("users-location")
+    func uploadGeoLocation(location: CLLocation, userId:String, child: String){
+        let geofireRef = Database.database().reference().child(child)
         let geoFire = GeoFire(firebaseRef: geofireRef)
         
-        geoFire.setLocation(location, forKey: userName)
+        geoFire.setLocation(location, forKey: userId)
     }
     
     func showOtherUsersWithinRadius(center:CLLocation,radius: Double){
-        let geofireRef = Database.database().reference().child("users-location")
+        let geofireRef = Database.database().reference().child("User-Location")
         let geoFire = GeoFire(firebaseRef: geofireRef)
         let queryCircle = geoFire.query(at: center, withRadius: radius)
         
-        queryCircle.observe(.keyEntered) { (key, location) in
+        queryCircle.observe(.keyEntered) { [unowned self](key, location) in
             let artwork = Artwork(title: key, coordinate: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
             self.mapView.addAnnotation(artwork)
             print("Key: \(key) | location: \(location)")
             
         }
     }
+    
+    func getUserId() -> String{
+        if let userId = Auth.auth().currentUser?.uid{
+            return "\(userId)"
+        }
+        else {
+            return "ID unavailable"
+        }
+    }
+    
 }
 
+//MARK: - MapKit Delegate extension
 extension MapViewController: MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotationUnwraped = annotation as? Artwork else{return nil}
-        var annotationView: MKMarkerAnnotationView
+        var annotationView: MKAnnotationView
         let identifier = "marker"
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView{
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier){
             dequeuedView.annotation = annotationUnwraped
+            dequeuedView.image = getGlyph(title: annotationUnwraped.title ?? "")
             annotationView = dequeuedView
+            
         }
         else{
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKAnnotationView(annotation: annotationUnwraped, reuseIdentifier: identifier)
+            annotationView.image = getGlyph(title: annotationUnwraped.title ?? "")
+            annotationView.centerOffset = CGPoint(x: 0, y: -50)
             annotationView.canShowCallout = true
-            annotationView.calloutOffset = CGPoint(x: -5, y: 5)
-            annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
         }
         return annotationView
+    }
+    
+    func getCenterLocation(for mapView: MKMapView) -> CLLocation{
+        let latitute = mapView.centerCoordinate.latitude
+        let longtitute = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitute, longitude: longtitute)
+    }
+    
+    func getGlyph(title: String) -> UIImage?{
+        switch title {
+        case "Warning!":
+            return UIImage(named: "warning")
+        case "Fire!":
+            return UIImage(named: "fire")
+        case "Pin Location":
+            return UIImage(named: "location")
+        default:
+            return UIImage(named: "userOnMap")
+        }
     }
 }
