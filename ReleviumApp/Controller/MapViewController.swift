@@ -22,14 +22,18 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationService()
+        downloadPins()
     }
     
     //MARK: - ADD Emergency Pin to map
     @IBAction func addToMapButtonPressed(_ sender: UIButton) {
-        let Glyphtitle = getTitle(tag: sender.tag)
-        let location = mapView.centerCoordinate
-        let artword = Artwork(title: Glyphtitle, coordinate: location)
-        mapView.addAnnotation(artword)
+        let glyphtitle = getTitle(tag: sender.tag)
+        let glyphlocation = mapView.centerCoordinate
+        let glyphId = UUID.init().uuidString
+        let userId = Auth.auth().currentUser?.uid ?? ""
+        uploadGeoLocation(location: CLLocation(latitude: glyphlocation.latitude, longitude: glyphlocation.longitude),
+                          id: glyphId, child: "GeoFirePingLocations")
+        uploadPinDetails(glyphId: glyphId, userId: userId, tag: sender.tag, glyphTitle: glyphtitle)
     }
     
     func getTitle(tag: Int) -> String{
@@ -42,6 +46,31 @@ class MapViewController: UIViewController {
             return "Warning!"
         default:
             return "Undefined"
+        }
+    }
+    
+    func uploadPinDetails(glyphId:String, userId: String, tag: Int, glyphTitle: String){
+        let pingDetails = Database.database().reference().child("Ping-Details")
+        pingDetails.child(glyphId).setValue(["mDescription":glyphTitle,"mImageId":tag, "mUserID": userId])
+    }
+    
+    func downloadPins(){
+        let pinqDetails = Database.database().reference().child("Ping-Details")
+        let geoFirePingLocation = Database.database().reference().child("GeoFirePingLocations")
+        let geoFire = GeoFire(firebaseRef: geoFirePingLocation)
+        
+        pinqDetails.observe(.childAdded) { [unowned self](snapshot) in
+            guard let value = snapshot.value as? NSDictionary else {return}
+            let glyphId = snapshot.key
+            let glyphTitle = value["mDescription"] as? String
+            geoFire.getLocationForKey(glyphId, withCallback: { (location, error) in
+                if error == nil{
+                    guard let title = glyphTitle else {return}
+                    guard let coordinate = location?.coordinate else{return}
+                    let artwork = Artwork(title: title, coordinate: coordinate)
+                    self.mapView.addAnnotation(artwork)
+                }
+            })
         }
     }
     
@@ -98,7 +127,7 @@ extension MapViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{ return }
-        uploadGeoLocation(location: location, userId: getUserId(),child: "User-Location")
+        uploadGeoLocation(location: location, id: getUserId(),child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 5.0)
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
@@ -109,11 +138,11 @@ extension MapViewController: CLLocationManagerDelegate{
         checkLocationAuthorization()
     }
     
-    func uploadGeoLocation(location: CLLocation, userId:String, child: String){
+    func uploadGeoLocation(location: CLLocation, id:String, child: String){
         let geofireRef = Database.database().reference().child(child)
         let geoFire = GeoFire(firebaseRef: geofireRef)
         
-        geoFire.setLocation(location, forKey: userId)
+        geoFire.setLocation(location, forKey: id)
     }
     
     func showOtherUsersWithinRadius(center:CLLocation,radius: Double){
