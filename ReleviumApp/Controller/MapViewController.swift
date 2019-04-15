@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
 
     let locationManager = CLLocationManager()
     let regionInMeters:Double = 1000
+    var userOldAnnotation:MKAnnotation?
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -88,7 +89,7 @@ class MapViewController: UIViewController {
     
     func setupLocationManager(){
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
     }
     
     func centerViewOnUserLocation(){
@@ -127,6 +128,7 @@ extension MapViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{ return }
+        print("location changed.......")
         uploadGeoLocation(location: location, id: getUserId(),child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 5.0)
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -152,7 +154,11 @@ extension MapViewController: CLLocationManagerDelegate{
         
         queryCircle.observe(.keyEntered) { [unowned self](key, location) in
             let artwork = Artwork(title: key, coordinate: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+            if let userAnnotation = self.userOldAnnotation {
+                self.mapView.removeAnnotation(userAnnotation)
+            }
             self.mapView.addAnnotation(artwork)
+            self.userOldAnnotation = artwork
             print("Key: \(key) | location: \(location)")
             
         }
