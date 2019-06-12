@@ -21,6 +21,21 @@ class RegisterViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        firstNameTextField.delegate = self
+        secondNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        rePasswordTextField.delegate = self
+        let tap = UITapGestureRecognizer(target: self, action: #selector(touchToEndEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func touchToEndEditing(){
+        firstNameTextField.resignFirstResponder()
+        secondNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        rePasswordTextField.resignFirstResponder()
     }
     
     @IBAction func registerButtonPressed(_ sender: ButtonLayout) {
@@ -104,4 +119,24 @@ class RegisterViewController: UIViewController{
         }
     }
     
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        firstNameTextField.resignFirstResponder()
+        secondNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        rePasswordTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        firstNameTextField.resignFirstResponder()
+        secondNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        rePasswordTextField.resignFirstResponder()
+        return true
+    }
 }

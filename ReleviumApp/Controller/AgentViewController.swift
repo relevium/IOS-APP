@@ -8,24 +8,28 @@
 
 import UIKit
 import CoreML
+import Alamofire
+import Firebase
+import SwiftyJSON
 
-class AgentViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
+class AgentViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
     
-    @IBOutlet weak var chatTable: UITableView!
+    @IBOutlet weak var chatView: UICollectionView!
     @IBOutlet weak var queryTextField: UITextField!
     @IBOutlet weak var queryViewConstraint: NSLayoutConstraint!
+    
     var messages:[ChatEntity] = []
     var tempText: String = ""
-    
+    let cellId = "ChatViewCell"
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        chatTable.delegate = self
-        chatTable.dataSource = self
         queryTextField.delegate = self
-        
+        chatView.delegate = self
+        chatView.dataSource = self
+        chatView.register(ChatViewCell.self, forCellWithReuseIdentifier: cellId)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
-        chatTable.addGestureRecognizer(tapGesture)
+        chatView.addGestureRecognizer(tapGesture)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -34,18 +38,14 @@ class AgentViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         
     }
 
-    //MARK: - TableView Datasource Methods
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //MARK: - Collection Datasource Methods
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "queryCell", for: indexPath)
-        let message = messages[indexPath.row]
-        cell.textLabel?.text = message.getMessage()
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
-        cell.textLabel?.textAlignment = message.isUser() ? .left : .right
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatViewCell
+        
         return cell
     }
     
@@ -99,27 +99,55 @@ class AgentViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             if !query.isEmpty{
                 let newMessage = ChatEntity(message: query, isUser: true)
                 messages.append(newMessage)
-                chatTable.reloadData()
+                chatView.reloadData()
                 queryTextField.text = ""
-                predict(for: newMessage.getMessage())
+                predict(for: newMessage.getMessage()){ res in
+                    switch res {
+                        case .failure(let err):
+                            print("error: \(err)")
+                            self.createResponse(response: "Agent not responding")
+                        case .success(let res):
+                            self.createResponse(response: res)
+                    }
+                }
                 queryTextField.endEditing(true)
             }
         }
     }
     
-    private func predict(for query: String){
-        let model = TwitterSentimentClassifier()
-        do{
-            let result = try model.prediction(text: query)
-            let agentAnswer = ChatEntity(message: result.label, isUser: false)
-            messages.append(agentAnswer)
-            chatTable.reloadData()
-            queryTextField.endEditing(false)
+    private func predict(for query: String, completion: @escaping (Result<String>) -> ()){
+        let urlString = "http://dummy.elrwsh.me/"
+        guard let url = URL(string: urlString) else {
+            completion(.failure(AgentError.ServerURLFailed))
+            return
         }
-        catch{
-            print("error predicting the query \(error)")
+        let queryID = UUID.init().uuidString
+        Alamofire.request(url,method: .post,parameters:[queryID:query],encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            switch response.result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success(let res):
+                    let json = JSON(res)
+                    let answer = json[queryID].stringValue
+                    completion(.success(answer))
+            }
         }
         
+    }
+    
+    private func getUserId() -> String{
+        if let userId = Auth.auth().currentUser?.uid{
+            return "\(userId)"
+        }
+        else {
+            return "ID unavailable"
+        }
+    }
+    
+    private func createResponse(response: String){
+        let newMessage = ChatEntity(message: response, isUser: false)
+        messages.append(newMessage)
+        chatView.reloadData()
     }
     
 }

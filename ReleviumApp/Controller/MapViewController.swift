@@ -19,10 +19,14 @@ class MapViewController: UIViewController {
     private let regionInMeters:Double = 1000
     private var isButtonVisible = false
     private var usersArtwork: [String : Artwork] = [:]
+    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var fireLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var emergencyButton: UIButton!
     @IBOutlet weak var fireButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var mainButton: UIButton!
+    @IBOutlet weak var mainLabel: UILabel!
     
     @IBOutlet weak var mapView: MKMapView!
     

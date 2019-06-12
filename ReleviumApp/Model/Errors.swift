@@ -13,3 +13,9 @@ enum RegistrationError: Error {
     case failedToConnectToFB
     case failedToGetUserId
 }
+
+enum AgentError: Error {
+    case failedToConnetToAgent
+    case ServerURLFailed
+    case failedToRetriveData
+}
