@@ -109,45 +109,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDO-MH-7Py">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDO-MH-7Py">
                                 <rect key="frame" x="20" y="270" width="374" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyk-84-IKa">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyk-84-IKa">
                                 <rect key="frame" x="20" y="163" width="374" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zV1-DQ-l3O">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zV1-DQ-l3O">
                                 <rect key="frame" x="20" y="325" width="374" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0mj-yP-Maj">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0mj-yP-Maj">
                                 <rect key="frame" x="20" y="379" width="374" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwU-vu-POg" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="503" width="374" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwU-vu-POg" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="503" width="374" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="r8g-pq-7rw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gx-yK-l3E" userLabel="back">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gx-yK-l3E" userLabel="back">
                                 <rect key="frame" x="20" y="76" width="38" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                 <state key="normal" backgroundImage="back-filled"/>
                                 <connections>
@@ -155,15 +149,36 @@
                                     <segue destination="dOy-BX-BMT" kind="show" id="4Pb-1I-249"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your second name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Smd-gQ-FIl">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your second name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Smd-gQ-FIl">
                                 <rect key="frame" x="20" y="218" width="374" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="top" secondItem="0tk-4l-wrg" secondAttribute="top" constant="163" id="4f8-vi-Wpv"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="0mj-yP-Maj" secondAttribute="trailing" id="AK1-gs-wph"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="EwU-vu-POg" secondAttribute="trailing" id="DKC-CZ-Bou"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="0tk-4l-wrg" secondAttribute="leadingMargin" id="Eqf-Nz-VNI"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="Smd-gQ-FIl" secondAttribute="leading" id="JIL-Sv-xDf"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="8gx-yK-l3E" secondAttribute="leading" id="TMf-Wg-Ore"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="0tk-4l-wrg" secondAttribute="trailingMargin" id="Wya-Wb-NAC"/>
+                            <constraint firstItem="0mj-yP-Maj" firstAttribute="top" secondItem="zV1-DQ-l3O" secondAttribute="bottom" constant="21" id="aRp-gV-ZVX"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="zV1-DQ-l3O" secondAttribute="trailing" id="dgs-0a-sQs"/>
+                            <constraint firstItem="EwU-vu-POg" firstAttribute="top" secondItem="0mj-yP-Maj" secondAttribute="bottom" constant="91" id="h4X-32-Lmd"/>
+                            <constraint firstItem="oDO-MH-7Py" firstAttribute="top" secondItem="Smd-gQ-FIl" secondAttribute="bottom" constant="19" id="jmw-iz-Kw6"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="top" secondItem="8gx-yK-l3E" secondAttribute="bottom" constant="58" id="jxt-lb-kZv"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="oDO-MH-7Py" secondAttribute="leading" id="nvm-Y1-z22"/>
+                            <constraint firstItem="Smd-gQ-FIl" firstAttribute="top" secondItem="eyk-84-IKa" secondAttribute="bottom" constant="22" id="qCN-DA-923"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="EwU-vu-POg" secondAttribute="leading" id="sgG-fl-yDj"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="oDO-MH-7Py" secondAttribute="trailing" id="tOA-f2-YfO"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="zV1-DQ-l3O" secondAttribute="leading" id="thj-eb-p5U"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="0mj-yP-Maj" secondAttribute="leading" id="trt-Zz-8Yb"/>
+                            <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="Smd-gQ-FIl" secondAttribute="trailing" id="xNa-2F-OKH"/>
+                            <constraint firstItem="zV1-DQ-l3O" firstAttribute="top" secondItem="oDO-MH-7Py" secondAttribute="bottom" constant="22" id="yS5-o2-SNc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EE8-J9-TSQ"/>
                     </view>
                     <connections>

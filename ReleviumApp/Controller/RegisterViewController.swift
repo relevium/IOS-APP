@@ -31,7 +31,13 @@ class RegisterViewController: UIViewController{
         guard let password =  passwordTextField.text else { return }
         guard let rePassword = rePasswordTextField.text else { return }
         
-        if verification.validateEmail(candidate: email) == false {
+        if firstName == "" {
+            verification.makeAlert(title: "Registration Failed", message: "please enter your first name", mainView: self)
+        }
+        else if lastName == "" {
+            verification.makeAlert(title: "Registration Failed", message: "please enter your last name", mainView: self)
+        }
+        else if verification.validateEmail(candidate: email) == false {
             verification.makeAlert(title: "Registration Failed", message: "Please enter a valid email", mainView: self)
             return
         }
