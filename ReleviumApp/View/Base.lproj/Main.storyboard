@@ -110,43 +110,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDO-MH-7Py">
-                                <rect key="frame" x="20" y="149" width="374" height="33"/>
+                                <rect key="frame" x="20" y="270" width="374" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eyk-84-IKa">
+                                <rect key="frame" x="20" y="163" width="374" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zV1-DQ-l3O">
-                                <rect key="frame" x="20" y="207" width="374" height="33"/>
+                                <rect key="frame" x="20" y="325" width="374" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0mj-yP-Maj">
+                                <rect key="frame" x="20" y="379" width="374" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwU-vu-POg" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="331" width="374" height="48"/>
+                                <rect key="frame" x="20" y="503" width="374" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="r8g-pq-7rw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gx-yK-l3E">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gx-yK-l3E" userLabel="back">
                                 <rect key="frame" x="20" y="76" width="38" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                 <state key="normal" backgroundImage="back-filled"/>
                                 <connections>
+                                    <action selector="backButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="bjw-H0-5lS"/>
                                     <segue destination="dOy-BX-BMT" kind="show" id="4Pb-1I-249"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your second name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Smd-gQ-FIl">
+                                <rect key="frame" x="20" y="218" width="374" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EE8-J9-TSQ"/>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="oDO-MH-7Py" id="QQb-SK-312"/>
+                        <outlet property="firstNameTextField" destination="eyk-84-IKa" id="ESw-ci-Zsd"/>
                         <outlet property="passwordTextField" destination="zV1-DQ-l3O" id="rbg-KJ-301"/>
+                        <outlet property="rePasswordTextField" destination="0mj-yP-Maj" id="6F5-B8-Uct"/>
+                        <outlet property="secondNameTextField" destination="Smd-gQ-FIl" id="K7T-GJ-3Cd"/>
                         <segue destination="U6y-ny-mml" kind="show" identifier="registerToMain" id="k7V-oW-Haq"/>
                     </connections>
                 </viewController>
@@ -160,6 +185,6 @@
         <image name="relevium" width="77.5" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dmh-Aj-dp7"/>
+        <segue reference="k7V-oW-Haq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,10 +11,11 @@ import Firebase
 import SVProgressHUD
 
 
-class LoginViewController: UIViewController, UITextFieldDelegate{
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    private let verification = Verification()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +40,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     @IBAction func loginButtonPressed(_ sender: ButtonLayout) {
         sender.flash()
         if let email = emailTextField.text, let password =  passwordTextField.text {
+            
+            if verification.validateEmail(candidate: email) == false || verification.validatePassword(candidate: password) == false {
+                verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
+                return
+            }
+            
             SVProgressHUD.show()
-            Auth.auth().signIn(withEmail: email, password: password) { (results, error) in
+            Auth.auth().signIn(withEmail: email, password: password) { [unowned self](results, error) in
                 if error != nil{
                     SVProgressHUD.dismiss()
-                    SVProgressHUD.showError(withStatus: "invalid email or password")
-                    SVProgressHUD.dismiss(withDelay: 0.5)
-                    
+                    self.verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
                 }
                 else {
                     SVProgressHUD.dismiss()

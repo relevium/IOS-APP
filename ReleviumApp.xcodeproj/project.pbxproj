@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F01E33C22B071D300E1FB05 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F01E33B22B071D300E1FB05 /* Verification.swift */; };
+		8F01E33E22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F01E33D22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift */; };
+		8F01E34022B0B7C400E1FB05 /* RegistrationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F01E33F22B0B7C400E1FB05 /* RegistrationError.swift */; };
+		8F4AF4EF22ADA28600110DD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */; };
 		8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */; };
 		8F7708FE225CD702002809D5 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */; };
 		8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CA8221DDBB600D6A55C /* AppDelegate.swift */; };
@@ -23,8 +27,8 @@
 		8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1017F222B30C200D5D130 /* RegisterViewController.swift */; };
 		8FD10182222B30D500D5D130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD10181222B30D500D5D130 /* LoginViewController.swift */; };
 		8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3C6FB2223087100975659 /* ChatEntity.swift */; };
-		8FF8E9E42260D30900A658C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FF8E9E32260D30900A658C8 /* GoogleService-Info.plist */; };
-		8FF8E9E52260D30900A658C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FF8E9E32260D30900A658C8 /* GoogleService-Info.plist */; };
+		8FE82BE322B0462400785DD0 /* DesignableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE82BE222B0462400785DD0 /* DesignableTextField.swift */; };
+		8FE82BE522B0475000785DD0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE82BE422B0475000785DD0 /* ProfileViewController.swift */; };
 		D8FC01F96ECE30DDAAD8AF45 /* Pods_ReleviumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC0B480F0E3E3F3E140D3C4 /* Pods_ReleviumApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +45,10 @@
 /* Begin PBXFileReference section */
 		1499423FF7C3F742346EB025 /* Pods-ReleviumApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.debug.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4B0E97F7EE8CE5036BC447AC /* Pods-ReleviumApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReleviumApp.release.xcconfig"; path = "Target Support Files/Pods-ReleviumApp/Pods-ReleviumApp.release.xcconfig"; sourceTree = "<group>"; };
+		8F01E33B22B071D300E1FB05 /* Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verification.swift; sourceTree = "<group>"; };
+		8F01E33D22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "mapViewController+buttonsExtension.swift"; sourceTree = "<group>"; };
+		8F01E33F22B0B7C400E1FB05 /* RegistrationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationError.swift; sourceTree = "<group>"; };
+		8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8F71D04222258343004530ED /* TwitterSentimentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = TwitterSentimentClassifier.mlmodel; path = "ReleviumApp/Supporting Files/TwitterSentimentClassifier.mlmodel"; sourceTree = SOURCE_ROOT; };
 		8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
 		8F927CA5221DDBB600D6A55C /* ReleviumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReleviumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +69,8 @@
 		8FD1017F222B30C200D5D130 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8FD10181222B30D500D5D130 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8FD3C6FB2223087100975659 /* ChatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntity.swift; sourceTree = "<group>"; };
-		8FF8E9E32260D30900A658C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8FE82BE222B0462400785DD0 /* DesignableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableTextField.swift; sourceTree = "<group>"; };
+		8FE82BE422B0475000785DD0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AAC0B480F0E3E3F3E140D3C4 /* Pods_ReleviumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReleviumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,8 +137,8 @@
 				8F927CBC221DDC0D00D6A55C /* Controller */,
 				8F927CBA221DDBF700D6A55C /* Model */,
 				8FADB5152226824700D53FB1 /* Supporting Files */,
-				8FF8E9E32260D30900A658C8 /* GoogleService-Info.plist */,
 				8F927CB4221DDBB700D6A55C /* Info.plist */,
+				8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */,
 				8F927CA8221DDBB600D6A55C /* AppDelegate.swift */,
 			);
 			path = ReleviumApp;
@@ -140,6 +149,7 @@
 			children = (
 				8FD3C6FB2223087100975659 /* ChatEntity.swift */,
 				8F96D8962239D22F005B7A54 /* Artwork.swift */,
+				8F01E33F22B0B7C400E1FB05 /* RegistrationError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC9C16022268D1200C7597C /* ButtonLayout.swift */,
+				8FE82BE222B0462400785DD0 /* DesignableTextField.swift */,
 				8FABDEB62232FF3000019F1F /* GredientLayout.swift */,
 				8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */,
 				8F927CAC221DDBB600D6A55C /* Main.storyboard */,
@@ -164,6 +175,9 @@
 				8FD1017F222B30C200D5D130 /* RegisterViewController.swift */,
 				8FD10181222B30D500D5D130 /* LoginViewController.swift */,
 				8FA0AE9222340146008D8D62 /* MapViewController.swift */,
+				8FE82BE422B0475000785DD0 /* ProfileViewController.swift */,
+				8F01E33B22B071D300E1FB05 /* Verification.swift */,
+				8F01E33D22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -273,7 +287,7 @@
 			files = (
 				8FABDEB92233193600019F1F /* TabBar.storyboard in Resources */,
 				8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */,
-				8FF8E9E42260D30900A658C8 /* GoogleService-Info.plist in Resources */,
+				8F4AF4EF22ADA28600110DD7 /* GoogleService-Info.plist in Resources */,
 				8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */,
 				8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */,
 			);
@@ -283,7 +297,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FF8E9E52260D30900A658C8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,11 +366,16 @@
 				8FD10182222B30D500D5D130 /* LoginViewController.swift in Sources */,
 				8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */,
 				8F7708FE225CD702002809D5 /* ButtonAnimationExtension.swift in Sources */,
+				8F01E33C22B071D300E1FB05 /* Verification.swift in Sources */,
 				8F71D04322258343004530ED /* TwitterSentimentClassifier.mlmodel in Sources */,
 				8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */,
 				8FA0AE9322340146008D8D62 /* MapViewController.swift in Sources */,
+				8FE82BE322B0462400785DD0 /* DesignableTextField.swift in Sources */,
 				8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */,
+				8F01E34022B0B7C400E1FB05 /* RegistrationError.swift in Sources */,
 				8F927CAB221DDBB600D6A55C /* AgentViewController.swift in Sources */,
+				8FE82BE522B0475000785DD0 /* ProfileViewController.swift in Sources */,
+				8F01E33E22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift in Sources */,
 				8FABDEB72232FF3000019F1F /* GredientLayout.swift in Sources */,
 				8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */,
 			);

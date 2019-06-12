@@ -15,39 +15,52 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
-    let locationManager = CLLocationManager()
-    let regionInMeters:Double = 1000
-    var userOldAnnotation:MKAnnotation?
+    private let locationManager = CLLocationManager()
+    private let regionInMeters:Double = 1000
+    private var isButtonVisible = false
+    
+    @IBOutlet weak var emergencyButton: UIButton!
+    @IBOutlet weak var fireButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var mainButton: UIButton!
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonsInitialPositions()
         checkLocationService()
         downloadPins()
     }
     
     //MARK: - ADD Emergency Pin to map
     @IBAction func addToMapButtonPressed(_ sender: UIButton) {
-        let glyphtitle = getTitle(tag: sender.tag)
-        let glyphlocation = mapView.centerCoordinate
-        let glyphId = UUID.init().uuidString
-        let userId = Auth.auth().currentUser?.uid ?? ""
-        uploadGeoLocation(location: CLLocation(latitude: glyphlocation.latitude, longitude: glyphlocation.longitude),
-                          id: glyphId, child: "GeoFirePingLocations")
-        uploadPinDetails(glyphId: glyphId, userId: userId, tag: sender.tag, glyphTitle: glyphtitle)
-    }
-    
-    func getTitle(tag: Int) -> String{
-        switch tag {
-        case 1:
-            return "Pin Location"
-        case 2:
-            return "Fire!"
-        case 3:
-            return "Warning!"
-        default:
-            return "Undefined"
+        if sender.tag == 0 {
+            //make some cool animation
+            if isButtonVisible == true {
+                UIView.animate(withDuration: 0.4) {
+                    self.setButtonAtStartLocation()
+                }
+                isButtonVisible = false
+            }
+            else {
+                UIView.animate(withDuration: 0.4){
+                    self.setButtonEndLocation()
+                }
+                isButtonVisible = true
+            }
+            
         }
+        else {
+            let glyphtitle = getTitle(tag: sender.tag)
+            let glyphlocation = mapView.centerCoordinate
+            let glyphId = UUID.init().uuidString
+            let userId = Auth.auth().currentUser?.uid ?? ""
+            uploadGeoLocation(location: CLLocation(latitude: glyphlocation.latitude, longitude: glyphlocation.longitude),
+                              id: glyphId, child: "GeoFirePingLocations")
+            uploadPinDetails(glyphId: glyphId, userId: userId, tag: sender.tag, glyphTitle: glyphtitle)
+        }
+        
     }
     
     func uploadPinDetails(glyphId:String, userId: String, tag: Int, glyphTitle: String){
@@ -60,7 +73,7 @@ class MapViewController: UIViewController {
         let geoFirePingLocation = Database.database().reference().child("GeoFirePingLocations")
         let geoFire = GeoFire(firebaseRef: geoFirePingLocation)
         
-        pinqDetails.observe(.childAdded) { [unowned self](snapshot) in
+        pinqDetails.observe(.childAdded) { [unowned self] (snapshot) in
             guard let value = snapshot.value as? NSDictionary else {return}
             let glyphId = snapshot.key
             let glyphTitle = value["mDescription"] as? String
@@ -75,6 +88,18 @@ class MapViewController: UIViewController {
         }
     }
     
+    func getTitle(tag: Int) -> String{
+        switch tag {
+        case 1:
+            return "Pin Location"
+        case 2:
+            return "Fire!"
+        case 3:
+            return "Warning!"
+        default:
+            return "Undefined"
+        }
+    }
     //MARK: - Preparing MapView and location Services
     func checkLocationService(){
         if CLLocationManager.locationServicesEnabled(){
@@ -119,6 +144,9 @@ class MapViewController: UIViewController {
             break
         case .authorizedAlways:
             break
+        @unknown default:
+            SVProgressHUD.showError(withStatus: "Location Authrization Error")
+            SVProgressHUD.dismiss(withDelay: 0.5)
         }
     }
 }
@@ -154,11 +182,9 @@ extension MapViewController: CLLocationManagerDelegate{
         
         queryCircle.observe(.keyEntered) { [unowned self](key, location) in
             let artwork = Artwork(title: key, coordinate: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
-            if let userAnnotation = self.userOldAnnotation {
-                self.mapView.removeAnnotation(userAnnotation)
-            }
+            // error handling user Annotation 'Continously adding users'
+
             self.mapView.addAnnotation(artwork)
-            self.userOldAnnotation = artwork
             print("Key: \(key) | location: \(location)")
             
         }
