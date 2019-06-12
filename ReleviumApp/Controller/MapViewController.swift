@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private let regionInMeters:Double = 1000
     private var isButtonVisible = false
-    
+    private var usersArtwork: [String : Artwork] = [:]
     @IBOutlet weak var emergencyButton: UIButton!
     @IBOutlet weak var fireButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
@@ -159,9 +159,6 @@ extension MapViewController: CLLocationManagerDelegate{
         print("location changed.......")
         uploadGeoLocation(location: location, id: getUserId(),child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 5.0)
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -181,22 +178,43 @@ extension MapViewController: CLLocationManagerDelegate{
         let queryCircle = geoFire.query(at: center, withRadius: radius)
         
         queryCircle.observe(.keyEntered) { [unowned self](key, location) in
-            let artwork = Artwork(title: key, coordinate: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
-            // error handling user Annotation 'Continously adding users'
-
-            self.mapView.addAnnotation(artwork)
-            print("Key: \(key) | location: \(location)")
             
+            self.addUserToMap(key: key, location: location)
         }
     }
     
-    func getUserId() -> String{
+    private func getUserId() -> String{
         if let userId = Auth.auth().currentUser?.uid{
             return "\(userId)"
         }
         else {
             return "ID unavailable"
         }
+    }
+    
+    private func addUserToMap(key: String, location: CLLocation) {
+        let artwork = Artwork(title: key, coordinate: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+        
+        if let oldArtwork = usersArtwork[key] {
+            // user found -- user already added to map -> update user location on map
+            if isLocationChanged(location: location, artwork: oldArtwork) {
+                
+                usersArtwork.updateValue(artwork, forKey: key)
+                mapView.removeAnnotation(oldArtwork)
+                mapView.addAnnotation(artwork)
+                print("location updated for user with Key: \(key) | location: \(location)")
+            }
+        }
+        else {
+           // user not found -- user not added to map -> Add user location on map
+            usersArtwork.updateValue(artwork, forKey: key)
+            mapView.addAnnotation(artwork)
+            print("new user add to map with Key: \(key) | location: \(location)")
+        }
+    }
+    private func isLocationChanged(location: CLLocation, artwork: Artwork) -> Bool {
+        let oldLocation = CLLocation(latitude: artwork.coordinate.latitude, longitude: artwork.coordinate.longitude)
+        return location != oldLocation ? true : false
     }
     
 }
