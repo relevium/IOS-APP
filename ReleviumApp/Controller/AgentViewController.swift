@@ -24,6 +24,7 @@ class AgentViewController: UIViewController,UICollectionViewDataSource{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        tabBarItem.imageInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         queryTextField.delegate = self
         chatView.delegate = self
         chatView.dataSource = self
@@ -38,8 +39,6 @@ class AgentViewController: UIViewController,UICollectionViewDataSource{
         
     }
 
-    
-    
     //MARK: - Keyboard Handling Methods
     @objc func keyboardWillShow(notification: NSNotification){
         guard let userInfo = notification.userInfo else {return}
@@ -140,7 +139,6 @@ extension AgentViewController: UICollectionViewDelegateFlowLayout {
         let size = CGSize(width: view.frame.width, height: 1000)
         let attributes = [kCTFontAttributeName : UIFont.systemFont(ofSize: 18)]
         let estimateFrame = NSString(string: message).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-        print("+++++++++++++++++ \(estimateFrame.height)++++++++++")
         return CGSize(width: view.frame.width, height: estimateFrame.height + 60)
     }
 }

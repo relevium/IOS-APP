@@ -32,6 +32,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarItem.imageInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         buttonsInitialPositions()
         checkLocationService()
         downloadPins()

@@ -3,14 +3,12 @@
 # To Do
 
 * login with third parties
-* plot emergency location on map
-* offline chatting
-* user profile
+* chat with users
 * tuning the UI
 
 # In Progress
 
-* working on map
+* working on profile
 
 # Done
 
@@ -20,3 +18,4 @@
 * get user location
 * plot user location on map
 * plot other users on map
+* plot danger zones on map

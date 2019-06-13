@@ -52,7 +52,7 @@
                                 <rect key="frame" x="20" y="749" width="374" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <segue destination="nXd-0V-bgQ" kind="show" id="9Qd-Fa-XJd"/>
+                                    <segue destination="SGl-zN-u83" kind="show" id="9Qd-Fa-XJd"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0cd-9j-J0E">
@@ -140,15 +140,6 @@
                                     <action selector="registerButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="r8g-pq-7rw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gx-yK-l3E" userLabel="back">
-                                <rect key="frame" x="20" y="76" width="38" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                <state key="normal" backgroundImage="back-filled"/>
-                                <connections>
-                                    <action selector="backButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="bjw-H0-5lS"/>
-                                    <segue destination="dOy-BX-BMT" kind="show" id="4Pb-1I-249"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your second name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Smd-gQ-FIl">
                                 <rect key="frame" x="20" y="218" width="374" height="33"/>
                                 <nil key="textColor"/>
@@ -163,13 +154,11 @@
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="EwU-vu-POg" secondAttribute="trailing" id="DKC-CZ-Bou"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="0tk-4l-wrg" secondAttribute="leadingMargin" id="Eqf-Nz-VNI"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="Smd-gQ-FIl" secondAttribute="leading" id="JIL-Sv-xDf"/>
-                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="8gx-yK-l3E" secondAttribute="leading" id="TMf-Wg-Ore"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="0tk-4l-wrg" secondAttribute="trailingMargin" id="Wya-Wb-NAC"/>
                             <constraint firstItem="0mj-yP-Maj" firstAttribute="top" secondItem="zV1-DQ-l3O" secondAttribute="bottom" constant="21" id="aRp-gV-ZVX"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="zV1-DQ-l3O" secondAttribute="trailing" id="dgs-0a-sQs"/>
                             <constraint firstItem="EwU-vu-POg" firstAttribute="top" secondItem="0mj-yP-Maj" secondAttribute="bottom" constant="91" id="h4X-32-Lmd"/>
                             <constraint firstItem="oDO-MH-7Py" firstAttribute="top" secondItem="Smd-gQ-FIl" secondAttribute="bottom" constant="19" id="jmw-iz-Kw6"/>
-                            <constraint firstItem="eyk-84-IKa" firstAttribute="top" secondItem="8gx-yK-l3E" secondAttribute="bottom" constant="58" id="jxt-lb-kZv"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="oDO-MH-7Py" secondAttribute="leading" id="nvm-Y1-z22"/>
                             <constraint firstItem="Smd-gQ-FIl" firstAttribute="top" secondItem="eyk-84-IKa" secondAttribute="bottom" constant="22" id="qCN-DA-923"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="EwU-vu-POg" secondAttribute="leading" id="sgG-fl-yDj"/>
@@ -181,6 +170,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EE8-J9-TSQ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZQP-eb-gTO">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-left-30" id="sgd-tz-2u4">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="nXd-0V-bgQ" id="FbS-I3-Mqn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="oDO-MH-7Py" id="QQb-SK-312"/>
                         <outlet property="firstNameTextField" destination="eyk-84-IKa" id="ESw-ci-Zsd"/>
@@ -192,11 +188,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xB-N6-zzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="209.59821428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pQ9-8Z-oQc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SGl-zN-u83" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kGv-aD-in6">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nXd-0V-bgQ" kind="relationship" relationship="rootViewController" id="CNu-WI-eTr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NnO-sq-xb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="131.8840579710145" y="209.59821428571428"/>
         </scene>
     </scenes>
     <resources>
-        <image name="back-filled" width="50" height="50"/>
+        <image name="icons8-left-30" width="30" height="30"/>
         <image name="relevium" width="77.5" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>

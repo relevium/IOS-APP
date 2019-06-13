@@ -7,24 +7,27 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
 
+    let verification = Verification()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func signoutButtonPressed(_ sender: UIBarButtonItem) {
+        
+        do{
+            try Auth.auth().signOut()
+            dismiss(animated: true, completion: nil)
+        }
+        catch {
+            verification.makeAlert(title: "Signout", message: "Connection Error failed to signout", mainView: self)
+        }
+        
     }
-    */
 
 }

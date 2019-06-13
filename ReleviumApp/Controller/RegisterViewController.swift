@@ -95,9 +95,10 @@ class RegisterViewController: UIViewController{
         
     }
     
-    @IBAction func backButtonPressed(_ sender: Any) {
+    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
     
     private func createNewUser(firstName:String, lastName:String, email:String,complition: @escaping (Result<String,RegistrationError>) -> () ){
         let ref = Database.database().reference().child("Users")
