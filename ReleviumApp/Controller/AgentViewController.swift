@@ -12,7 +12,7 @@ import Alamofire
 import Firebase
 import SwiftyJSON
 
-class AgentViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITextFieldDelegate {
+class AgentViewController: UIViewController,UICollectionViewDataSource{
     
     @IBOutlet weak var chatView: UICollectionView!
     @IBOutlet weak var queryTextField: UITextField!
@@ -38,20 +38,7 @@ class AgentViewController: UIViewController,UICollectionViewDataSource,UICollect
         
     }
 
-    //MARK: - Collection Datasource Methods
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatViewCell
-        
-        return cell
-    }
-    
-    @objc func tableViewTapped(){
-        queryTextField.endEditing(true)
-    }
     
     //MARK: - Keyboard Handling Methods
     @objc func keyboardWillShow(notification: NSNotification){
@@ -68,24 +55,6 @@ class AgentViewController: UIViewController,UICollectionViewDataSource,UICollect
         }
     }
     
-    //MARK: - TextField delegate Methods
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        getInputFromUser()
-        queryTextField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = queryTextField.text{
-            tempText = text
-        }
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if tempText != "" {
-            queryTextField.text = tempText
-        }
-    }
     
     //MARK: -Perfom Query triggerd
     @IBAction func askbuttonPressed(_ sender: UIButton) {
@@ -93,7 +62,6 @@ class AgentViewController: UIViewController,UICollectionViewDataSource,UICollect
         getInputFromUser()
     }
     
-    //MARK: - Agent Prediction Methods
     private func getInputFromUser(){
         if let query = queryTextField.text{
             if !query.isEmpty{
@@ -115,6 +83,7 @@ class AgentViewController: UIViewController,UICollectionViewDataSource,UICollect
         }
     }
     
+    //MARK: - Agent Prediction Methods
     private func predict(for query: String, completion: @escaping (Result<String>) -> ()){
         let urlString = "http://dummy.elrwsh.me/"
         guard let url = URL(string: urlString) else {
@@ -135,19 +104,66 @@ class AgentViewController: UIViewController,UICollectionViewDataSource,UICollect
         
     }
     
-    private func getUserId() -> String{
-        if let userId = Auth.auth().currentUser?.uid{
-            return "\(userId)"
-        }
-        else {
-            return "ID unavailable"
-        }
-    }
     
     private func createResponse(response: String){
         let newMessage = ChatEntity(message: response, isUser: false)
         messages.append(newMessage)
         chatView.reloadData()
+    }
+    
+}
+
+//MARK: - Collection View 'Chat view ' delegate  methods
+extension AgentViewController: UICollectionViewDelegate {
+    
+    //MARK: - Collection Datasource Methods
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatViewCell
+        cell.chatItem = messages[indexPath.item]
+        return cell
+    }
+    
+    @objc func tableViewTapped(){
+        queryTextField.endEditing(true)
+    }
+}
+
+//MARK: - CollectionView Flow Delegate Methods
+
+extension AgentViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let message = messages[indexPath.item].getMessage()
+        let size = CGSize(width: view.frame.width, height: 1000)
+        let attributes = [kCTFontAttributeName : UIFont.systemFont(ofSize: 18)]
+        let estimateFrame = NSString(string: message).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes as [NSAttributedString.Key : Any], context: nil)
+        print("+++++++++++++++++ \(estimateFrame.height)++++++++++")
+        return CGSize(width: view.frame.width, height: estimateFrame.height + 60)
+    }
+}
+
+ //MARK: - TextField delegate Methods
+extension AgentViewController: UITextFieldDelegate{
+   
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        getInputFromUser()
+        queryTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let text = queryTextField.text{
+            tempText = text
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if tempText != "" {
+            queryTextField.text = tempText
+        }
     }
     
 }
