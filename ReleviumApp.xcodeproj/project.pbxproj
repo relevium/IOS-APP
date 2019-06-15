@@ -18,6 +18,7 @@
 		8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAC221DDBB600D6A55C /* Main.storyboard */; };
 		8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAF221DDBB700D6A55C /* Assets.xcassets */; };
 		8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */; };
+		8F959FF122B52D3000A0C634 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F959FF022B52D3000A0C634 /* ChatViewController.swift */; };
 		8F96D86F2239303B005B7A54 /* ReleviumAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96D86E2239303B005B7A54 /* ReleviumAppTests.swift */; };
 		8F96D8972239D22F005B7A54 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96D8962239D22F005B7A54 /* Artwork.swift */; };
 		8FA0AE9322340146008D8D62 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AE9222340146008D8D62 /* MapViewController.swift */; };
@@ -29,7 +30,6 @@
 		8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3C6FB2223087100975659 /* ChatEntity.swift */; };
 		8FE82BE322B0462400785DD0 /* DesignableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE82BE222B0462400785DD0 /* DesignableTextField.swift */; };
 		8FE82BE522B0475000785DD0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE82BE422B0475000785DD0 /* ProfileViewController.swift */; };
-		8FEE7A0322B3D589008170C0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE7A0222B3D589008170C0 /* ChatViewController.swift */; };
 		8FEE7A0922B4538A008170C0 /* UserOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE7A0822B4538A008170C0 /* UserOnMap.swift */; };
 		8FEE7A0B22B471CF008170C0 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE7A0A22B471CF008170C0 /* UserImageView.swift */; };
 		D8FC01F96ECE30DDAAD8AF45 /* Pods_ReleviumApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC0B480F0E3E3F3E140D3C4 /* Pods_ReleviumApp.framework */; };
@@ -61,6 +61,7 @@
 		8F927CAF221DDBB700D6A55C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F927CB2221DDBB700D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F927CB4221DDBB700D6A55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F959FF022B52D3000A0C634 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8F96D86C2239303B005B7A54 /* ReleviumAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReleviumAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F96D86E2239303B005B7A54 /* ReleviumAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleviumAppTests.swift; sourceTree = "<group>"; };
 		8F96D8702239303B005B7A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		8FD3C6FB2223087100975659 /* ChatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntity.swift; sourceTree = "<group>"; };
 		8FE82BE222B0462400785DD0 /* DesignableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableTextField.swift; sourceTree = "<group>"; };
 		8FE82BE422B0475000785DD0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		8FEE7A0222B3D589008170C0 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8FEE7A0822B4538A008170C0 /* UserOnMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnMap.swift; sourceTree = "<group>"; };
 		8FEE7A0A22B471CF008170C0 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		AAC0B480F0E3E3F3E140D3C4 /* Pods_ReleviumApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReleviumApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,7 +187,7 @@
 				8FE82BE422B0475000785DD0 /* ProfileViewController.swift */,
 				8F01E33B22B071D300E1FB05 /* Verification.swift */,
 				8F01E33D22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift */,
-				8FEE7A0222B3D589008170C0 /* ChatViewController.swift */,
+				8F959FF022B52D3000A0C634 /* ChatViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -386,8 +386,8 @@
 				8FE82BE322B0462400785DD0 /* DesignableTextField.swift in Sources */,
 				8F65C1D822B1C2BC00C18870 /* ChatViewCell.swift in Sources */,
 				8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */,
+				8F959FF122B52D3000A0C634 /* ChatViewController.swift in Sources */,
 				8F01E34022B0B7C400E1FB05 /* Errors.swift in Sources */,
-				8FEE7A0322B3D589008170C0 /* ChatViewController.swift in Sources */,
 				8F927CAB221DDBB600D6A55C /* AgentViewController.swift in Sources */,
 				8FE82BE522B0475000785DD0 /* ProfileViewController.swift in Sources */,
 				8F01E33E22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift in Sources */,

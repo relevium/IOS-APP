@@ -44,13 +44,13 @@ class AgentViewController: UIViewController,UICollectionViewDataSource{
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{return}
         UIView.animate(withDuration: 0.5) {
-            self.queryViewConstraint.constant = keyboardFrame.height
+            self.queryViewConstraint.constant = keyboardFrame.height - 45
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification){
         UIView.animate(withDuration: 0.5) {
-            self.queryViewConstraint.constant = 35
+            self.queryViewConstraint.constant = 40
         }
     }
     
