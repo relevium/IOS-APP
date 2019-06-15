@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
 class ChatViewController: UIViewController, UICollectionViewDataSource {
 
@@ -38,7 +39,7 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
         receiverNameLabel.text = receiverName
-        receiveMessages()
+        retrieveOldMessages()
         
     }
     
@@ -76,8 +77,17 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
         let messageID = UUID.init().uuidString
         let value = ["date":date,"from":sender,"FromName":name,"message":message,
                      "messageID":messageID,"time":time,"to":receiver,"type":"text"]
+       
         //Save the message on user database
+        saveMessageToUserDB(ref: ref, sender: sender,receiver: receiver, messageID: messageID, value: value, messageEntity: messageEntity)
+        print("flag 1")
+        sendMessageToReceiver(ref: ref, sender: sender, receiver: receiver, messageID: messageID, value: value, messageEntity: messageEntity)
+        print("flag 2")
         
+        
+    }
+    
+    private func saveMessageToUserDB(ref: DatabaseReference,sender: String,receiver: String,messageID: String, value:[String:String],messageEntity:ChatEntity) {
         ref.child(sender).child(receiver).child(messageID).setValue(value) { [unowned self](error, ref) in
             if error != nil {
                 print("Error Saving Message: \(error.debugDescription)")
@@ -87,31 +97,74 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
                 return
             }
             else {
-                // Send the message to the receiver
-                ref.child(receiver).child(sender).child(messageID).setValue(value) { [unowned self](error, ref) in
-                    if error != nil {
-                        print("Error Sending Message: \(error.debugDescription)")
-                        let errorMessage = ChatEntity(message: "Receiver Failed to receive the Message", isUser: true)
-                        self.messages.append(errorMessage)
-                        self.chatCollectionView.reloadData()
-                        ref.child(sender).child(receiver).child(messageID).removeValue()
-                        return
-                    }
-                    // Message Sent and Received Succefully
-                    print("Message send Successfully")
-                    self.messages.append(messageEntity)
-                    self.chatCollectionView.reloadData()
-                }
+                print("---------saved")
             }
         }
     }
     
-    private func receiveMessages(){
+    private func sendMessageToReceiver(ref: DatabaseReference,sender: String,receiver: String,messageID: String, value:[String:String],messageEntity:ChatEntity) {
         
+        ref.child(receiver).child(sender).child(messageID).setValue(value) { [unowned self](error, ref) in
+            if error != nil {
+                print("Error Sending Message: \(error.debugDescription)")
+                let errorMessage = ChatEntity(message: "Receiver Failed to receive the Message", isUser: true)
+                self.messages.append(errorMessage)
+                self.chatCollectionView.reloadData()
+                ref.child(sender).child(receiver).child(messageID).removeValue()
+                return
+            }
+            else {
+                print("-----------sent")
+                // Message Sent and Received Succefully
+                print("Message send Successfully")
+                self.messages.append(messageEntity)
+                self.chatCollectionView.reloadData()
+            }
+        }
     }
     
-    private func deleteMessage(){
+    private func retrieveOldMessages(){
+        let ref = Database.database().reference().child("Messages")
+        guard let currentUser = self.senderID else {
+            print("failed to get current User")
+            return
+        }
+        guard let sender = senderID else {
+            print("sender not initialized")
+            return
+        }
+        guard let receiver = receiverID else {
+            print("reciever not initialized")
+            return
+        }
         
+        ref.child(sender).child(receiver).observe(.childAdded) { (snapshot) in
+            
+            if let value = snapshot.value {
+                let json = JSON(value)
+                print(json)
+                
+                let message = json["message"].stringValue
+                let sender = json["from"].stringValue
+                print(message)
+                print(sender)
+                
+                if sender == currentUser {
+                    let messageItem = ChatEntity(message: message, isUser: true)
+                    self.messages.append(messageItem)
+                    self.chatCollectionView.reloadData()
+                }
+                else {
+                    let messageItem = ChatEntity(message: message, isUser: false)
+                    self.messages.append(messageItem)
+                    self.chatCollectionView.reloadData()
+                }
+            }
+            else {
+                // user not registered in user collection "garbage user"
+                print("error retrieving message")
+            }
+        }
     }
    
     //MARK: - Keyboard Handling Methods
@@ -165,6 +218,7 @@ extension ChatViewController: UITextFieldDelegate {
             messageTextField.resignFirstResponder()
             sendMessage(message: text)
             textField.text = ""
+            tempText = ""
             return true
         }
         return false
