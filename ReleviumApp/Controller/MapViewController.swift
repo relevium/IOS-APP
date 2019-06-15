@@ -14,11 +14,16 @@ import MapKit
 import CoreLocation
 import SwiftyJSON
 
+
 class MapViewController: UIViewController {
 
     private let locationManager = CLLocationManager()
     private let regionInMeters:Double = 1000
     private var isButtonVisible = false
+    private var receiverID:String?
+    private var receiverName: String?
+    private var senderID: String?
+    private var senderName: String?
     private var usersArtwork: [String : Artwork] = [:]
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var fireLabel: UILabel!
@@ -106,6 +111,7 @@ class MapViewController: UIViewController {
             return "Undefined"
         }
     }
+    
     //MARK: - Preparing MapView and location Services
     func checkLocationService(){
         if CLLocationManager.locationServicesEnabled(){
@@ -155,6 +161,19 @@ class MapViewController: UIViewController {
             SVProgressHUD.dismiss(withDelay: 0.5)
         }
     }
+    
+    //MARK: - Setting Info on Chat View
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToChat" {
+            if let vc = segue.destination as? ChatViewController {
+                vc.senderID = self.senderID
+                vc.senderName = self.senderName
+                vc.receiverID = self.receiverID
+                vc.receiverName = self.receiverName
+            }
+        }
+    }
+    
 }
 
 //MARK: - CoreLocation Delegate Extension
@@ -229,18 +248,18 @@ extension MapViewController: CLLocationManagerDelegate{
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let artwork = Artwork(title: title, coordinate: coordinate, uid: userId, state: state)
         
-        if let oldArtwork = usersArtwork[title] {
+        if let oldArtwork = usersArtwork[userId] {
             // user found -- user already added to map -> update user location on map
             if isLocationChanged(location: location, artwork: oldArtwork) {
                 
-                usersArtwork.updateValue(artwork, forKey: title)
+                usersArtwork.updateValue(artwork, forKey: userId)
                 mapView.removeAnnotation(oldArtwork)
                 mapView.addAnnotation(artwork)
             }
         }
         else {
             // user not found -- user not added to map -> Add user location on map
-            usersArtwork.updateValue(artwork, forKey: title)
+            usersArtwork.updateValue(artwork, forKey: userId)
             mapView.addAnnotation(artwork)
         }
         
@@ -308,7 +327,7 @@ extension MapViewController: MKMapViewDelegate{
         annatotationView.canShowCallout = true
         
         if  state != "" && uid != "" {
-            addUserImage(annatotationView: annatotationView, name: title, state: state)
+            addUserImage(annatotationView: annatotationView, name: title, state: state,uid: uid)
             return
         }
         
@@ -317,24 +336,37 @@ extension MapViewController: MKMapViewDelegate{
         }
     }
     
-    private func addUserImage(annatotationView: MKAnnotationView,name: String,state:String) {
+    private func addUserImage(annatotationView: MKAnnotationView,name: String,state:String, uid: String) {
         
         if state == "online"{
-            
-            let button = UIButton(type: UIButton.ButtonType.system)
+            guard let currentUser = getUserId() else {
+                print("failed to get current user")
+                return
+            }
+            guard let currenUserArtwork = usersArtwork[currentUser] else {
+                print("failed to get current user artwork")
+                return
+            }
+            let button = UserOnMapButton(type: UIButton.ButtonType.system)
+            //Adding call info to button....
+            button.currentUserID = currenUserArtwork.uid
+            button.currentUserName = currenUserArtwork.title
+            button.receiverID = uid
+            button.receivername = name
             button.sizeThatFits(CGSize(width: 25, height: 25))
             button.translatesAutoresizingMaskIntoConstraints = false
             let image = UIImage(named: "phone-receiver")
             button.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 15, height: 15))
             button.setImage(image, for: .normal)
             button.setTitle("\t Call: \(name)", for: .normal)
-            button.addTarget(self, action: #selector(goToChat), for: .touchUpInside)
+            button.addTarget(self, action: #selector(goToChat(sender:)), for: .touchUpInside)
             
             annatotationView.layer.cornerRadius = 10
             annatotationView.contentMode = .scaleToFill
             annatotationView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
             annatotationView.image = UIImage(named: "relevium")
             annatotationView.conteiner(arrangedSubviews: [button])
+            print("----------user added-----------")
             
         }
         else {
@@ -342,8 +374,19 @@ extension MapViewController: MKMapViewDelegate{
         }
     }
     
-    @objc private func goToChat(){
+    @objc private func goToChat(sender: UserOnMapButton){
+        guard let senderName = sender.currentUserName else { return }
+        guard let senderId = sender.currentUserID else { return }
+        guard let receiverName = sender.receivername else { return }
+        guard let receiverId = sender.receiverID else { return }
+        
+        self.senderID = senderId
+        self.senderName = senderName
+        self.receiverID = receiverId
+        self.receiverName = receiverName
+        print("\(senderName) \(senderId) \(receiverName) \(receiverId)")
         performSegue(withIdentifier: "goToChat", sender: self)
+       
     }
     
 }

@@ -19,6 +19,7 @@
 		8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAF221DDBB700D6A55C /* Assets.xcassets */; };
 		8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */; };
 		8F959FF122B52D3000A0C634 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F959FF022B52D3000A0C634 /* ChatViewController.swift */; };
+		8F959FF322B55B6600A0C634 /* UserOnMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F959FF222B55B6600A0C634 /* UserOnMapButton.swift */; };
 		8F96D86F2239303B005B7A54 /* ReleviumAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96D86E2239303B005B7A54 /* ReleviumAppTests.swift */; };
 		8F96D8972239D22F005B7A54 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96D8962239D22F005B7A54 /* Artwork.swift */; };
 		8FA0AE9322340146008D8D62 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA0AE9222340146008D8D62 /* MapViewController.swift */; };
@@ -62,6 +63,7 @@
 		8F927CB2221DDBB700D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F927CB4221DDBB700D6A55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F959FF022B52D3000A0C634 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8F959FF222B55B6600A0C634 /* UserOnMapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnMapButton.swift; sourceTree = "<group>"; };
 		8F96D86C2239303B005B7A54 /* ReleviumAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReleviumAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F96D86E2239303B005B7A54 /* ReleviumAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleviumAppTests.swift; sourceTree = "<group>"; };
 		8F96D8702239303B005B7A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */,
 				8F65C1D722B1C2BC00C18870 /* ChatViewCell.swift */,
 				8FEE7A0A22B471CF008170C0 /* UserImageView.swift */,
+				8F959FF222B55B6600A0C634 /* UserOnMapButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				8F959FF122B52D3000A0C634 /* ChatViewController.swift in Sources */,
 				8F01E34022B0B7C400E1FB05 /* Errors.swift in Sources */,
 				8F927CAB221DDBB600D6A55C /* AgentViewController.swift in Sources */,
+				8F959FF322B55B6600A0C634 /* UserOnMapButton.swift in Sources */,
 				8FE82BE522B0475000785DD0 /* ProfileViewController.swift in Sources */,
 				8F01E33E22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift in Sources */,
 				8FABDEB72232FF3000019F1F /* GredientLayout.swift in Sources */,

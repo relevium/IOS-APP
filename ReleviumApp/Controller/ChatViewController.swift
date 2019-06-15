@@ -14,10 +14,15 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var messageSendBoxConstraint: NSLayoutConstraint!
     @IBOutlet weak var chatCollectionView: UICollectionView!
+    @IBOutlet weak var receiverNameLabel: UILabel!
+    let verification = Verification()
     var messages:[ChatEntity] = []
     let cellId = "ChatViewCell"
     var tempText = ""
     var receiverID:String?
+    var receiverName: String?
+    var senderID: String?
+    var senderName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,28 +37,83 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
-
-        // Do any additional setup after loading the view.
+        receiverNameLabel.text = receiverName
+        receiveMessages()
+        
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        sender.flash()
+        guard let message = messageTextField.text else { return }
+        if message == "" { return }
+        sendMessage(message: message)
         print("Sned Message")
+        sender.flash()
+        messageTextField.text = ""
+        messageTextField.endEditing(true)
+
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    private func getUserId() -> String?{
-        if let userId = Auth.auth().currentUser?.uid{
-            return "\(userId)"
-        }
-        else {
-            return nil
+    
+    //MARK: - Message Exchange Functions
+    
+    /*
+     Message DB contains collection for each user with userID
+     each users collection contain messages collection between user and sender user
+     */
+    private func sendMessage(message: String){
+    
+        guard let receiver = receiverID else { return }
+        guard let sender = senderID else { return }
+        guard let name = senderName else { return }
+        let messageEntity = ChatEntity(message: message, isUser: true)
+        let ref = Database.database().reference().child("Messages")
+        let date = verification.getDate()
+        let time = verification.getTime()
+        let messageID = UUID.init().uuidString
+        let value = ["date":date,"from":sender,"FromName":name,"message":message,
+                     "messageID":messageID,"time":time,"to":receiver,"type":"text"]
+        //Save the message on user database
+        
+        ref.child(sender).child(receiver).child(messageID).setValue(value) { [unowned self](error, ref) in
+            if error != nil {
+                print("Error Saving Message: \(error.debugDescription)")
+                let errorMessage = ChatEntity(message: "failed to send message", isUser: true)
+                self.messages.append(errorMessage)
+                self.chatCollectionView.reloadData()
+                return
+            }
+            else {
+                // Send the message to the receiver
+                ref.child(receiver).child(sender).child(messageID).setValue(value) { [unowned self](error, ref) in
+                    if error != nil {
+                        print("Error Sending Message: \(error.debugDescription)")
+                        let errorMessage = ChatEntity(message: "Receiver Failed to receive the Message", isUser: true)
+                        self.messages.append(errorMessage)
+                        self.chatCollectionView.reloadData()
+                        ref.child(sender).child(receiver).child(messageID).removeValue()
+                        return
+                    }
+                    // Message Sent and Received Succefully
+                    print("Message send Successfully")
+                    self.messages.append(messageEntity)
+                    self.chatCollectionView.reloadData()
+                }
+            }
         }
     }
     
+    private func receiveMessages(){
+        
+    }
+    
+    private func deleteMessage(){
+        
+    }
+   
     //MARK: - Keyboard Handling Methods
     @objc func keyboardWillShow(notification: NSNotification){
         guard let userInfo = notification.userInfo else {return}
@@ -101,8 +161,14 @@ extension ChatViewController: UICollectionViewDelegateFlowLayout{
 extension ChatViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        messageTextField.resignFirstResponder()
-        return true
+        if let text = textField.text {
+            messageTextField.resignFirstResponder()
+            sendMessage(message: text)
+            textField.text = ""
+            return true
+        }
+        return false
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
