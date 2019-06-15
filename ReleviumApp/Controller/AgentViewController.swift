@@ -139,7 +139,7 @@ extension AgentViewController: UICollectionViewDelegateFlowLayout {
         let size = CGSize(width: view.frame.width, height: 1000)
         let attributes = [kCTFontAttributeName : UIFont.systemFont(ofSize: 18)]
         let estimateFrame = NSString(string: message).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-        return CGSize(width: view.frame.width, height: estimateFrame.height + 60)
+        return CGSize(width: view.frame.width, height: estimateFrame.height + 100)
     }
 }
 

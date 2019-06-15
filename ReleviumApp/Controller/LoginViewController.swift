@@ -48,16 +48,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             SVProgressHUD.show()
             Auth.auth().signIn(withEmail: email, password: password) { [unowned self](results, error) in
-                if error != nil{
+                if error != nil {
                     SVProgressHUD.dismiss()
                     self.verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
                 }
+                    
                 else {
-                    SVProgressHUD.dismiss()
-                    self.performSegue(withIdentifier: "loginToMain", sender: self)
+                    // login success
+                    self.verification.changeUserState(state: "online", completion: { (res) in
+                        switch res {
+                        case .failure(_):
+                            self.verification.makeAlert(title: "Connection", message: "please check you connection", mainView: self)
+                            SVProgressHUD.dismiss()
+                           try! Auth.auth().signOut()
+                        case .success(_):
+                            SVProgressHUD.dismiss()
+                            self.performSegue(withIdentifier: "loginToMain", sender: self)
+                        }
+                    })
+                    
                 }
             }
         }
     }
+    
+    
     
 }

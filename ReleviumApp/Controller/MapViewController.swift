@@ -12,6 +12,7 @@ import SVProgressHUD
 import GeoFire
 import MapKit
 import CoreLocation
+import SwiftyJSON
 
 class MapViewController: UIViewController {
 
@@ -86,7 +87,7 @@ class MapViewController: UIViewController {
                 if error == nil{
                     guard let title = glyphTitle else {return}
                     guard let coordinate = location?.coordinate else{return}
-                    let artwork = Artwork(title: title, coordinate: coordinate)
+                    let artwork = Artwork(title: title, coordinate: coordinate,uid: "",state: "")
                     self.mapView.addAnnotation(artwork)
                 }
             })
@@ -161,8 +162,9 @@ extension MapViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{ return }
-        print("location changed.......")
-        uploadGeoLocation(location: location, id: getUserId(),child: "User-Location")
+        guard let userID = getUserId() else { return }
+        print("=============location changed.......")
+        uploadGeoLocation(location: location, id: userID,child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 5.0)
     }
     
@@ -177,46 +179,74 @@ extension MapViewController: CLLocationManagerDelegate{
         geoFire.setLocation(location, forKey: id)
     }
     
-    func showOtherUsersWithinRadius(center:CLLocation,radius: Double){
+    func showOtherUsersWithinRadius(center:CLLocation, radius: Double){
         let geofireRef = Database.database().reference().child("User-Location")
         let geoFire = GeoFire(firebaseRef: geofireRef)
         let queryCircle = geoFire.query(at: center, withRadius: radius)
         
-        queryCircle.observe(.keyEntered) { [unowned self](key, location) in
+        queryCircle.observe(.keyEntered) { [unowned self] (key, location) in
             
             self.addUserToMap(key: key, location: location)
         }
     }
     
-    private func getUserId() -> String{
+    private func getUserId() -> String?{
         if let userId = Auth.auth().currentUser?.uid{
             return "\(userId)"
         }
         else {
-            return "ID unavailable"
+            return nil
         }
     }
     
     private func addUserToMap(key: String, location: CLLocation) {
-        let artwork = Artwork(title: key, coordinate: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         
-        if let oldArtwork = usersArtwork[key] {
+        let ref = Database.database().reference().child("Users")
+        ref.child(key).observeSingleEvent(of: .value) { (snapshot) in
+            
+            if let value = snapshot.value {
+                let json = JSON(value)
+                // check if user has all info
+                if let firstname = json["mFirstName"].string, let secondName = json["mLastName"].string, let state = json["userState"]["state"].string {
+                    let name = "\(firstname) \(secondName)"
+                    self.createArtwork(title: name, location: location,userId: key,state: state)
+                }
+                else{
+                    // insuffcient user information
+                    print("user info not complete ")
+                }
+            }
+            else {
+                // user not registered in user collection "garbage user"
+                print("User dose not exist in Users *invalid user*")
+            }
+            
+        }
+    }
+    
+    private func createArtwork(title: String, location: CLLocation,userId: String, state: String) {
+        
+        let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let artwork = Artwork(title: title, coordinate: coordinate, uid: userId, state: state)
+        
+        if let oldArtwork = usersArtwork[title] {
             // user found -- user already added to map -> update user location on map
             if isLocationChanged(location: location, artwork: oldArtwork) {
                 
-                usersArtwork.updateValue(artwork, forKey: key)
+                usersArtwork.updateValue(artwork, forKey: title)
                 mapView.removeAnnotation(oldArtwork)
                 mapView.addAnnotation(artwork)
-                print("location updated for user with Key: \(key) | location: \(location)")
             }
         }
         else {
-           // user not found -- user not added to map -> Add user location on map
-            usersArtwork.updateValue(artwork, forKey: key)
+            // user not found -- user not added to map -> Add user location on map
+            usersArtwork.updateValue(artwork, forKey: title)
             mapView.addAnnotation(artwork)
-            print("new user add to map with Key: \(key) | location: \(location)")
         }
+        
+        
     }
+    
     private func isLocationChanged(location: CLLocation, artwork: Artwork) -> Bool {
         let oldLocation = CLLocation(latitude: artwork.coordinate.latitude, longitude: artwork.coordinate.longitude)
         return location != oldLocation ? true : false
@@ -228,34 +258,37 @@ extension MapViewController: CLLocationManagerDelegate{
 extension MapViewController: MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let annotationUnwraped = annotation as? Artwork else{return nil}
+        guard let annotationUnwraped = annotation as? Artwork else { return nil }
         var annotationView: MKAnnotationView
         let identifier = "marker"
         
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier){
+            
             dequeuedView.annotation = annotationUnwraped
-            dequeuedView.image = getGlyph(title: annotationUnwraped.title ?? "")
+            addImageToAnnotationView(annatotationView: dequeuedView, artwork: annotationUnwraped)
             annotationView = dequeuedView
             
         }
+            
         else{
             annotationView = MKAnnotationView(annotation: annotationUnwraped, reuseIdentifier: identifier)
-            annotationView.image = getGlyph(title: annotationUnwraped.title ?? "")
+            addImageToAnnotationView(annatotationView: annotationView, artwork: annotationUnwraped)
             annotationView.centerOffset = CGPoint(x: 0, y: -50)
-            annotationView.canShowCallout = true
             
         }
         return annotationView
     }
     
-    func getCenterLocation(for mapView: MKMapView) -> CLLocation{
+    private func getCenterLocation(for mapView: MKMapView) -> CLLocation{
         let latitute = mapView.centerCoordinate.latitude
         let longtitute = mapView.centerCoordinate.longitude
         
         return CLLocation(latitude: latitute, longitude: longtitute)
     }
     
-    func getGlyph(title: String) -> UIImage?{
+    
+    //MARK: - AnnotationView Helping Methods
+   private func getGlyph(title: String) -> UIImage?{
         switch title {
         case "Warning!":
             return UIImage(named: "warning")
@@ -264,7 +297,69 @@ extension MapViewController: MKMapViewDelegate{
         case "Pin Location":
             return UIImage(named: "location")
         default:
-            return UIImage(named: "userOnMap")
+            return nil
         }
+    }
+    private func addImageToAnnotationView(annatotationView:MKAnnotationView, artwork: Artwork) {
+        
+        guard let title = artwork.title else{ return }
+        guard let state = artwork.state else{ return }
+        guard let uid = artwork.uid else { return }
+        annatotationView.canShowCallout = true
+        
+        if  state != "" && uid != "" {
+            addUserImage(annatotationView: annatotationView, name: title, state: state)
+            return
+        }
+        
+        if let glyph = getGlyph(title: title){
+            annatotationView.image = glyph
+        }
+    }
+    
+    private func addUserImage(annatotationView: MKAnnotationView,name: String,state:String) {
+        
+        if state == "online"{
+            
+            let button = UIButton(type: UIButton.ButtonType.system)
+            button.sizeThatFits(CGSize(width: 25, height: 25))
+            button.translatesAutoresizingMaskIntoConstraints = false
+            let image = UIImage(named: "phone-receiver")
+            button.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 15, height: 15))
+            button.setImage(image, for: .normal)
+            button.setTitle("\t Call: \(name)", for: .normal)
+            button.addTarget(self, action: #selector(goToChat), for: .touchUpInside)
+            
+            annatotationView.layer.cornerRadius = 10
+            annatotationView.contentMode = .scaleToFill
+            annatotationView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+            annatotationView.image = UIImage(named: "relevium")
+            annatotationView.conteiner(arrangedSubviews: [button])
+            
+        }
+        else {
+            annatotationView.image = UIImage(named: "userOnMap")
+        }
+    }
+    
+    @objc private func goToChat(){
+        performSegue(withIdentifier: "goToChat", sender: self)
+    }
+    
+}
+
+// Annotation View StackView Extension
+extension MKAnnotationView {
+    
+    func conteiner(arrangedSubviews: [UIView]) {
+        
+        let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.spacing = 3
+        stackView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleWidth, .flexibleHeight]
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        self.detailCalloutAccessoryView = stackView
     }
 }

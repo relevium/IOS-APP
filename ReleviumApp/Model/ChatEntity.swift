@@ -29,7 +29,7 @@ struct ChatEntity{
     
     func getDate() -> String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy' - 'h:mm:ss a"
+        dateFormatter.dateFormat = "MMM d yyyy' - 'h:mm:ss a"
         return dateFormatter.string(from: date)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Verification {
     
@@ -26,5 +27,36 @@ class Verification {
         // password should has at least 8 characters with at least one uppercase, one lowercase, one digit, and one special character @#$&*
         let passwordRegex = "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
+    }
+    
+    func getDate() -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d yyyy"
+        return formatter.string(from: date)
+    }
+    
+    func getTime() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm:ss a"
+        return formatter.string(from: date)
+    }
+    
+    func changeUserState(state: String,completion: @escaping (Result<String,RegistrationError>) -> ()){
+        guard  let userId = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("Users")
+        let date = getDate()
+        let time = getTime()
+        
+        let userState = ["date":date,"state":state,"time":time]
+        ref.child(userId).child("userState").setValue(userState) { (error, reference) in
+            if error != nil {
+                completion(.failure(.failedToGetUserId))
+            }
+            else {
+                completion(.success(time))
+            }
+        }
     }
 }

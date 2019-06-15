@@ -30,7 +30,7 @@ class RegisterViewController: UIViewController{
         view.addGestureRecognizer(tap)
     }
     
-    @objc func touchToEndEditing(){
+    @objc private func touchToEndEditing(){
         firstNameTextField.resignFirstResponder()
         secondNameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
@@ -107,8 +107,11 @@ class RegisterViewController: UIViewController{
             complition(.failure(.failedToGetUserId))
             return
         }
+        let date = verification.getDate()
+        let time = verification.getTime()
         
-        ref.child(userId).setValue(["mEmail":email, "mFirstName":firstName,"mLastName":lastName]) { (error, reference) in
+        let userState = ["date":date,"state":"online","time":time]
+        ref.child(userId).setValue(["mEmail":email, "mFirstName":firstName,"mLastName":lastName,"userState":userState]) { (error, reference) in
             if error != nil {
                 //Failed to register
                 complition(.failure(.failedToCreateUser))
