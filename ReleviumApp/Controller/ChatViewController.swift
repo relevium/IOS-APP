@@ -117,8 +117,6 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
                 print("-----------sent")
                 // Message Sent and Received Succefully
                 print("Message send Successfully")
-                self.messages.append(messageEntity)
-                self.chatCollectionView.reloadData()
             }
         }
     }
@@ -142,8 +140,6 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
             
             if let value = snapshot.value {
                 let json = JSON(value)
-                print(json)
-                
                 let message = json["message"].stringValue
                 let sender = json["from"].stringValue
                 print(message)
@@ -187,6 +183,7 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     }
 }
 
+//MARK: - CollectionView Delegate meshtods
 extension ChatViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

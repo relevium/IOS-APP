@@ -166,6 +166,7 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToChat" {
             if let vc = segue.destination as? ChatViewController {
+                print("prepare for segue called")
                 vc.senderID = self.senderID
                 vc.senderName = self.senderName
                 vc.receiverID = self.receiverID
