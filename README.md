@@ -2,13 +2,13 @@
 
 # To Do
 
+* build user profile
 * login with third parties
-* chat with users
 * tuning the UI
 
 # In Progress
 
-* working on profile
+* chat with users
 
 # Done
 
@@ -19,3 +19,4 @@
 * plot user location on map
 * plot other users on map
 * plot danger zones on map
+* Chat from user icon on map
