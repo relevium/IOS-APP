@@ -17,18 +17,12 @@ class EntryViewController: UITabBarController {
     var senderName: String?
     var receiverID: String?
     var receiverName: String?
-    let verfication = Verification()
+    var message: String?
+    private let verfication = Verification()
+    private let center = UNUserNotificationCenter.current()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UNUserNotificationCenter.current().delegate = self
-        let content = UNMutableNotificationContent()
-        content.title = "New Message From ......"
-        content.body = "aeh yasta el kalam"
-        content.sound = UNNotificationSound.default
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 15, repeats: false)
-        let request = UNNotificationRequest(identifier: "newMessage", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         makeNotificationOnAdd()
         makeNotificationOnChange()
     }
@@ -43,7 +37,6 @@ class EntryViewController: UITabBarController {
             }
         }
     }
-
 }
 
 //MARK: - UserNodificationCenter Delegate methods
@@ -53,12 +46,15 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert,.sound])
     }
+    
     // what to do when user tap on alert notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        if response.notification.request.identifier == "newMessage" {
+        if response.actionIdentifier == "acceptCall" {
             performSegue(withIdentifier: "notificationToChat", sender: self)
-            print("user pressed on Alert")
+        }
+        else if response.actionIdentifier == "rejectCall" {
+            print("user rejected to answer the call")
         }
         completionHandler()
     }
@@ -72,13 +68,44 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
         makeNotificationOnMessage(event: .childAdded)
     }
     
+    private func makeNotification(message:String,from: String) {
+        center.delegate = self
+        makeActions(message: message, from: from)
+    }
+    
+    private func makeActions(message:String,from:String){
+        let acceptAction = UNNotificationAction(identifier: "acceptCall", title: "Do you want to Accept the incomming message?", options: [])
+        let rejectAction = UNNotificationAction(identifier: "rejectCall", title: "Reject message", options: [])
+        let category = UNNotificationCategory(identifier: "newMessageCategory", actions: [acceptAction,rejectAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "you have %u incomming messages", options: [])
+        center.setNotificationCategories([category])
+        scheduleNotification(showMessage: message, from: from)
+    }
+    
+    private func scheduleNotification(showMessage:String,from: String){
+        let content = UNMutableNotificationContent()
+        content.title = "New Incomming Message \(from)"
+        content.body = showMessage
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "newMessageCategory"
+        makeRequest(content: content)
+        
+    }
+    
+    private func makeRequest(content:UNMutableNotificationContent){
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: "newMessage", content: content, trigger: trigger)
+        center.removeAllPendingNotificationRequests()
+        center.add(request) { (err) in
+            if err != nil {
+                print("failed to add request")
+            }
+        }
+    }
+    
     private func makeNotificationOnMessage(event: DataEventType){
+        
         guard let uid = Auth.auth().currentUser?.uid else {
             print("failed to get current user id")
-            return
-        }
-        guard var largestDate = self.verfication.getDateFromString(date: "Jun 16 1990", time: "6:11:00 AM") else {
-            print("test date failed")
             return
         }
         let ref = Database.database().reference().child("Messages").child(uid)
@@ -88,36 +115,23 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
                 print("failed to get onchange snap shot")
                 return
             }
-            
             let json = JSON(value)
-            for (_,sub):(String,JSON) in json {
-                
-                guard let date = self.verfication.getDateFromString(date: sub["date"].stringValue, time: sub["time"].stringValue) else {
-                    print("failed to get date")
-                    return
-                }
-                //Check if the message from current User of another, if another make notification
-                if self.receiverName == nil {
-                    if uid != sub["to"].stringValue && sub["to"].stringValue != "" {
-                        self.receiverName = sub["to"].string
-                    }
-                }
-                
-                if largestDate < date {
-                    largestDate = date
-                    self.senderName = sub["fromName"].string
-                    self.receiverID = sub["to"].string
-                    self.senderID = sub["from"].string
-                
-                }
-            }
-            
+            self.setPrepareMessage(json: json, uid: uid)
             //Check if the sender is other user, if current user is receiver perform alert
             if let rid = self.receiverID {
                 if rid == uid {
                     //perform notification here
+                    guard let from = self.senderName else {
+                        print("failed to get from name")
+                        return
+                    }
+                    guard let message = self.message else {
+                        print("failed to get message")
+                        return
+                    }
                     print(rid)
                     print(uid)
+                    self.makeNotification(message: message, from: from)
                     print("alert is going to happen")
                 }
                 else {
@@ -129,7 +143,30 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
             }
         }
     }
-    func makeNotification() {
-        
+    
+    private func setPrepareMessage(json: JSON,uid: String){
+        guard var largestDate = self.verfication.getDateFromString(date: "Jun 16 1990", time: "6:11:00 AM") else {
+            print("test date failed")
+            return
+        }
+        for (_,sub):(String,JSON) in json {
+            
+            guard let date = self.verfication.getDateFromString(date: sub["date"].stringValue, time: sub["time"].stringValue) else {
+                print("failed to get date")
+                return
+            }
+            //Check if the message from current User of another, if another make notification
+            if self.receiverName == nil && uid != sub["from"].stringValue{
+                self.receiverName = sub["FromName"].string
+            }
+            
+            if largestDate < date {
+                largestDate = date
+                self.senderName = sub["FromName"].string
+                self.receiverID = sub["to"].string
+                self.senderID = sub["from"].string
+                self.message = sub["message"].string
+            }
+        }
     }
 }
