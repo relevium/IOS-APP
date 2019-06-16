@@ -163,6 +163,5 @@ extension AgentViewController: UITextFieldDelegate{
             queryTextField.text = tempText
         }
     }
-    
 }
 

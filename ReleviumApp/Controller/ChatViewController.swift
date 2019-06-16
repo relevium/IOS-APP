@@ -47,7 +47,6 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
         guard let message = messageTextField.text else { return }
         if message == "" { return }
         sendMessage(message: message)
-        print("Sned Message")
         sender.flash()
         messageTextField.text = ""
         messageTextField.endEditing(true)
@@ -79,16 +78,14 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
                      "messageID":messageID,"time":time,"to":receiver,"type":"text"]
        
         //Save the message on user database
-        saveMessageToUserDB(ref: ref, sender: sender,receiver: receiver, messageID: messageID, value: value, messageEntity: messageEntity)
-        print("flag 1")
-        sendMessageToReceiver(ref: ref, sender: sender, receiver: receiver, messageID: messageID, value: value, messageEntity: messageEntity)
-        print("flag 2")
+        saveMessageToUserDB(ref: ref, sender: sender,receiver: receiver, value: value, messageEntity: messageEntity)
+        sendMessageToReceiver(ref: ref, sender: sender, receiver: receiver, value: value, messageEntity: messageEntity)
         
         
     }
     
-    private func saveMessageToUserDB(ref: DatabaseReference,sender: String,receiver: String,messageID: String, value:[String:String],messageEntity:ChatEntity) {
-        ref.child(sender).child(receiver).child(messageID).setValue(value) { [unowned self](error, ref) in
+    private func saveMessageToUserDB(ref: DatabaseReference,sender: String,receiver: String, value:[String:String],messageEntity:ChatEntity) {
+        ref.child(sender).child(receiver).childByAutoId().setValue(value) { [unowned self](error, ref) in
             if error != nil {
                 print("Error Saving Message: \(error.debugDescription)")
                 let errorMessage = ChatEntity(message: "failed to send message", isUser: true)
@@ -96,27 +93,18 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
                 self.chatCollectionView.reloadData()
                 return
             }
-            else {
-                print("---------saved")
-            }
         }
     }
     
-    private func sendMessageToReceiver(ref: DatabaseReference,sender: String,receiver: String,messageID: String, value:[String:String],messageEntity:ChatEntity) {
+    private func sendMessageToReceiver(ref: DatabaseReference,sender: String,receiver: String,value:[String:String],messageEntity:ChatEntity) {
         
-        ref.child(receiver).child(sender).child(messageID).setValue(value) { [unowned self](error, ref) in
+        ref.child(receiver).child(sender).childByAutoId().setValue(value) { [unowned self](error, ref) in
             if error != nil {
                 print("Error Sending Message: \(error.debugDescription)")
                 let errorMessage = ChatEntity(message: "Receiver Failed to receive the Message", isUser: true)
                 self.messages.append(errorMessage)
                 self.chatCollectionView.reloadData()
-                ref.child(sender).child(receiver).child(messageID).removeValue()
                 return
-            }
-            else {
-                print("-----------sent")
-                // Message Sent and Received Succefully
-                print("Message send Successfully")
             }
         }
     }
@@ -142,8 +130,6 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
                 let json = JSON(value)
                 let message = json["message"].stringValue
                 let sender = json["from"].stringValue
-                print(message)
-                print(sender)
                 
                 if sender == currentUser {
                     let messageItem = ChatEntity(message: message, isUser: true)

@@ -11,7 +11,7 @@ import UserNotifications
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 print("Notification is allowed")
             }
         }
-        UNUserNotificationCenter.current().delegate = self
         return true
     }
 

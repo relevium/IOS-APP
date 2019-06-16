@@ -166,7 +166,6 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToChat" {
             if let vc = segue.destination as? ChatViewController {
-                print("prepare for segue called")
                 vc.senderID = self.senderID
                 vc.senderName = self.senderName
                 vc.receiverID = self.receiverID
@@ -367,8 +366,6 @@ extension MapViewController: MKMapViewDelegate{
             annatotationView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
             annatotationView.image = UIImage(named: "relevium")
             annatotationView.conteiner(arrangedSubviews: [button])
-            print("----------user added-----------")
-            
         }
         else {
             annatotationView.image = UIImage(named: "userOnMap")

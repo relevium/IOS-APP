@@ -13,7 +13,7 @@
         <!--Main-->
         <scene sceneID="V5R-8A-x9b">
             <objects>
-                <tabBarController id="k9F-dK-cY3" userLabel="Main" sceneMemberID="viewController">
+                <tabBarController id="k9F-dK-cY3" userLabel="Main" customClass="EntryViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="aPT-Bh-1iO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,6 +23,7 @@
                         <segue destination="bHe-WD-lnN" kind="relationship" relationship="viewControllers" id="ipm-rr-8WP"/>
                         <segue destination="E1k-vV-Ddo" kind="relationship" relationship="viewControllers" id="Qkl-Wn-DBM"/>
                         <segue destination="FUc-m0-Krb" kind="relationship" relationship="viewControllers" id="1nV-iw-S8u"/>
+                        <segue destination="OGg-u6-Yol" kind="show" identifier="notificationToChat" id="77a-Bz-vlk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K51-7q-9iH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -389,4 +390,7 @@
         <image name="location" width="50" height="50"/>
         <image name="warning" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="77a-Bz-vlk"/>
+    </inferredMetricsTieBreakers>
 </document>

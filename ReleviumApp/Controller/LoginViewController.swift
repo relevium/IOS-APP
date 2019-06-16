@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tapGesture)
+
         
     }
     
@@ -71,7 +72,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    
-    
 }
+
+

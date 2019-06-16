@@ -43,6 +43,13 @@ class Verification {
         return formatter.string(from: date)
     }
     
+    func getDateFromString(date:String, time:String) -> Date?{
+        let dateString = "\(date) \(time)"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d yyyy h:mm:ss a"
+        return formatter.date(from: dateString)
+    }
+    
     func changeUserState(state: String,completion: @escaping (Result<String,RegistrationError>) -> ()){
         guard  let userId = Auth.auth().currentUser?.uid else { return }
         let ref = Database.database().reference().child("Users")
