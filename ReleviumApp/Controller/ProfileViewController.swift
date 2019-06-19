@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 class ProfileViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class ProfileViewController: UIViewController {
         
         do{
             try Auth.auth().signOut()
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            UIApplication.shared.unregisterForRemoteNotifications()
             dismiss(animated: true, completion: nil)
         }
         catch {

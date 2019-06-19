@@ -19,8 +19,12 @@ class EntryViewController: UITabBarController {
     var receiverName: String?
     var message: String?
     
-    private let verfication = Verification()
+    private  let verfication = Verification()
     private let center = UNUserNotificationCenter.current()
+    
+    deinit {
+        print("-------------entry point deinitialized------------")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +115,11 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
             return
         }
         let ref = Database.database().reference().child("Messages").child(uid)
-        ref.observe(event) { (snapshot) in
+        ref.observe(event) {[weak self] (snapshot) in
+            guard let self = self else {
+                print("read self in entry after deinitialized")
+                return
+            }
             guard let value = snapshot.value else {
                 print("failed to get onchange snap shot")
                 return
@@ -122,10 +130,6 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
             if let rid = self.receiverID {
                 if rid == uid {
                     //perform notification here
-                    guard let from = self.receiverName else {
-                        print("failed to get from name")
-                        return
-                    }
                     guard let message = self.message else {
                         print("failed to get message")
                         return
@@ -134,8 +138,20 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
                     // so we have to swap them because we trigger this notification iff the receiver is the user in the incomming json file
                     // but after we check it up we have to return the data to normal state according to the APP 
                     self.receiverID = self.senderID
+                    (self.senderName,self.receiverName) = (self.receiverName, self.senderName)
                     self.senderID = uid
-                    self.makeNotification(message: message, from: from)
+                    
+                    print("senderID: \(self.senderID)")
+                    print("senderName: \(self.senderName)")
+                    print("receiverID:\(self.receiverID)")
+                    print("receiverName: \(self.receiverName)")
+                    if let from = self.receiverName {
+                        self.makeNotification(message: message, from: from)
+                    }
+                    else {
+                        self.makeNotification(message: message, from: "Unknown")
+                    }
+                    
                     print("alert is going to happen")
                 }
                 else {
@@ -159,18 +175,13 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
                 print("failed to get date")
                 return
             }
-            //Check if the message from current User of another, if another make notification
-            if self.receiverName == nil && uid != sub["from"].stringValue{
-                self.receiverName = sub["FromName"].string
-            }
-            if self.senderName == nil && uid == sub["to"].stringValue {
-                self.senderName = sub["to"].stringValue
-            }
             
             if largestDate < date {
                 largestDate = date
                 self.receiverID = sub["to"].string
                 self.senderID = sub["from"].string
+                self.senderName = sub["FromName"].string
+                self.receiverName = sub["toName"].string
                 self.message = sub["message"].string
             }
         }

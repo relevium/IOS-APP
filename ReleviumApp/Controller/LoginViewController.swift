@@ -17,6 +17,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     private let verification = Verification()
     
+    deinit{
+        print("---------login deinitialized--------")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
@@ -40,15 +43,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(_ sender: ButtonLayout) {
         sender.flash()
+        dismiss(animated: false, completion: nil)
         if let email = emailTextField.text, let password =  passwordTextField.text {
-            
+
             if verification.validateEmail(candidate: email) == false || verification.validatePassword(candidate: password) == false {
                 verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
                 return
             }
-            
+
             SVProgressHUD.show()
-            Auth.auth().signIn(withEmail: email, password: password) { [unowned self](results, error) in
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self](results, error) in
+                guard let self = self else {
+                    print("call self in login after view deinitialized")
+                    return
+                }
+                
                 if error != nil {
                     SVProgressHUD.dismiss()
                     self.verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
@@ -67,7 +76,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             self.performSegue(withIdentifier: "loginToMain", sender: self)
                         }
                     })
-                    
+
                 }
             }
         }

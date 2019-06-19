@@ -18,6 +18,11 @@ class Verification {
         mainView.present(alert, animated: true, completion: nil)
     }
     
+    func validateName(name: String) -> Bool{
+        let nameRegex = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
+        return NSPredicate(format: "SELF MATCHES %@",nameRegex).evaluate(with: name)
+    }
+    
     func validateEmail(candidate: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)

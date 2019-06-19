@@ -9,7 +9,6 @@
 import UIKit
 import CoreML
 import Alamofire
-import Firebase
 import SwiftyJSON
 
 class AgentViewController: UIViewController,UICollectionViewDataSource{

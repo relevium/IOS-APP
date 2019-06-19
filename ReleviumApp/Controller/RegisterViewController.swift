@@ -46,11 +46,11 @@ class RegisterViewController: UIViewController{
         guard let password =  passwordTextField.text else { return }
         guard let rePassword = rePasswordTextField.text else { return }
         
-        if firstName == "" {
-            verification.makeAlert(title: "Registration Failed", message: "please enter your first name", mainView: self)
+        if verification.validateName(name: firstName) == false {
+            verification.makeAlert(title: "Registration Failed", message: "please enter a valid name", mainView: self)
         }
-        else if lastName == "" {
-            verification.makeAlert(title: "Registration Failed", message: "please enter your last name", mainView: self)
+        else if verification.validateName(name: lastName) == false {
+            verification.makeAlert(title: "Registration Failed", message: "please enter a valid name", mainView: self)
         }
         else if verification.validateEmail(candidate: email) == false {
             verification.makeAlert(title: "Registration Failed", message: "Please enter a valid email", mainView: self)
@@ -65,7 +65,11 @@ class RegisterViewController: UIViewController{
             return
         }
             SVProgressHUD.show()
-            Auth.auth().createUser(withEmail: email, password: password) { [unowned self] (results, error) in
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] (results, error) in
+                guard let self = self else{
+                    print("error call self in register after view deinitialized")
+                    return
+                }
                 if error != nil {
                     SVProgressHUD.dismiss()
                     self.verification.makeAlert(title: "Connection", message: "Failed to Create Account please try again", mainView: self)

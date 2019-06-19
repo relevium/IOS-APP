@@ -25,6 +25,10 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     var senderID: String?
     var senderName: String?
     
+    deinit {
+        print("------------chat deinitialized---------------")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTextField.delegate = self
@@ -38,7 +42,13 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
-        receiverNameLabel.text = receiverName
+        if let name = receiverName {
+            receiverNameLabel.text = name
+        }
+        else {
+            receiverNameLabel.text = "Unknown"
+        }
+        
         retrieveOldMessages()
         
     }
@@ -68,13 +78,15 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     
         guard let receiver = receiverID else { return }
         guard let sender = senderID else { return }
-        guard let name = senderName else { return }
+        guard let sname = senderName else { return }
+        guard let rname = receiverName else { return }
+        
         let messageEntity = ChatEntity(message: message, isUser: true)
         let ref = Database.database().reference().child("Messages")
         let date = verification.getDate()
         let time = verification.getTime()
         let messageID = UUID.init().uuidString
-        let value = ["date":date,"from":sender,"FromName":name,"message":message,
+        let value = ["date":date,"from":sender,"FromName":sname,"toName":rname,"message":message,
                      "messageID":messageID,"time":time,"to":receiver,"type":"text"]
        
         //Save the message on user database
@@ -124,13 +136,16 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
             return
         }
         
-        ref.child(sender).child(receiver).observe(.childAdded) { (snapshot) in
+        ref.child(sender).child(receiver).observe(.childAdded) { [weak self](snapshot) in
             
             if let value = snapshot.value {
                 let json = JSON(value)
                 let message = json["message"].stringValue
                 let sender = json["from"].stringValue
-                
+                guard let self = self else {
+                    print("call self in chat view afer deinitialized")
+                    return
+                }
                 if sender == currentUser {
                     let messageItem = ChatEntity(message: message, isUser: true)
                     self.messages.append(messageItem)
