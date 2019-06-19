@@ -8,8 +8,6 @@
 
 import UIKit
 import Firebase
-import SVProgressHUD
-
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -43,42 +41,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonPressed(_ sender: ButtonLayout) {
         sender.flash()
-        dismiss(animated: false, completion: nil)
         if let email = emailTextField.text, let password =  passwordTextField.text {
 
             if verification.validateEmail(candidate: email) == false || verification.validatePassword(candidate: password) == false {
                 verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
                 return
             }
-
-            SVProgressHUD.show()
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self](results, error) in
-                guard let self = self else {
-                    print("call self in login after view deinitialized")
-                    return
-                }
-                
-                if error != nil {
-                    SVProgressHUD.dismiss()
-                    self.verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
-                }
+            DispatchQueue.global().async {
+                Auth.auth().signIn(withEmail: email, password: password) { [weak self](results, error) in
+                    guard let self = self else {
+                        print("call self in login after view deinitialized")
+                        return
+                    }
                     
-                else {
-                    // login success
-                    self.verification.changeUserState(state: "online", completion: { (res) in
-                        switch res {
-                        case .failure(_):
-                            self.verification.makeAlert(title: "Connection", message: "please check you connection", mainView: self)
-                            SVProgressHUD.dismiss()
-                           try! Auth.auth().signOut()
-                        case .success(_):
-                            SVProgressHUD.dismiss()
-                            self.performSegue(withIdentifier: "loginToMain", sender: self)
-                        }
-                    })
-
+                    if error != nil {
+                        self.verification.makeAlert(title: "Login Failed", message: "Wrong email or password", mainView: self)
+                    }
+                        
+                    else {
+                        // login success
+                        self.verification.changeUserState(state: "online", completion: { (res) in
+                            switch res {
+                            case .failure(_):
+                                self.verification.makeAlert(title: "Connection", message: "please check you connection", mainView: self)
+                                try! Auth.auth().signOut()
+                            case .success(_):
+                                self.performSegue(withIdentifier: "loginToMain", sender: self)
+                            }
+                        })
+                        
+                    }
                 }
             }
+            
         }
     }
 }

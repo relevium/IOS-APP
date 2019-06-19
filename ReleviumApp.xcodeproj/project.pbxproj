@@ -27,6 +27,7 @@
 		8FABDEB72232FF3000019F1F /* GredientLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FABDEB62232FF3000019F1F /* GredientLayout.swift */; };
 		8FABDEB92233193600019F1F /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FABDEB82233193600019F1F /* TabBar.storyboard */; };
 		8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC9C16022268D1200C7597C /* ButtonLayout.swift */; };
+		8FCE6D9E22BAD6210027D2EE /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCE6D9D22BAD6210027D2EE /* ProfilePicture.swift */; };
 		8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1017F222B30C200D5D130 /* RegisterViewController.swift */; };
 		8FD10182222B30D500D5D130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD10181222B30D500D5D130 /* LoginViewController.swift */; };
 		8FD3C6FC2223087100975659 /* ChatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3C6FB2223087100975659 /* ChatEntity.swift */; };
@@ -74,6 +75,7 @@
 		8FABDEB62232FF3000019F1F /* GredientLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GredientLayout.swift; sourceTree = "<group>"; };
 		8FABDEB82233193600019F1F /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		8FC9C16022268D1200C7597C /* ButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
+		8FCE6D9D22BAD6210027D2EE /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
 		8FD1017F222B30C200D5D130 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8FD10181222B30D500D5D130 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8FD3C6FB2223087100975659 /* ChatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEntity.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				8F65C1D722B1C2BC00C18870 /* ChatViewCell.swift */,
 				8FEE7A0A22B471CF008170C0 /* UserImageView.swift */,
 				8F959FF222B55B6600A0C634 /* UserOnMapButton.swift */,
+				8FCE6D9D22BAD6210027D2EE /* ProfilePicture.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +271,11 @@
 					8F927CA4221DDBB600D6A55C = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					8F96D86B2239303B005B7A54 = {
 						CreatedOnToolsVersion = 10.1;
@@ -389,6 +397,7 @@
 				8F01E33C22B071D300E1FB05 /* Verification.swift in Sources */,
 				8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */,
 				8FA0AE9322340146008D8D62 /* MapViewController.swift in Sources */,
+				8FCE6D9E22BAD6210027D2EE /* ProfilePicture.swift in Sources */,
 				8FE82BE322B0462400785DD0 /* DesignableTextField.swift in Sources */,
 				8F65C1D822B1C2BC00C18870 /* ChatViewCell.swift in Sources */,
 				8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */,
