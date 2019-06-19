@@ -18,6 +18,7 @@ class EntryViewController: UITabBarController {
     var receiverID: String?
     var receiverName: String?
     var message: String?
+    var chatWith: String?
     
     private  let verfication = Verification()
     private let center = UNUserNotificationCenter.current()
@@ -35,6 +36,7 @@ class EntryViewController: UITabBarController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "notificationToChat" {
             if let vc = segue.destination as? ChatViewController {
+                vc.delegate = self
                 vc.senderID = self.senderID
                 vc.senderName = self.senderName
                 vc.receiverID = self.receiverID
@@ -42,6 +44,14 @@ class EntryViewController: UITabBarController {
                 
             }
         }
+    }
+}
+
+//MARK: - Chat with delegate methods
+extension EntryViewController: ChatWith {
+    func didChatWith(receiverID: String) {
+        chatWith = receiverID
+        print("chat is set")
     }
 }
 
@@ -141,18 +151,13 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
                     (self.senderName,self.receiverName) = (self.receiverName, self.senderName)
                     self.senderID = uid
                     
-                    print("senderID: \(self.senderID)")
-                    print("senderName: \(self.senderName)")
-                    print("receiverID:\(self.receiverID)")
-                    print("receiverName: \(self.receiverName)")
-                    if let from = self.receiverName {
-                        self.makeNotification(message: message, from: from)
+                    if self.chatWith != nil {
+                        if self.chatWith != self.receiverID {
+                            self.makeNotification(message: message, from: self.receiverName!)
+                        }
+                    } else {
+                        self.makeNotification(message: message, from: self.receiverName!)
                     }
-                    else {
-                        self.makeNotification(message: message, from: "Unknown")
-                    }
-                    
-                    print("alert is going to happen")
                 }
                 else {
                     print("user just saving message")

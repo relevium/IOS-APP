@@ -261,7 +261,7 @@
         <!--ChatView-->
         <scene sceneID="ue2-Pj-2zy">
             <objects>
-                <viewController id="OGg-u6-Yol" userLabel="ChatView" customClass="ChatViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewStoryboard" id="OGg-u6-Yol" userLabel="ChatView" customClass="ChatViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UWA-d9-XfN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

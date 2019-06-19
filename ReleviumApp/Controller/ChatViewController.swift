@@ -10,6 +10,10 @@ import UIKit
 import Firebase
 import SwiftyJSON
 
+protocol ChatWith: AnyObject {
+    func didChatWith(receiverID: String)
+}
+
 class ChatViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var messageTextField: UITextField!
@@ -24,10 +28,7 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     var receiverName: String?
     var senderID: String?
     var senderName: String?
-    
-    deinit {
-        print("------------chat deinitialized---------------")
-    }
+    weak var delegate: ChatWith?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +49,12 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
         else {
             receiverNameLabel.text = "Unknown"
         }
-        
         retrieveOldMessages()
+        if let delegateRef = delegate {
+            delegateRef.didChatWith(receiverID: receiverID!)
+        } else {
+            print("chat delegate did not set")
+        }
         
     }
     
@@ -64,6 +69,12 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
+        if let delegateRef = delegate {
+            delegateRef.didChatWith(receiverID: "")
+        } else {
+            print("chat delegate did not set")
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -109,7 +120,6 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     }
     
     private func sendMessageToReceiver(ref: DatabaseReference,sender: String,receiver: String,value:[String:String],messageEntity:ChatEntity) {
-        
         ref.child(receiver).child(sender).childByAutoId().setValue(value) { [unowned self](error, ref) in
             if error != nil {
                 print("Error Sending Message: \(error.debugDescription)")
@@ -122,6 +132,7 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
     }
     
     private func retrieveOldMessages(){
+        
         let ref = Database.database().reference().child("Messages")
         guard let currentUser = self.senderID else {
             print("failed to get current User")
