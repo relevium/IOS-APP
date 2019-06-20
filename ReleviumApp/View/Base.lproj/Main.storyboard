@@ -172,6 +172,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZQP-eb-gTO">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-left-30" id="sgd-tz-2u4">
+                            <color key="tintColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="backButtonPressed:" destination="nXd-0V-bgQ" id="FbS-I3-Mqn"/>
                             </connections>

@@ -14,10 +14,12 @@
         <scene sceneID="V5R-8A-x9b">
             <objects>
                 <tabBarController id="k9F-dK-cY3" userLabel="Main" customClass="EntryViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="aPT-Bh-1iO">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" id="aPT-Bh-1iO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="bHe-WD-lnN" kind="relationship" relationship="viewControllers" id="ipm-rr-8WP"/>
@@ -182,6 +184,16 @@
                                     <constraint firstItem="ha7-Ea-mHf" firstAttribute="centerX" secondItem="xjx-ZN-7Ps" secondAttribute="centerX" id="xlq-Zs-ImX"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="John" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2V2-x9-kRR" userLabel="firstName">
+                                <rect key="frame" x="20" y="386" width="185" height="68"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="6jO-e2-Qc8"/>
+                                    <constraint firstAttribute="height" constant="68" id="lko-Ng-mHJ"/>
+                                </constraints>
+                                <color key="textColor" red="0.12549019607843137" green="0.64073831587429497" blue="0.80000000000000004" alpha="0.54240689212328763" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="42"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIA-t0-SPl">
                                 <rect key="frame" x="20" y="496" width="57" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -233,24 +245,43 @@
                                     <constraint firstAttribute="width" constant="120" id="lXC-an-YfW"/>
                                 </constraints>
                             </pickerView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="John Doe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2V2-x9-kRR" userLabel="Name">
-                                <rect key="frame" x="0.0" y="386" width="414" height="68"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvb-wK-s1q" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
+                                <rect key="frame" x="107" y="751" width="200" height="41"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Save"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="1gP-JS-0Rx" eventType="touchUpInside" id="OfM-2R-dbc"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Doe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ped-Rf-H6H" userLabel="firstName">
+                                <rect key="frame" x="213" y="386" width="185" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="gp2-W5-Yhj"/>
+                                    <constraint firstAttribute="height" constant="68" id="9L7-ng-vEL"/>
+                                    <constraint firstAttribute="width" constant="185" id="IXp-Bg-sqq"/>
                                 </constraints>
-                                <color key="textColor" red="0.12549019607843137" green="0.64073831587429497" blue="0.80000000000000004" alpha="0.54240689212328763" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="52"/>
+                                <color key="textColor" red="0.12549019610000001" green="0.64073831589999997" blue="0.80000000000000004" alpha="0.54240689210000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="42"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="Lvb-wK-s1q" secondAttribute="trailing" constant="107" id="2H4-6y-4pq"/>
                             <constraint firstItem="xjx-ZN-7Ps" firstAttribute="trailing" secondItem="7Ng-lJ-NOq" secondAttribute="trailing" id="4JQ-OI-Q89"/>
                             <constraint firstItem="qeN-1a-QpS" firstAttribute="top" secondItem="x8V-t2-UVD" secondAttribute="bottom" constant="25" id="5yq-JE-I6g"/>
                             <constraint firstAttribute="bottom" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="600" id="6V7-hv-EsE"/>
                             <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="2Lg-Sh-RBC" secondAttribute="trailing" constant="20" id="9Un-81-2mj"/>
+                            <constraint firstItem="ped-Rf-H6H" firstAttribute="leading" secondItem="2V2-x9-kRR" secondAttribute="trailing" constant="8" id="CFs-TW-buj"/>
                             <constraint firstItem="2Lg-Sh-RBC" firstAttribute="leading" secondItem="NIA-t0-SPl" secondAttribute="trailing" constant="30" id="D7X-FA-KWg"/>
+                            <constraint firstItem="7Ng-lJ-NOq" firstAttribute="bottom" secondItem="Lvb-wK-s1q" secondAttribute="bottom" constant="21" id="EIK-WN-0s6"/>
                             <constraint firstItem="q86-Sa-f0B" firstAttribute="top" secondItem="qeN-1a-QpS" secondAttribute="bottom" constant="25" id="GaG-0D-7n9"/>
+                            <constraint firstItem="2V2-x9-kRR" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="90" id="ITj-Vp-Z0u"/>
                             <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="qeN-1a-QpS" secondAttribute="trailing" constant="20" id="Jgv-UF-4Le"/>
                             <constraint firstItem="x8V-t2-UVD" firstAttribute="top" secondItem="2Lg-Sh-RBC" secondAttribute="bottom" constant="25" id="OLL-g2-2q8"/>
                             <constraint firstItem="RxL-za-fJC" firstAttribute="top" secondItem="9OB-su-Elg" secondAttribute="bottom" constant="30" id="din-0B-kmb"/>
@@ -258,27 +289,37 @@
                             <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="x8V-t2-UVD" secondAttribute="trailing" constant="20" id="exM-O4-3bv"/>
                             <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="q86-Sa-f0B" secondAttribute="trailing" constant="20" id="fyj-4W-EK3"/>
                             <constraint firstItem="NIA-t0-SPl" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="200" id="hcr-la-NHO"/>
-                            <constraint firstItem="2V2-x9-kRR" firstAttribute="trailing" secondItem="7Ng-lJ-NOq" secondAttribute="trailing" id="kwj-9y-70b"/>
                             <constraint firstItem="2Lg-Sh-RBC" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="200" id="lfy-y0-2md"/>
+                            <constraint firstItem="ped-Rf-H6H" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="90" id="m86-zo-gZQ"/>
                             <constraint firstItem="9OB-su-Elg" firstAttribute="top" secondItem="cA0-oL-a1n" secondAttribute="bottom" constant="40" id="mei-ob-v47"/>
                             <constraint firstItem="xjx-ZN-7Ps" firstAttribute="top" secondItem="7Ng-lJ-NOq" secondAttribute="top" id="mxB-QU-FgE"/>
                             <constraint firstItem="NIA-t0-SPl" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" constant="20" id="oCk-1U-xx3"/>
                             <constraint firstItem="xjx-ZN-7Ps" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" id="p2u-CU-GpG"/>
+                            <constraint firstItem="2V2-x9-kRR" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" constant="20" id="vom-sH-PnU"/>
                             <constraint firstItem="9OB-su-Elg" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" constant="20" id="vuI-j2-L36"/>
-                            <constraint firstItem="2V2-x9-kRR" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" id="wga-GI-fmJ"/>
+                            <constraint firstItem="Lvb-wK-s1q" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" constant="107" id="wWY-II-NFG"/>
                             <constraint firstItem="RxL-za-fJC" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" constant="20" id="whq-M7-U6n"/>
                             <constraint firstItem="cA0-oL-a1n" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" constant="20" id="ylv-SH-rVI"/>
-                            <constraint firstItem="2V2-x9-kRR" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="90" id="zim-fm-MRN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Ng-lJ-NOq"/>
                     </view>
                     <navigationItem key="navigationItem" title="edit profile" id="7lP-XJ-koV">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="icons8-login-30" id="0ce-WN-Thy">
+                        <barButtonItem key="rightBarButtonItem" title="logout" id="0ce-WN-Thy">
+                            <color key="tintColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="signoutButtonPressed:" destination="1gP-JS-0Rx" id="ZpI-ub-vS6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="anonymitySwitch" destination="qeN-1a-QpS" id="Jcs-Tz-UIE"/>
+                        <outlet property="bloodTypePicker" destination="x8V-t2-UVD" id="bx3-mc-2JB"/>
+                        <outlet property="dieseaseSwitch" destination="q86-Sa-f0B" id="HN7-JB-JVf"/>
+                        <outlet property="emailTextField" destination="2Lg-Sh-RBC" id="TxN-U4-EFC"/>
+                        <outlet property="lastNameTextField" destination="ped-Rf-H6H" id="WtG-Vc-Mgc"/>
+                        <outlet property="nameTextField" destination="2V2-x9-kRR" id="fzR-MG-VJC"/>
+                        <outlet property="profilePicture" destination="ha7-Ea-mHf" id="0dJ-N6-9EI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3q-DN-rN3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -319,7 +360,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="uCE-eB-7Wy" firstAttribute="top" secondItem="CPf-jd-IWn" secondAttribute="top" id="3iO-m0-X99"/>
                                     <constraint firstAttribute="trailing" secondItem="Dc8-wr-Bha" secondAttribute="trailing" constant="10" id="DPe-Ny-xfz"/>
@@ -430,7 +471,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ixv-4v-UkO" firstAttribute="leading" secondItem="EuZ-gV-Fnj" secondAttribute="leading" id="0fS-GD-X2I"/>
                                     <constraint firstAttribute="height" constant="40" id="DMg-QE-4Ig"/>
@@ -511,7 +552,6 @@
         <image name="icons8-intelligence-30" width="30" height="30"/>
         <image name="icons8-intelligence-filled-30" width="30" height="30"/>
         <image name="icons8-left-30" width="30" height="30"/>
-        <image name="icons8-login-30" width="30" height="30"/>
         <image name="icons8-region-30" width="30" height="30"/>
         <image name="icons8-region-filled-30" width="30" height="30"/>
         <image name="location" width="50" height="50"/>

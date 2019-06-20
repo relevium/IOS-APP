@@ -12,6 +12,7 @@
 		8F01E34022B0B7C400E1FB05 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F01E33F22B0B7C400E1FB05 /* Errors.swift */; };
 		8F4AF4EF22ADA28600110DD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */; };
 		8F65C1D822B1C2BC00C18870 /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C1D722B1C2BC00C18870 /* ChatViewCell.swift */; };
+		8F71CB6022BBBF3600CA0B43 /* BloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71CB5F22BBBF3600CA0B43 /* BloodType.swift */; };
 		8F7708FE225CD702002809D5 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */; };
 		8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CA8221DDBB600D6A55C /* AppDelegate.swift */; };
 		8F927CAB221DDBB600D6A55C /* AgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CAA221DDBB600D6A55C /* AgentViewController.swift */; };
@@ -56,6 +57,7 @@
 		8F01E33F22B0B7C400E1FB05 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8F65C1D722B1C2BC00C18870 /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
+		8F71CB5F22BBBF3600CA0B43 /* BloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodType.swift; sourceTree = "<group>"; };
 		8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
 		8F927CA5221DDBB600D6A55C /* ReleviumApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReleviumApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F927CA8221DDBB600D6A55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				8F96D8962239D22F005B7A54 /* Artwork.swift */,
 				8F01E33F22B0B7C400E1FB05 /* Errors.swift */,
 				8FEE7A0822B4538A008170C0 /* UserOnMap.swift */,
+				8F71CB5F22BBBF3600CA0B43 /* BloodType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				8FE82BE522B0475000785DD0 /* ProfileViewController.swift in Sources */,
 				8F01E33E22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift in Sources */,
 				8F959FF522B5D85700A0C634 /* EntryViewController.swift in Sources */,
+				8F71CB6022BBBF3600CA0B43 /* BloodType.swift in Sources */,
 				8FABDEB72232FF3000019F1F /* GredientLayout.swift in Sources */,
 				8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */,
 				8FEE7A0B22B471CF008170C0 /* UserImageView.swift in Sources */,
