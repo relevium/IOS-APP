@@ -97,7 +97,7 @@ class ChatViewController: UIViewController, UICollectionViewDataSource {
         let date = verification.getDate()
         let time = verification.getTime()
         let messageID = UUID.init().uuidString
-        let value = ["date":date,"from":sender,"FromName":sname,"toName":rname,"message":message,
+        let value = ["date":date,"from":sender,"fromName":sname,"toName":rname,"message":message,
                      "messageID":messageID,"time":time,"to":receiver,"type":"text"]
        
         //Save the message on user database

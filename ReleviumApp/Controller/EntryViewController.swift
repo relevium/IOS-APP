@@ -170,7 +170,7 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
     }
     
     private func setPrepareMessage(json: JSON,uid: String){
-        guard var largestDate = self.verfication.getDateFromString(date: "Jun 16 1990", time: "6:11:00 AM") else {
+        guard var largestDate = self.verfication.getDateFromString(date: "16 Jun 1990", time: "6:11:00 AM") else {
             print("test date failed")
             return
         }
@@ -185,7 +185,7 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
                 largestDate = date
                 self.receiverID = sub["to"].string
                 self.senderID = sub["from"].string
-                self.senderName = sub["FromName"].string
+                self.senderName = sub["fromName"].string
                 self.receiverName = sub["toName"].string
                 self.message = sub["message"].string
             }

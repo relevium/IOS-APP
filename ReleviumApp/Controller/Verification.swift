@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class Verification {
     
@@ -37,7 +38,7 @@ class Verification {
     func getDate() -> String{
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d yyyy"
+        formatter.dateFormat = "d MMM yyyy a"
         return formatter.string(from: date)
     }
     
@@ -51,7 +52,7 @@ class Verification {
     func getDateFromString(date:String, time:String) -> Date?{
         let dateString = "\(date) \(time)"
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d yyyy h:mm:ss a"
+        formatter.dateFormat = "d MMM yyyy h:mm:ss a"
         return formatter.date(from: dateString)
     }
     

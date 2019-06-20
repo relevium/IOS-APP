@@ -133,38 +133,38 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwU-vu-POg" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="503" width="374" height="30"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <action selector="registerButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="r8g-pq-7rw"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your second name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Smd-gQ-FIl">
                                 <rect key="frame" x="20" y="218" width="374" height="33"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwU-vu-POg" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
+                                <rect key="frame" x="30" y="732" width="354" height="30"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="r8g-pq-7rw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="top" secondItem="0tk-4l-wrg" secondAttribute="top" constant="163" id="4f8-vi-Wpv"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="0mj-yP-Maj" secondAttribute="trailing" id="AK1-gs-wph"/>
-                            <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="EwU-vu-POg" secondAttribute="trailing" id="DKC-CZ-Bou"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="0tk-4l-wrg" secondAttribute="leadingMargin" id="Eqf-Nz-VNI"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="Smd-gQ-FIl" secondAttribute="leading" id="JIL-Sv-xDf"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="0tk-4l-wrg" secondAttribute="trailingMargin" id="Wya-Wb-NAC"/>
                             <constraint firstItem="0mj-yP-Maj" firstAttribute="top" secondItem="zV1-DQ-l3O" secondAttribute="bottom" constant="21" id="aRp-gV-ZVX"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="zV1-DQ-l3O" secondAttribute="trailing" id="dgs-0a-sQs"/>
-                            <constraint firstItem="EwU-vu-POg" firstAttribute="top" secondItem="0mj-yP-Maj" secondAttribute="bottom" constant="91" id="h4X-32-Lmd"/>
+                            <constraint firstItem="EE8-J9-TSQ" firstAttribute="trailing" secondItem="EwU-vu-POg" secondAttribute="trailing" constant="30" id="hob-Qs-M8y"/>
                             <constraint firstItem="oDO-MH-7Py" firstAttribute="top" secondItem="Smd-gQ-FIl" secondAttribute="bottom" constant="19" id="jmw-iz-Kw6"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="oDO-MH-7Py" secondAttribute="leading" id="nvm-Y1-z22"/>
                             <constraint firstItem="Smd-gQ-FIl" firstAttribute="top" secondItem="eyk-84-IKa" secondAttribute="bottom" constant="22" id="qCN-DA-923"/>
-                            <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="EwU-vu-POg" secondAttribute="leading" id="sgG-fl-yDj"/>
+                            <constraint firstItem="EwU-vu-POg" firstAttribute="leading" secondItem="EE8-J9-TSQ" secondAttribute="leading" constant="30" id="sIJ-g9-Dy9"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="oDO-MH-7Py" secondAttribute="trailing" id="tOA-f2-YfO"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="zV1-DQ-l3O" secondAttribute="leading" id="thj-eb-p5U"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="0mj-yP-Maj" secondAttribute="leading" id="trt-Zz-8Yb"/>
+                            <constraint firstItem="EE8-J9-TSQ" firstAttribute="bottom" secondItem="EwU-vu-POg" secondAttribute="bottom" constant="100" id="wtZ-dz-SjP"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="Smd-gQ-FIl" secondAttribute="trailing" id="xNa-2F-OKH"/>
                             <constraint firstItem="zV1-DQ-l3O" firstAttribute="top" secondItem="oDO-MH-7Py" secondAttribute="bottom" constant="22" id="yS5-o2-SNc"/>
                         </constraints>

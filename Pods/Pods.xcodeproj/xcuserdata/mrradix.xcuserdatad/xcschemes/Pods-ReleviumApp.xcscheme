@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E63A3D82B5E7C1D69B8C8117E7161EF2"
+               BlueprintIdentifier = "761CA91910452F48E5F70C22D576A9ED"
                BuildableName = "Pods_ReleviumApp.framework"
                BlueprintName = "Pods-ReleviumApp"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E63A3D82B5E7C1D69B8C8117E7161EF2"
+            BlueprintIdentifier = "761CA91910452F48E5F70C22D576A9ED"
             BuildableName = "Pods_ReleviumApp.framework"
             BlueprintName = "Pods-ReleviumApp"
             ReferencedContainer = "container:Pods.xcodeproj">

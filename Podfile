@@ -13,5 +13,6 @@ target 'ReleviumApp' do
     pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
     pod 'Alamofire'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'Firebase/Storage'
 
 end

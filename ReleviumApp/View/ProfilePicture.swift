@@ -25,5 +25,16 @@ class ProfilePicture: UIImageView {
         super.init(coder: aDecoder)
     }
     
+    func flash(){
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.duration = 0.3
+        animation.fromValue = 1
+        animation.toValue = 0.3
+        animation.repeatCount = 1
+        animation.autoreverses = true
+        layer.add(animation, forKey: nil)
+        
+    }
+    
     
 }

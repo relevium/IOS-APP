@@ -170,6 +170,9 @@ class MapViewController: UIViewController {
                 vc.senderName = self.senderName
                 vc.receiverID = self.receiverID
                 vc.receiverName = self.receiverName
+                if let parentView = self.parent as? EntryViewController {
+                    vc.delegate = parentView
+                }
             }
         }
     }
