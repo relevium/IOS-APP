@@ -24,13 +24,43 @@
                     <connections>
                         <segue destination="bHe-WD-lnN" kind="relationship" relationship="viewControllers" id="ipm-rr-8WP"/>
                         <segue destination="E1k-vV-Ddo" kind="relationship" relationship="viewControllers" id="Qkl-Wn-DBM"/>
-                        <segue destination="FUc-m0-Krb" kind="relationship" relationship="viewControllers" id="1nV-iw-S8u"/>
                         <segue destination="OGg-u6-Yol" kind="show" identifier="notificationToChat" id="77a-Bz-vlk"/>
+                        <segue destination="mF9-5V-Ao0" kind="relationship" relationship="viewControllers" id="iGY-Tc-ao3"/>
+                        <segue destination="FUc-m0-Krb" kind="relationship" relationship="viewControllers" id="St1-e1-NTf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K51-7q-9iH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1873" y="-102"/>
+        </scene>
+        <!--ChatHistoryViewController-->
+        <scene sceneID="TMc-uf-wwM">
+            <objects>
+                <collectionViewController id="mF9-5V-Ao0" userLabel="ChatHistoryViewController" customClass="ChatHistoryViewController" customModule="ReleviumApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="UFP-7u-10Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PUB-wp-v1H">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="mF9-5V-Ao0" id="S0O-LT-QKh"/>
+                            <outlet property="delegate" destination="mF9-5V-Ao0" id="glX-l7-Yat"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="History" image="icons8-chat-30" selectedImage="icons8-chat-selected-30" id="cJb-rG-3ra"/>
+                    <connections>
+                        <segue destination="OGg-u6-Yol" kind="show" identifier="historyToChat" id="Zck-ks-k4X"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JeG-e0-SxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2593" y="671"/>
         </scene>
         <!--Map-->
         <scene sceneID="g7n-tf-BEI">
@@ -230,7 +260,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5p-ue-K0J" userLabel="nameFrame">
-                                <rect key="frame" x="0.0" y="406" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="416" width="414" height="30"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Samir" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ped-Rf-H6H" userLabel="lastName">
                                         <rect key="frame" x="217" y="5" width="180" height="56"/>
@@ -272,9 +302,8 @@
                             <constraint firstItem="H5p-ue-K0J" firstAttribute="leading" secondItem="7Ng-lJ-NOq" secondAttribute="leading" id="FDw-zG-ygP"/>
                             <constraint firstItem="q86-Sa-f0B" firstAttribute="top" secondItem="qeN-1a-QpS" secondAttribute="bottom" constant="25" id="GaG-0D-7n9"/>
                             <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="qeN-1a-QpS" secondAttribute="trailing" constant="20" id="Jgv-UF-4Le"/>
-                            <constraint firstItem="H5p-ue-K0J" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="110" id="KxN-np-gs2"/>
                             <constraint firstItem="cA0-oL-a1n" firstAttribute="top" secondItem="H5p-ue-K0J" secondAttribute="bottom" constant="90" id="N0v-KR-ls5"/>
-                            <constraint firstItem="H5p-ue-K0J" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="110" id="ZPA-vP-lJT"/>
+                            <constraint firstItem="H5p-ue-K0J" firstAttribute="top" secondItem="xjx-ZN-7Ps" secondAttribute="bottom" constant="120" id="ZPA-vP-lJT"/>
                             <constraint firstItem="RxL-za-fJC" firstAttribute="top" secondItem="9OB-su-Elg" secondAttribute="bottom" constant="30" id="din-0B-kmb"/>
                             <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="x8V-t2-UVD" secondAttribute="trailing" constant="20" id="exM-O4-3bv"/>
                             <constraint firstItem="7Ng-lJ-NOq" firstAttribute="trailing" secondItem="q86-Sa-f0B" secondAttribute="trailing" constant="20" id="fyj-4W-EK3"/>
@@ -307,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3q-DN-rN3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3705.7971014492755" y="671.65178571428567"/>
+            <point key="canvasLocation" x="4119" y="672"/>
         </scene>
         <!--Agent-->
         <scene sceneID="xBP-h1-Xre">
@@ -407,7 +436,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ti3-7c-7yX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2709.375" y="671.83098591549299"/>
+            <point key="canvasLocation" x="3345" y="672"/>
         </scene>
         <!--ChatView-->
         <scene sceneID="ue2-Pj-2zy">
@@ -531,6 +560,8 @@
         <image name="Thanos_MCU.0" width="1200" height="800"/>
         <image name="fire" width="50" height="50"/>
         <image name="icons8-add-90" width="90" height="90"/>
+        <image name="icons8-chat-30" width="30" height="30"/>
+        <image name="icons8-chat-selected-30" width="30" height="30"/>
         <image name="icons8-customer-30" width="30" height="30"/>
         <image name="icons8-customer-filled-30" width="30" height="30"/>
         <image name="icons8-intelligence-30" width="30" height="30"/>
@@ -542,6 +573,6 @@
         <image name="warning" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N8p-Vu-wIQ"/>
+        <segue reference="Zck-ks-k4X"/>
     </inferredMetricsTieBreakers>
 </document>

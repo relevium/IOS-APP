@@ -187,7 +187,7 @@ extension MapViewController: CLLocationManagerDelegate{
         guard let userID = getUserId() else { return }
         print("=============location changed.......")
         uploadGeoLocation(location: location, id: userID,child: "User-Location")
-        showOtherUsersWithinRadius(center: location, radius: 5.0)
+        showOtherUsersWithinRadius(center: location, radius: 100.0)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

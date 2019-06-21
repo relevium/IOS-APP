@@ -29,7 +29,6 @@ class EntryViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeNotificationOnAdd()
         makeNotificationOnChange()
     }
     
@@ -153,10 +152,10 @@ extension EntryViewController: UNUserNotificationCenterDelegate {
                     
                     if self.chatWith != nil {
                         if self.chatWith != self.receiverID {
-                            self.makeNotification(message: message, from: self.receiverName!)
+                            self.makeNotification(message: message, from: self.receiverName ?? "")
                         }
                     } else {
-                        self.makeNotification(message: message, from: self.receiverName!)
+                        self.makeNotification(message: message, from: self.receiverName ?? "")
                     }
                 }
                 else {

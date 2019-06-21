@@ -38,7 +38,7 @@ class ChatViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "relevium")
+        imageView.image = UIImage(named: "logo without bg-2")
         imageView.layer.masksToBounds = true
         return imageView
     }()

@@ -27,7 +27,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byf-7h-CA7" userLabel="TopView">
                                 <rect key="frame" x="20" y="44" width="374" height="369"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="relevium" translatesAutoresizingMaskIntoConstraints="NO" id="hfk-1J-idv">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo without bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="hfk-1J-idv">
                                         <rect key="frame" x="52" y="112.5" width="270" height="144"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="270" id="JsH-ka-0nc"/>
@@ -212,9 +212,9 @@
     </scenes>
     <resources>
         <image name="icons8-left-30" width="30" height="30"/>
-        <image name="relevium" width="77.5" height="60"/>
+        <image name="logo without bg-2" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="k7V-oW-Haq"/>
+        <segue reference="Dmh-Aj-dp7"/>
     </inferredMetricsTieBreakers>
 </document>

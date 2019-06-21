@@ -11,13 +11,16 @@
 		8F01E33E22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F01E33D22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift */; };
 		8F01E34022B0B7C400E1FB05 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F01E33F22B0B7C400E1FB05 /* Errors.swift */; };
 		8F4AF4EF22ADA28600110DD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */; };
+		8F57FA7822BD19C5004585E7 /* Assets 15-55-16-242.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F57FA7722BD19C5004585E7 /* Assets 15-55-16-242.xcassets */; };
+		8F57FA7A22BD240B004585E7 /* ChatHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F57FA7922BD240B004585E7 /* ChatHistoryViewController.swift */; };
+		8F57FA7C22BD2529004585E7 /* UsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F57FA7B22BD2529004585E7 /* UsersCell.swift */; };
+		8F57FA7E22BD25B3004585E7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F57FA7D22BD25B3004585E7 /* Message.swift */; };
 		8F65C1D822B1C2BC00C18870 /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C1D722B1C2BC00C18870 /* ChatViewCell.swift */; };
 		8F71CB6022BBBF3600CA0B43 /* BloodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71CB5F22BBBF3600CA0B43 /* BloodType.swift */; };
 		8F7708FE225CD702002809D5 /* ButtonAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */; };
 		8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CA8221DDBB600D6A55C /* AppDelegate.swift */; };
 		8F927CAB221DDBB600D6A55C /* AgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F927CAA221DDBB600D6A55C /* AgentViewController.swift */; };
 		8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAC221DDBB600D6A55C /* Main.storyboard */; };
-		8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CAF221DDBB700D6A55C /* Assets.xcassets */; };
 		8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F927CB1221DDBB700D6A55C /* LaunchScreen.storyboard */; };
 		8F959FF122B52D3000A0C634 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F959FF022B52D3000A0C634 /* ChatViewController.swift */; };
 		8F959FF322B55B6600A0C634 /* UserOnMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F959FF222B55B6600A0C634 /* UserOnMapButton.swift */; };
@@ -56,6 +59,10 @@
 		8F01E33D22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "mapViewController+buttonsExtension.swift"; sourceTree = "<group>"; };
 		8F01E33F22B0B7C400E1FB05 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8F57FA7722BD19C5004585E7 /* Assets 15-55-16-242.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 15-55-16-242.xcassets"; sourceTree = "<group>"; };
+		8F57FA7922BD240B004585E7 /* ChatHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryViewController.swift; sourceTree = "<group>"; };
+		8F57FA7B22BD2529004585E7 /* UsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCell.swift; sourceTree = "<group>"; };
+		8F57FA7D22BD25B3004585E7 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8F65C1D722B1C2BC00C18870 /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		8F71CB5F22BBBF3600CA0B43 /* BloodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodType.swift; sourceTree = "<group>"; };
 		8F7708FD225CD702002809D5 /* ButtonAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationExtension.swift; sourceTree = "<group>"; };
@@ -63,7 +70,6 @@
 		8F927CA8221DDBB600D6A55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F927CAA221DDBB600D6A55C /* AgentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentViewController.swift; sourceTree = "<group>"; };
 		8F927CAD221DDBB600D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8F927CAF221DDBB700D6A55C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F927CB2221DDBB700D6A55C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F927CB4221DDBB700D6A55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F959FF022B52D3000A0C634 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 				8F927CB4221DDBB700D6A55C /* Info.plist */,
 				8F4AF4EE22ADA28600110DD7 /* GoogleService-Info.plist */,
 				8F927CA8221DDBB600D6A55C /* AppDelegate.swift */,
+				8F57FA7722BD19C5004585E7 /* Assets 15-55-16-242.xcassets */,
 			);
 			path = ReleviumApp;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 				8F01E33F22B0B7C400E1FB05 /* Errors.swift */,
 				8FEE7A0822B4538A008170C0 /* UserOnMap.swift */,
 				8F71CB5F22BBBF3600CA0B43 /* BloodType.swift */,
+				8F57FA7D22BD25B3004585E7 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 				8FEE7A0A22B471CF008170C0 /* UserImageView.swift */,
 				8F959FF222B55B6600A0C634 /* UserOnMapButton.swift */,
 				8FCE6D9D22BAD6210027D2EE /* ProfilePicture.swift */,
+				8F57FA7B22BD2529004585E7 /* UsersCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +209,7 @@
 				8F01E33D22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift */,
 				8F959FF022B52D3000A0C634 /* ChatViewController.swift */,
 				8F959FF422B5D85600A0C634 /* EntryViewController.swift */,
+				8F57FA7922BD240B004585E7 /* ChatHistoryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -216,7 +226,6 @@
 		8FADB5152226824700D53FB1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8F927CAF221DDBB700D6A55C /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -311,10 +320,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F57FA7822BD19C5004585E7 /* Assets 15-55-16-242.xcassets in Resources */,
 				8FABDEB92233193600019F1F /* TabBar.storyboard in Resources */,
 				8F927CB3221DDBB700D6A55C /* LaunchScreen.storyboard in Resources */,
 				8F4AF4EF22ADA28600110DD7 /* GoogleService-Info.plist in Resources */,
-				8F927CB0221DDBB700D6A55C /* Assets.xcassets in Resources */,
 				8F927CAE221DDBB600D6A55C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +410,7 @@
 				8FC9C16122268D1200C7597C /* ButtonLayout.swift in Sources */,
 				8FA0AE9322340146008D8D62 /* MapViewController.swift in Sources */,
 				8FCE6D9E22BAD6210027D2EE /* ProfilePicture.swift in Sources */,
+				8F57FA7E22BD25B3004585E7 /* Message.swift in Sources */,
 				8FE82BE322B0462400785DD0 /* DesignableTextField.swift in Sources */,
 				8F65C1D822B1C2BC00C18870 /* ChatViewCell.swift in Sources */,
 				8FD10180222B30C200D5D130 /* RegisterViewController.swift in Sources */,
@@ -411,10 +421,12 @@
 				8FE82BE522B0475000785DD0 /* ProfileViewController.swift in Sources */,
 				8F01E33E22B09B8900E1FB05 /* mapViewController+buttonsExtension.swift in Sources */,
 				8F959FF522B5D85700A0C634 /* EntryViewController.swift in Sources */,
+				8F57FA7A22BD240B004585E7 /* ChatHistoryViewController.swift in Sources */,
 				8F71CB6022BBBF3600CA0B43 /* BloodType.swift in Sources */,
 				8FABDEB72232FF3000019F1F /* GredientLayout.swift in Sources */,
 				8F927CA9221DDBB600D6A55C /* AppDelegate.swift in Sources */,
 				8FEE7A0B22B471CF008170C0 /* UserImageView.swift in Sources */,
+				8F57FA7C22BD2529004585E7 /* UsersCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
