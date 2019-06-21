@@ -22,16 +22,16 @@
                                 <rect key="frame" x="20" y="445" width="374" height="33"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byf-7h-CA7" userLabel="TopView">
                                 <rect key="frame" x="20" y="44" width="374" height="369"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo without bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="hfk-1J-idv">
-                                        <rect key="frame" x="52" y="112.5" width="270" height="144"/>
+                                        <rect key="frame" x="112" y="109.5" width="150" height="150"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="270" id="JsH-ka-0nc"/>
-                                            <constraint firstAttribute="height" constant="144" id="jjT-D3-5Yq"/>
+                                            <constraint firstAttribute="width" constant="150" id="JsH-ka-0nc"/>
+                                            <constraint firstAttribute="height" constant="150" id="jjT-D3-5Yq"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -215,6 +215,6 @@
         <image name="logo without bg-2" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dmh-Aj-dp7"/>
+        <segue reference="k7V-oW-Haq"/>
     </inferredMetricsTieBreakers>
 </document>

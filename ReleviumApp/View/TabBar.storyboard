@@ -76,39 +76,23 @@
                                     <outlet property="delegate" destination="E1k-vV-Ddo" id="wVc-rF-pM4"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDd-vP-C8j" userLabel="sub-location">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDd-vP-C8j" userLabel="sub-location">
                                 <rect key="frame" x="305" y="498" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="location"/>
+                                <state key="normal" image="icons8-warning-shield-48"/>
                                 <connections>
                                     <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="77p-gS-nya"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehQ-77-cf4" userLabel="sub-fire">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehQ-77-cf4" userLabel="sub-fire">
                                 <rect key="frame" x="305" y="446" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="fire"/>
+                                <state key="normal" image="icons8-safety-float-64"/>
                                 <connections>
                                     <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="tqM-im-AES"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-Tw-9Ro" userLabel="sub-emergency">
-                                <rect key="frame" x="305" y="393" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="warning"/>
-                                <connections>
-                                    <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="DpC-pk-clP"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Warning!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFB-ps-0m3">
-                                <rect key="frame" x="207" y="401" width="90" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.30324272260273971" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fire!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqt-Sz-Bh6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SOS!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqt-Sz-Bh6">
                                 <rect key="frame" x="207" y="454" width="90" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.29650042808219179" colorSpace="custom" customColorSpace="sRGB"/>
@@ -124,7 +108,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqM-R2-bgp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Warning!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqM-R2-bgp">
                                 <rect key="frame" x="207" y="506" width="90" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.29848030821917809" colorSpace="custom" customColorSpace="sRGB"/>
@@ -152,7 +136,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="icons8-region-30" selectedImage="icons8-region-filled-30" id="ayx-4d-a1F"/>
                     <connections>
-                        <outlet property="emergencyButton" destination="L2x-Tw-9Ro" id="gmI-P0-t7k"/>
                         <outlet property="fireButton" destination="ehQ-77-cf4" id="9L3-h6-Pii"/>
                         <outlet property="fireLabel" destination="Vqt-Sz-Bh6" id="6L8-E0-83Y"/>
                         <outlet property="locationButton" destination="gDd-vP-C8j" id="jZT-ow-5vk"/>
@@ -160,7 +143,6 @@
                         <outlet property="mainButton" destination="WMD-U2-D5m" id="SuD-0E-Lnh"/>
                         <outlet property="mainLabel" destination="Iqi-TK-L2Z" id="VZ4-yx-8a9"/>
                         <outlet property="mapView" destination="L1x-ip-k3A" id="uOR-on-XDM"/>
-                        <outlet property="warningLabel" destination="fFB-ps-0m3" id="QJA-sS-a4W"/>
                         <segue destination="OGg-u6-Yol" kind="show" identifier="goToChat" id="N8p-Vu-wIQ"/>
                     </connections>
                 </viewController>
@@ -558,7 +540,6 @@
     </scenes>
     <resources>
         <image name="Thanos_MCU.0" width="1200" height="800"/>
-        <image name="fire" width="50" height="50"/>
         <image name="icons8-add-90" width="90" height="90"/>
         <image name="icons8-chat-30" width="30" height="30"/>
         <image name="icons8-chat-selected-30" width="30" height="30"/>
@@ -569,10 +550,10 @@
         <image name="icons8-left-30" width="30" height="30"/>
         <image name="icons8-region-30" width="30" height="30"/>
         <image name="icons8-region-filled-30" width="30" height="30"/>
-        <image name="location" width="50" height="50"/>
-        <image name="warning" width="50" height="50"/>
+        <image name="icons8-safety-float-64" width="64" height="64"/>
+        <image name="icons8-warning-shield-48" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Zck-ks-k4X"/>
+        <segue reference="N8p-Vu-wIQ"/>
     </inferredMetricsTieBreakers>
 </document>

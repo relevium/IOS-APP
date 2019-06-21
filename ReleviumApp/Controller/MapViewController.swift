@@ -25,12 +25,10 @@ class MapViewController: UIViewController {
     private var senderID: String?
     private var senderName: String?
     private var usersArtwork: [String : Artwork] = [:]
-    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var fireLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var emergencyButton: UIButton!
-    @IBOutlet weak var fireButton: UIButton!
-    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var fireButton: UIButton! // SOS
+    @IBOutlet weak var locationButton: UIButton! // Warning
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var mainLabel: UILabel!
     
@@ -102,9 +100,9 @@ class MapViewController: UIViewController {
     func getTitle(tag: Int) -> String{
         switch tag {
         case 1:
-            return "Pin Location"
+            return "User in Danger!"
         case 2:
-            return "Fire!"
+            return "Shelter"
         case 3:
             return "Warning!"
         default:
@@ -212,7 +210,7 @@ extension MapViewController: CLLocationManagerDelegate{
         }
     }
     
-    private func getUserId() -> String?{
+    private func getUserId() -> String? {
         if let userId = Auth.auth().currentUser?.uid{
             return "\(userId)"
         }
@@ -266,7 +264,6 @@ extension MapViewController: CLLocationManagerDelegate{
             mapView.addAnnotation(artwork)
         }
         
-        
     }
     
     private func isLocationChanged(location: CLLocation, artwork: Artwork) -> Bool {
@@ -283,12 +280,12 @@ extension MapViewController: MKMapViewDelegate{
         guard let annotationUnwraped = annotation as? Artwork else { return nil }
         var annotationView: MKAnnotationView
         let identifier = "marker"
-        
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier){
-            
-            dequeuedView.annotation = annotationUnwraped
-            addImageToAnnotationView(annatotationView: dequeuedView, artwork: annotationUnwraped)
-            annotationView = dequeuedView
+            dequeuedView.removeFromSuperview()
+            let newAnnotation = MKAnnotationView(annotation: annotationUnwraped, reuseIdentifier: identifier)
+            newAnnotation.annotation = annotationUnwraped
+            addImageToAnnotationView(annatotationView: newAnnotation, artwork: annotationUnwraped)
+            annotationView = newAnnotation
             
         }
             
@@ -308,40 +305,38 @@ extension MapViewController: MKMapViewDelegate{
         return CLLocation(latitude: latitute, longitude: longtitute)
     }
     
-    
     //MARK: - AnnotationView Helping Methods
    private func getGlyph(title: String) -> UIImage?{
         switch title {
         case "Warning!":
-            return UIImage(named: "warning")
-        case "Fire!":
-            return UIImage(named: "fire")
-        case "Pin Location":
-            return UIImage(named: "location")
+            return UIImage(named: "icons8-warning-shield-48")
+        case "User in Danger!":
+            return UIImage(named: "icons8-safety-float-64")
+        case "Shelter":
+            return UIImage(named: "icons8-tent-48")
         default:
             return nil
         }
     }
+    
     private func addImageToAnnotationView(annatotationView:MKAnnotationView, artwork: Artwork) {
         
         guard let title = artwork.title else{ return }
         guard let state = artwork.state else{ return }
         guard let uid = artwork.uid else { return }
         annatotationView.canShowCallout = true
+
         
-        if  state != "" && uid != "" {
+        if  state == "online" && uid != getUserId() {
             addUserImage(annatotationView: annatotationView, name: title, state: state,uid: uid)
-            return
-        }
-        
-        if let glyph = getGlyph(title: title){
-            annatotationView.image = glyph
+        } else {
+            if let glyph = getGlyph(title: title){
+                annatotationView.image = glyph
+            }
         }
     }
     
     private func addUserImage(annatotationView: MKAnnotationView,name: String,state:String, uid: String) {
-        
-        if state == "online"{
             guard let currentUser = getUserId() else {
                 print("failed to get current user")
                 return
@@ -350,29 +345,26 @@ extension MapViewController: MKMapViewDelegate{
                 print("failed to get current user artwork")
                 return
             }
+        
             let button = UserOnMapButton(type: UIButton.ButtonType.system)
             //Adding call info to button....
             button.currentUserID = currenUserArtwork.uid
             button.currentUserName = currenUserArtwork.title
             button.receiverID = uid
             button.receivername = name
-            button.sizeThatFits(CGSize(width: 25, height: 25))
+            button.sizeThatFits(CGSize(width: 10, height: 10))
             button.translatesAutoresizingMaskIntoConstraints = false
-            let image = UIImage(named: "phone-receiver")
-            button.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 15, height: 15))
+            let image = UIImage(named: "icons8-send-email-48")
+            button.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 5, height: 5))
             button.setImage(image, for: .normal)
-            button.setTitle("\t Call: \(name)", for: .normal)
+            button.setTitle("\t message: \(name)", for: .normal)
             button.addTarget(self, action: #selector(goToChat(sender:)), for: .touchUpInside)
             
-            annatotationView.layer.cornerRadius = 10
+            annatotationView.layer.cornerRadius = annatotationView.layer.frame.height / 3
             annatotationView.contentMode = .scaleToFill
             annatotationView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
-            annatotationView.image = UIImage(named: "relevium")
+            annatotationView.image = UIImage(named: "icons8-user-20")
             annatotationView.conteiner(arrangedSubviews: [button])
-        }
-        else {
-            annatotationView.image = UIImage(named: "userOnMap")
-        }
     }
     
     @objc private func goToChat(sender: UserOnMapButton){
@@ -385,7 +377,6 @@ extension MapViewController: MKMapViewDelegate{
         self.senderName = senderName
         self.receiverID = receiverId
         self.receiverName = receiverName
-        print("\(senderName) \(senderId) \(receiverName) \(receiverId)")
         performSegue(withIdentifier: "goToChat", sender: self)
        
     }

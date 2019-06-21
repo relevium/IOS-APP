@@ -2,13 +2,10 @@
 
 # To Do
 
-* build user profile
 * login with third parties
-* tuning the UI
 
 # In Progress
-
-* chat with users
+* Voice Recognition 
 
 # Done
 
@@ -20,3 +17,6 @@
 * plot other users on map
 * plot danger zones on map
 * Chat from user icon on map
+* build user profile
+* tuning the UI
+* chat with users

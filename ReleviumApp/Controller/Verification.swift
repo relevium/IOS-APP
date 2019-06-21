@@ -31,7 +31,7 @@ class Verification {
     
     func validatePassword(candidate: String) -> Bool {
         // password should has at least 8 characters with at least one uppercase, one lowercase, one digit, and one special character @#$&*
-        let passwordRegex = "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+        let passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,64}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
     }
     
