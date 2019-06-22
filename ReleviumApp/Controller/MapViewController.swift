@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
     private var senderID: String?
     private var senderName: String?
     private var usersArtwork: [String : Artwork] = [:]
+    private var currentLocation: CLLocationCoordinate2D?
     @IBOutlet weak var fireLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var fireButton: UIButton! // SOS
@@ -36,6 +37,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         tabBarItem.imageInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         buttonsInitialPositions()
         checkLocationService()
@@ -213,6 +215,7 @@ extension MapViewController: CLLocationManagerDelegate{
         guard let location = locations.last else{ return }
         guard let userID = getUserId() else { return }
         print("location changed.......")
+        currentLocation = location.coordinate
         uploadGeoLocation(location: location, id: userID,child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 100.0)
     }
@@ -349,6 +352,13 @@ extension MapViewController: MKMapViewDelegate{
         return annotationView
     }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = #colorLiteral(red: 0.168627451, green: 0.262745098, blue: 0.3254901961, alpha: 0.75)
+        renderer.lineWidth = 8.0
+        return renderer
+    }
+    
     private func getCenterLocation(for mapView: MKMapView) -> CLLocation{
         let latitute = mapView.centerCoordinate.latitude
         let longtitute = mapView.centerCoordinate.longitude
@@ -392,16 +402,18 @@ extension MapViewController: MKMapViewDelegate{
             print("failed to get anonymity in addImageToAnnotationView")
             return
         }
+        let location = artwork.coordinate
+        
         annatotationView.canShowCallout = true
         if state == "glyph" {
-            addGlyphToMap(annatotationView: annatotationView, name: title,uid: uid,image: image)
+            addGlyphToMap(annatotationView: annatotationView, name: title,uid: uid,image: image,location: location)
         }
         else if uid != getUserId() && state == "online" && anonymity == false {
-            addUserImage(annatotationView: annatotationView, name: title,uid: uid,image: image)
+            addUserImage(annatotationView: annatotationView, name: title,uid: uid,image: image,location: location)
         }
     }
     
-    private func addGlyphToMap(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage){
+    private func addGlyphToMap(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage, location:CLLocationCoordinate2D){
         let routeButton = UserOnMapButton(type: UIButton.ButtonType.custom)
         //Adding Route info to button....
         
@@ -412,6 +424,7 @@ extension MapViewController: MKMapViewDelegate{
         routeButton.setImage(imageButton, for: .normal)
         routeButton.setTitle("\t Route To: \(name)", for: .normal)
         routeButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        routeButton.destinationCoordinate = location
         routeButton.addTarget(self, action: #selector(getRouteTo(sender:)), for: .touchUpInside)
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -427,7 +440,7 @@ extension MapViewController: MKMapViewDelegate{
     
     
     
-    private func addUserImage(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage) {
+    private func addUserImage(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage,location:CLLocationCoordinate2D) {
             guard let currentUser = getUserId() else {
                 print("failed to get current user")
                 return
@@ -454,9 +467,9 @@ extension MapViewController: MKMapViewDelegate{
             let routeButton = UserOnMapButton(type: UIButton.ButtonType.custom)
             //Adding Route info info to button....
         
-        
             routeButton.sizeThatFits(CGSize(width: 10, height: 10))
             routeButton.translatesAutoresizingMaskIntoConstraints = false
+            routeButton.destinationCoordinate = location
             let imageRoute = UIImage(named: "icons8-route-30")
             routeButton.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 5, height: 5))
             routeButton.setImage(imageRoute, for: .normal)
@@ -489,16 +502,65 @@ extension MapViewController: MKMapViewDelegate{
     }
     
     @objc func getRouteTo(sender: UserOnMapButton) {
-        guard let description = sender.receivername else {
-            print("failed to get description")
+        guard let current = currentLocation else {
+            print("can not retrieve current user location")
             return
         }
-        guard let id = sender.receivername else {
-            print("failed to get id for glyph")
+        guard let destination = sender.destinationCoordinate else {
+            print("failed to get destination location")
             return
         }
-        print("Description \(description)")
-        print("ID \(id)")
+        showRouteOnMap(pickupCoordinate: current, destinationCoordinate: destination)
+        
+    }
+    
+    private func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
+        
+        let sourcePlacemark = MKPlacemark(coordinate: pickupCoordinate, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate, addressDictionary: nil)
+        
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        let sourceAnnotation = MKPointAnnotation()
+        
+        if let location = sourcePlacemark.location {
+            sourceAnnotation.coordinate = location.coordinate
+        }
+        
+        let destinationAnnotation = MKPointAnnotation()
+        
+        if let location = destinationPlacemark.location {
+            destinationAnnotation.coordinate = location.coordinate
+        }
+        
+        self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
+        
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        directions.calculate { [unowned self] (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            
+            self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
     }
     
 }

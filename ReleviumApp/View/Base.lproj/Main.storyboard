@@ -46,7 +46,7 @@
                                 <rect key="frame" x="20" y="752" width="374" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <segue destination="SGl-zN-u83" kind="show" id="9Qd-Fa-XJd"/>
+                                    <segue destination="nXd-0V-bgQ" kind="show" id="qXk-Mq-qci"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-ua-7RA">
@@ -147,6 +147,17 @@
                                     <action selector="registerButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="r8g-pq-7rw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7W-6F-voK">
+                                <rect key="frame" x="20" y="59" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="13z-QF-e3w"/>
+                                    <constraint firstAttribute="height" constant="40" id="Nqj-gd-vQ3"/>
+                                </constraints>
+                                <state key="normal" image="icons8-left-30"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="nXd-0V-bgQ" eventType="touchUpInside" id="lS4-w9-oap"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -154,6 +165,7 @@
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="0mj-yP-Maj" secondAttribute="trailing" id="AK1-gs-wph"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="0tk-4l-wrg" secondAttribute="leadingMargin" id="Eqf-Nz-VNI"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="Smd-gQ-FIl" secondAttribute="leading" id="JIL-Sv-xDf"/>
+                            <constraint firstItem="h7W-6F-voK" firstAttribute="leading" secondItem="EE8-J9-TSQ" secondAttribute="leading" constant="20" id="OMv-2Y-pHc"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="0tk-4l-wrg" secondAttribute="trailingMargin" id="Wya-Wb-NAC"/>
                             <constraint firstItem="0mj-yP-Maj" firstAttribute="top" secondItem="zV1-DQ-l3O" secondAttribute="bottom" constant="21" id="aRp-gV-ZVX"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="zV1-DQ-l3O" secondAttribute="trailing" id="dgs-0a-sQs"/>
@@ -162,6 +174,7 @@
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="oDO-MH-7Py" secondAttribute="leading" id="nvm-Y1-z22"/>
                             <constraint firstItem="Smd-gQ-FIl" firstAttribute="top" secondItem="eyk-84-IKa" secondAttribute="bottom" constant="22" id="qCN-DA-923"/>
                             <constraint firstItem="EwU-vu-POg" firstAttribute="leading" secondItem="EE8-J9-TSQ" secondAttribute="leading" constant="30" id="sIJ-g9-Dy9"/>
+                            <constraint firstItem="h7W-6F-voK" firstAttribute="top" secondItem="EE8-J9-TSQ" secondAttribute="top" constant="15" id="smX-en-zUt"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="trailing" secondItem="oDO-MH-7Py" secondAttribute="trailing" id="tOA-f2-YfO"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="zV1-DQ-l3O" secondAttribute="leading" id="thj-eb-p5U"/>
                             <constraint firstItem="eyk-84-IKa" firstAttribute="leading" secondItem="0mj-yP-Maj" secondAttribute="leading" id="trt-Zz-8Yb"/>
@@ -174,9 +187,6 @@
                     <navigationItem key="navigationItem" id="ZQP-eb-gTO">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-left-30" id="sgd-tz-2u4">
                             <color key="tintColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="nXd-0V-bgQ" id="FbS-I3-Mqn"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -190,25 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xB-N6-zzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="209.59821428571428"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="pQ9-8Z-oQc">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SGl-zN-u83" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kGv-aD-in6">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nXd-0V-bgQ" kind="relationship" relationship="rootViewController" id="CNu-WI-eTr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NnO-sq-xb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="209.59821428571428"/>
+            <point key="canvasLocation" x="132" y="212"/>
         </scene>
     </scenes>
     <resources>

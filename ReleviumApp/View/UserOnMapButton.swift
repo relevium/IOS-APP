@@ -8,10 +8,12 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class UserOnMapButton: UIButton {
     var currentUserID: String?
     var currentUserName: String?
     var receiverID: String?
     var receivername: String?
+    var destinationCoordinate: CLLocationCoordinate2D?
 }
