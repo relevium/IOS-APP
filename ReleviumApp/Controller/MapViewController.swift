@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 import SVProgressHUD
 import GeoFire
 import MapKit
@@ -83,17 +84,25 @@ class MapViewController: UIViewController {
         let geoFire = GeoFire(firebaseRef: geoFirePingLocation)
         
         pinqDetails.observe(.childAdded) { [unowned self] (snapshot) in
-            guard let value = snapshot.value as? NSDictionary else {return}
-            let glyphId = snapshot.key
-            let glyphTitle = value["mDescription"] as? String
-            geoFire.getLocationForKey(glyphId, withCallback: { (location, error) in
-                if error == nil{
-                    guard let title = glyphTitle else {return}
-                    guard let coordinate = location?.coordinate else{return}
-                    let artwork = Artwork(title: title, coordinate: coordinate,uid: "",state: "")
-                    self.mapView.addAnnotation(artwork)
-                }
-            })
+            if let value = snapshot.value{
+                let glyphId = snapshot.key
+                let json = JSON(value)
+                let glyphTitle = json["mDescription"].stringValue
+                let imageID = json["mImageId"].intValue
+                
+                geoFire.getLocationForKey(glyphId, withCallback: { (location, error) in
+                    if error == nil{
+                        guard let coordinate = location?.coordinate else{ return }
+                        if let glyphImage = self.getGlyph(tag: imageID){
+                            let artwork = Artwork(title: glyphTitle, coordinate: coordinate,uid: glyphId,image: glyphImage,state: "glyph",anonymity: false)
+                            self.mapView.addAnnotation(artwork)
+                            print("sign added to map with glyph")
+                        } else {
+                            print("failed to get glyph")
+                        }
+                    }
+                })
+            }
         }
     }
     
@@ -221,19 +230,40 @@ extension MapViewController: CLLocationManagerDelegate{
     
     private func addUserToMap(key: String, location: CLLocation) {
         
-        let ref = Database.database().reference().child("Users")
-        ref.child(key).observeSingleEvent(of: .value) { (snapshot) in
+        let ref = Database.database().reference().child("Users").child(key)
+        guard let logoImage = UIImage(named: "userImage") else{
+            print("logo image do not exit on device")
+            return
+        }
+        ref.observeSingleEvent(of: .value) { (snapshot) in
             
             if let value = snapshot.value {
                 let json = JSON(value)
                 // check if user has all info
                 if let firstname = json["mFirstName"].string, let secondName = json["mLastName"].string, let state = json["userState"]["state"].string {
                     let name = "\(firstname) \(secondName)"
-                    self.createArtwork(title: name, location: location,userId: key,state: state)
-                }
-                else{
-                    // insuffcient user information
-                    print("user info not complete ")
+                    let anonymity = json["AnonymityPreference"].bool ?? false
+                    if let imageURL = json["image"].string {
+                        let storgeRef = Storage.storage().reference(forURL: imageURL)
+                        storgeRef.getData(maxSize: 1 * 4000 * 4000, completion: { (data, err) in
+                            if let data = data {
+                                guard let userImage = UIImage(data: data) else {
+                                    print("failed to generate image from data")
+                                    return
+                                }
+                                self.createArtwork(title: name, location: location,userId: key,image: userImage,state: state,anonymity: anonymity)
+                            } else {
+                                print("failed to get user image from database")
+                                return
+                            }
+                        })
+                    } else {
+                        // user did not set profile image yet
+                        self.createArtwork(title: name, location: location,userId: key,image: logoImage,state: state,anonymity: anonymity)
+                    }
+                    
+                } else {
+                    print("invalid user info")
                 }
             }
             else {
@@ -244,10 +274,10 @@ extension MapViewController: CLLocationManagerDelegate{
         }
     }
     
-    private func createArtwork(title: String, location: CLLocation,userId: String, state: String) {
+    private func createArtwork(title: String, location: CLLocation,userId: String, image: UIImage,state:String,anonymity:Bool) {
         
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let artwork = Artwork(title: title, coordinate: coordinate, uid: userId, state: state)
+        let artwork = Artwork(title: title, coordinate: coordinate, uid: userId,image: image,state: state,anonymity: anonymity)
         
         if let oldArtwork = usersArtwork[userId] {
             // user found -- user already added to map -> update user location on map
@@ -277,16 +307,17 @@ extension MapViewController: CLLocationManagerDelegate{
 extension MapViewController: MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let annotationUnwraped = annotation as? Artwork else { return nil }
+        guard let annotationUnwraped = annotation as? Artwork else {
+            print("failed to unwwrap ARTWORK")
+            return nil
+        }
         var annotationView: MKAnnotationView
         let identifier = "marker"
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier){
             dequeuedView.removeFromSuperview()
             let newAnnotation = MKAnnotationView(annotation: annotationUnwraped, reuseIdentifier: identifier)
-            newAnnotation.annotation = annotationUnwraped
             addImageToAnnotationView(annatotationView: newAnnotation, artwork: annotationUnwraped)
             annotationView = newAnnotation
-            
         }
             
         else{
@@ -306,13 +337,13 @@ extension MapViewController: MKMapViewDelegate{
     }
     
     //MARK: - AnnotationView Helping Methods
-   private func getGlyph(title: String) -> UIImage?{
-        switch title {
-        case "Warning!":
+   private func getGlyph(tag: Int) -> UIImage?{
+        switch tag {
+        case 3:
             return UIImage(named: "icons8-warning-shield-48")
-        case "User in Danger!":
+        case 1:
             return UIImage(named: "icons8-safety-float-64")
-        case "Shelter":
+        case 2:
             return UIImage(named: "icons8-tent-48")
         default:
             return nil
@@ -321,22 +352,75 @@ extension MapViewController: MKMapViewDelegate{
     
     private func addImageToAnnotationView(annatotationView:MKAnnotationView, artwork: Artwork) {
         
-        guard let title = artwork.title else{ return }
-        guard let state = artwork.state else{ return }
-        guard let uid = artwork.uid else { return }
+        guard let title = artwork.title else {
+            print("invalid title in map")
+            return
+        }
+        guard let uid = artwork.uid else {
+            print("failed to get uid in addImageToAnnotationView")
+            return
+        }
+        guard let image = artwork.image else {
+            print("fialed to get image addImageToAnnotationView")
+            return
+        }
+        guard let state = artwork.state else {
+            print("failed to get state in addImageToAnnotationView")
+            return
+        }
+        guard let anonymity = artwork.anonymity else {
+            print("failed to get anonymity in addImageToAnnotationView")
+            return
+        }
         annatotationView.canShowCallout = true
-
-        
-        if  state == "online" && uid != getUserId() {
-            addUserImage(annatotationView: annatotationView, name: title, state: state,uid: uid)
-        } else {
-            if let glyph = getGlyph(title: title){
-                annatotationView.image = glyph
-            }
+        if state == "glyph" {
+            addGlyphToMap(annatotationView: annatotationView, name: title,uid: uid,image: image)
+        }
+        else if uid != getUserId() && state == "online" && anonymity == false {
+            addUserImage(annatotationView: annatotationView, name: title,uid: uid,image: image)
         }
     }
     
-    private func addUserImage(annatotationView: MKAnnotationView,name: String,state:String, uid: String) {
+    private func addGlyphToMap(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage){
+        print("add Glyphs to map called")
+        let button = UserOnMapButton(type: UIButton.ButtonType.system)
+        //Adding upload description info to button....
+        
+        button.receiverID = uid // glyph id
+        button.receivername = name // glyph description
+        button.sizeThatFits(CGSize(width: 10, height: 10))
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let imageButton = UIImage(named: "icons8-add-text-filled-50")
+        button.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 5, height: 5))
+        button.setImage(imageButton, for: .normal)
+        button.setTitle("\t edit Description: \(name)", for: .normal)
+        button.addTarget(self, action: #selector(goToChat(sender:)), for: .touchUpInside)
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageView.layer.cornerRadius = 25
+        imageView.layer.masksToBounds = true
+        imageView.image = image
+        annatotationView.layer.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        annatotationView.addSubview(imageView)
+        annatotationView.layer.zPosition = 2
+        annatotationView.conteiner(arrangedSubviews: [button])
+        
+    }
+    
+    @objc func uploadDescription(sender: UserOnMapButton) {
+        guard let description = sender.receivername else {
+            print("failed to get description")
+            return
+        }
+        guard let id = sender.receivername else {
+            print("failed to get id for glyph")
+            return
+        }
+        print("Description \(description)")
+        print("ID \(id)")
+    }
+    
+    private func addUserImage(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage) {
+            print("add USer Image Called +++++++++++")
             guard let currentUser = getUserId() else {
                 print("failed to get current user")
                 return
@@ -354,16 +438,18 @@ extension MapViewController: MKMapViewDelegate{
             button.receivername = name
             button.sizeThatFits(CGSize(width: 10, height: 10))
             button.translatesAutoresizingMaskIntoConstraints = false
-            let image = UIImage(named: "icons8-send-email-48")
+            let imageButton = UIImage(named: "icons8-send-email-48")
             button.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 5, height: 5))
-            button.setImage(image, for: .normal)
+            button.setImage(imageButton, for: .normal)
             button.setTitle("\t message: \(name)", for: .normal)
             button.addTarget(self, action: #selector(goToChat(sender:)), for: .touchUpInside)
-            
-            annatotationView.layer.cornerRadius = annatotationView.layer.frame.height / 3
-            annatotationView.contentMode = .scaleToFill
-            annatotationView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
-            annatotationView.image = UIImage(named: "icons8-user-20")
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            imageView.layer.cornerRadius = 25
+            imageView.layer.masksToBounds = true
+            imageView.image = image
+            annatotationView.layer.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            annatotationView.addSubview(imageView)
+            annatotationView.layer.zPosition = 2
             annatotationView.conteiner(arrangedSubviews: [button])
     }
     
