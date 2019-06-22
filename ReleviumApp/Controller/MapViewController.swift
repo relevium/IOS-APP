@@ -26,7 +26,9 @@ class MapViewController: UIViewController {
     private var senderID: String?
     private var senderName: String?
     private var usersArtwork: [String : Artwork] = [:]
-    private var currentLocation: CLLocationCoordinate2D?
+    private var userPins: [CLLocation : Int] = [:]
+    private var currentLocation: CLLocation?
+    private let verification = Verification()
     @IBOutlet weak var fireLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var fireButton: UIButton! // SOS
@@ -67,9 +69,23 @@ class MapViewController: UIViewController {
                 self.setButtonAtStartLocation()
             }
             isButtonVisible = false
+            
             var glyphTitle:String = getTitle(tag: sender.tag)
             var describeTextField = UITextField()
-            let glyphlocation = mapView.centerCoordinate
+            guard let glyphlocation = currentLocation?.coordinate else {
+                print("can not get user location to set glyph")
+                return
+            }
+            guard let location = currentLocation else {
+                print("can not get user location for check if glyph is exist")
+                return
+            }
+            if let _ = userPins[location] {
+                verification.makeAlert(title: "Pin", message: "can not add more than one pin at same location", mainView: self)
+                return
+            } else {
+                userPins.updateValue(sender.tag, forKey: location)
+            }
             let glyphId = UUID.init().uuidString
             guard let userId = Auth.auth().currentUser?.uid else {
                 print("can not get UID while adding mark from button")
@@ -215,7 +231,7 @@ extension MapViewController: CLLocationManagerDelegate{
         guard let location = locations.last else{ return }
         guard let userID = getUserId() else { return }
         print("location changed.......")
-        currentLocation = location.coordinate
+        currentLocation = location
         uploadGeoLocation(location: location, id: userID,child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 100.0)
     }
@@ -502,7 +518,7 @@ extension MapViewController: MKMapViewDelegate{
     }
     
     @objc func getRouteTo(sender: UserOnMapButton) {
-        guard let current = currentLocation else {
+        guard let current = currentLocation?.coordinate else {
             print("can not retrieve current user location")
             return
         }
