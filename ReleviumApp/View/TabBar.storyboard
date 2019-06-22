@@ -377,13 +377,26 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4X-fx-onv">
+                                <rect key="frame" x="340" y="678" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="0le-dv-Aop"/>
+                                    <constraint firstAttribute="height" constant="64" id="mV9-HZ-fWa"/>
+                                </constraints>
+                                <state key="normal" image="icons8-voice-64"/>
+                                <connections>
+                                    <action selector="recognitionButtonPressed:" destination="bHe-WD-lnN" eventType="touchUpInside" id="SGC-Jz-ssX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="CPf-jd-IWn" firstAttribute="top" secondItem="R4X-fx-onv" secondAttribute="bottom" constant="30" id="7nP-pa-RhM"/>
                             <constraint firstItem="387-rv-ajD" firstAttribute="top" secondItem="XjX-tY-yay" secondAttribute="top" id="Bil-uy-lPe"/>
                             <constraint firstItem="CPf-jd-IWn" firstAttribute="top" secondItem="387-rv-ajD" secondAttribute="bottom" id="ChM-a8-YH8"/>
                             <constraint firstItem="387-rv-ajD" firstAttribute="leading" secondItem="XjX-tY-yay" secondAttribute="leading" id="Gx2-Bk-U90"/>
                             <constraint firstItem="XjX-tY-yay" firstAttribute="trailing" secondItem="387-rv-ajD" secondAttribute="trailing" id="Pgp-Vu-Ubf"/>
+                            <constraint firstItem="XjX-tY-yay" firstAttribute="trailing" secondItem="R4X-fx-onv" secondAttribute="trailing" constant="10" id="gMt-5t-jyH"/>
                             <constraint firstItem="XjX-tY-yay" firstAttribute="bottom" secondItem="CPf-jd-IWn" secondAttribute="bottom" constant="1" id="mYu-NA-mem"/>
                             <constraint firstItem="CPf-jd-IWn" firstAttribute="leading" secondItem="uan-ks-dUh" secondAttribute="leading" id="pD3-Ld-4f2"/>
                             <constraint firstAttribute="trailing" secondItem="CPf-jd-IWn" secondAttribute="trailing" id="y0x-Gu-Ush"/>
@@ -395,6 +408,7 @@
                         <outlet property="chatView" destination="387-rv-ajD" id="A93-cJ-kHm"/>
                         <outlet property="queryTextField" destination="uCE-eB-7Wy" id="X2g-Ri-PPq"/>
                         <outlet property="queryViewConstraint" destination="fS8-Vd-TDX" id="Lj6-KY-axY"/>
+                        <outlet property="speechRecognitionButton" destination="R4X-fx-onv" id="7sU-qG-pKw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQ4-YC-3fb" sceneMemberID="firstResponder"/>
@@ -551,6 +565,7 @@
         <image name="icons8-region-30" width="30" height="30"/>
         <image name="icons8-region-filled-30" width="30" height="30"/>
         <image name="icons8-safety-float-64" width="64" height="64"/>
+        <image name="icons8-voice-64" width="64" height="64"/>
         <image name="icons8-warning-shield-48" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>

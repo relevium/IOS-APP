@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreML
+import Speech
 import Alamofire
 import SwiftyJSON
 
@@ -16,13 +16,21 @@ class AgentViewController: UIViewController,UICollectionViewDataSource{
     @IBOutlet weak var chatView: UICollectionView!
     @IBOutlet weak var queryTextField: UITextField!
     @IBOutlet weak var queryViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var speechRecognitionButton: UIButton!
     
+    let audioEngine = AVAudioEngine()
+    var request: SFSpeechAudioBufferRecognitionRequest?
+    let speechRecognizer:SFSpeechRecognizer? = SFSpeechRecognizer()
+    var recognitionTask:SFSpeechRecognitionTask?
+    var isRecording = false
+    let verification = Verification()
     var messages:[ChatEntity] = []
     var tempText: String = ""
     let cellId = "ChatViewCell"
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        requestSpeechAuthorization()
         tabBarItem.imageInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         queryTextField.delegate = self
         chatView.delegate = self
@@ -58,6 +66,106 @@ class AgentViewController: UIViewController,UICollectionViewDataSource{
     @IBAction func askbuttonPressed(_ sender: UIButton) {
         sender.flash()
         getInputFromUser()
+    }
+    
+    @IBAction func recognitionButtonPressed(_ sender: UIButton) {
+        if isRecording == false {
+            recordAndRecognize()
+            isRecording = true
+            let alert = UIAlertController(title: "", message: "start recording", preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+            alert.dismiss(animated: true, completion: nil)
+            } else {
+            let alert = UIAlertController(title: "", message: "finish recording", preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+            alert.dismiss(animated: true, completion: nil)
+            stopRecoding()
+            isRecording = false
+        }
+        
+    }
+    
+    private func recordAndRecognize(){
+        request = SFSpeechAudioBufferRecognitionRequest()
+        request?.shouldReportPartialResults = false
+        let node = audioEngine.inputNode
+        let recordingFormat = node.outputFormat(forBus: 0)
+        
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, time) in
+            self.request?.append(buffer)
+        }
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            print(error)
+        }
+        guard let myRecognizer = SFSpeechRecognizer() else {
+            verification.makeAlert(title: "Voice Recognition", message: "voice recognition is not support for your IOS version", mainView: self)
+            return
+        }
+        if !myRecognizer.isAvailable {
+            verification.makeAlert(title: "Voice Recognition", message: "voice recognition is not available right now", mainView: self)
+            return
+        }
+        recognitionTask = speechRecognizer?.recognitionTask(with: request!,resultHandler: { result, err in
+            if let result = result {
+                let bestString = result.bestTranscription.formattedString
+                let entity = ChatEntity(message: bestString, isUser: true)
+                self.messages.append(entity)
+                self.chatView.reloadData()
+                self.predict(for: bestString, completion: { (res) in
+                    switch res {
+                    case .failure(let err):
+                        print(err.localizedDescription)
+                        self.createResponse(response: "Agent not responding")
+                        self.speechSynthize(response: "Agent not responding")
+                    case .success(let val):
+                        self.speechSynthize(response: val)
+                        self.createResponse(response: val)
+                    }
+                })
+            } else {
+                print(err.debugDescription)
+            }
+        })
+        
+    }
+    
+    private func stopRecoding(){
+        request?.endAudio()
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
+    }
+    
+    private func speechSynthize(response: String){
+        let speechSynthesizer = AVSpeechSynthesizer()
+        let speechUtterace = AVSpeechUtterance(string: response)
+        speechUtterace.rate = AVSpeechUtteranceDefaultSpeechRate
+        speechUtterace.voice = AVSpeechSynthesisVoice(language: "en-US")
+        speechSynthesizer.speak(speechUtterace)
+    }
+    
+    private func requestSpeechAuthorization(){
+        SFSpeechRecognizer.requestAuthorization { (status) in
+            OperationQueue.main.addOperation {
+                switch status {
+                case .authorized:
+                    print("SP granted")
+                case .denied:
+                    self.speechRecognitionButton.isEnabled = false
+                    self.verification.makeAlert(title: "Speech Recognition", message: "you have denied speech recognition permissoin", mainView: self)
+                case .notDetermined:
+                    self.speechRecognitionButton.isEnabled = false
+                    self.verification.makeAlert(title: "Speech Recognition", message: "you have not determined speech recognition permissoin yet", mainView: self)
+                case .restricted:
+                    self.speechRecognitionButton.isEnabled = false
+                    self.verification.makeAlert(title: "Speech Recognition", message: "speech recognition permissoin restricted", mainView: self)
+                @unknown default:
+                    print("unknown status")
+                }
+            }
+        }
     }
     
     private func getInputFromUser(){

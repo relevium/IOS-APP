@@ -173,7 +173,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZQP-eb-gTO">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-left-30" id="sgd-tz-2u4">
-                            <color key="tintColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="backButtonPressed:" destination="nXd-0V-bgQ" id="FbS-I3-Mqn"/>
                             </connections>
@@ -216,6 +216,6 @@
         <image name="logo without bg-2" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dmh-Aj-dp7"/>
+        <segue reference="k7V-oW-Haq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -55,7 +55,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{return}
         UIView.animate(withDuration: 0.5) {
-            self.bottomConstraint.constant = keyboardFrame.height - 80
+            self.bottomConstraint.constant = keyboardFrame.height - 120
         }
     }
     
