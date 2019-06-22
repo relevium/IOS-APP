@@ -82,6 +82,7 @@ class RegisterViewController: UIViewController{
                         case .success(let id):
                             print("Succeed to create user: \(id)")
                             SVProgressHUD.dismiss()
+                            UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                             self.performSegue(withIdentifier: "registerToMain", sender: self)
                             
                         case .failure(let err):

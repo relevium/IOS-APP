@@ -66,7 +66,7 @@ class ChatViewCell: UICollectionViewCell {
         addSubview(parentView)
         parentView.addSubview(messagelabel)
         parentView.addSubview(dateLabel)
-        parentView.backgroundColor = #colorLiteral(red: 0.1254901961, green: 0.8235294118, blue: 0.8, alpha: 0.75)
+        parentView.backgroundColor = #colorLiteral(red: 0.168627451, green: 0.262745098, blue: 0.3254901961, alpha: 0.75)
         
         parentView.frame = CGRect(x: frame.width * 0.2, y: 5, width: frame.width - frame.width * 0.2 - 5, height: frame.height - 10)
         configureSubView()

@@ -135,6 +135,7 @@ class ProfileViewController: UIViewController{
                 try Auth.auth().signOut()
                 UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 UIApplication.shared.unregisterForRemoteNotifications()
+                UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
                 self.dismiss(animated: true, completion: nil)
             }
             catch {

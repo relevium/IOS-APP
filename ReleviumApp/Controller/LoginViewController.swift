@@ -13,6 +13,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     private let verification = Verification()
     
     deinit{
@@ -22,10 +24,45 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                                                                name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tapGesture)
 
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: "isUserLoggedIn") == true {
+            print("enter user defaults")
+            verification.changeUserState(state: "online") { (result) in
+                switch result {
+                case .failure(let failure):
+                    print(failure)
+                    UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+                case .success(let val):
+                    print(val)
+                    self.performSegue(withIdentifier: "loginToMain", sender: self)
+                }
+            }
+        }
+    }
+    
+    //MARK: - Keyboard Handling Methods
+    @objc func keyboardWillShow(notification: NSNotification){
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{return}
+        UIView.animate(withDuration: 0.5) {
+            self.bottomConstraint.constant = keyboardFrame.height - 80
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification){
+        UIView.animate(withDuration: 0.5) {
+            self.bottomConstraint.constant = 80
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -66,6 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 self.verification.makeAlert(title: "Connection", message: "please check you connection", mainView: self)
                                 try! Auth.auth().signOut()
                             case .success(_):
+                                UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                                 self.performSegue(withIdentifier: "loginToMain", sender: self)
                             }
                         })

@@ -29,7 +29,7 @@ class ButtonLayout: UIButton{
     
     private func setupButton(){
         
-        backgroundColor = #colorLiteral(red: 0.1254901961, green: 0.8235294118, blue: 0.8, alpha: 0.75)
+        backgroundColor = #colorLiteral(red: 0.168627451, green: 0.262745098, blue: 0.3254901961, alpha: 0.75)
         titleLabel?.font = UIFont(name: "avenirNextCondensedDemiBold", size: 14)
         layer.cornerRadius = frame.size.height / 3
         setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)

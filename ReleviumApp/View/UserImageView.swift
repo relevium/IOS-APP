@@ -23,7 +23,7 @@ class UserImageView: UIImageView {
         contentMode = .scaleAspectFill
         layer.cornerRadius = 10
         layer.masksToBounds = true
-        backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.168627451, green: 0.262745098, blue: 0.3254901961, alpha: 1)
         
     }
     

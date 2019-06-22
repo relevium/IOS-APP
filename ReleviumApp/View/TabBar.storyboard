@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="bHe-WD-lnN" kind="relationship" relationship="viewControllers" id="ipm-rr-8WP"/>
@@ -119,7 +119,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMD-U2-D5m" userLabel="mainButton">
                                 <rect key="frame" x="305" y="548" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="icons8-add-90"/>
+                                <state key="normal" image="icons8-plus-filled-100"/>
                                 <connections>
                                     <action selector="addToMapButtonPressed:" destination="E1k-vV-Ddo" eventType="touchUpInside" id="afb-dT-IsD"/>
                                 </connections>
@@ -163,7 +163,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zln-gK-2Sn" userLabel="stroke" customClass="ProfilePicture" customModule="ReleviumApp" customModuleProvider="target">
                                         <rect key="frame" x="114.5" y="101.5" width="185" height="185"/>
-                                        <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.32252299892559766" green="0.5" blue="0.72162675429760947" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="185" id="843-iz-V7H"/>
                                             <constraint firstAttribute="height" constant="185" id="cMO-SM-d4P"/>
@@ -188,7 +188,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="0.81176470588235294" alpha="0.68999999999999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.68999999999999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="zln-gK-2Sn" firstAttribute="centerX" secondItem="xjx-ZN-7Ps" secondAttribute="centerX" id="29F-1B-nTs"/>
                                     <constraint firstItem="zln-gK-2Sn" firstAttribute="centerY" secondItem="xjx-ZN-7Ps" secondAttribute="centerY" constant="90" id="9fE-Dl-ovG"/>
@@ -229,7 +229,7 @@
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvb-wK-s1q" customClass="ButtonLayout" customModule="ReleviumApp" customModuleProvider="target">
                                 <rect key="frame" x="107" y="751" width="200" height="41"/>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Save"/>
                                 <userDefinedRuntimeAttributes>
@@ -249,7 +249,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="180" id="Wkg-is-hdN"/>
                                         </constraints>
-                                        <color key="textColor" red="0.12549019610000001" green="0.64073831589999997" blue="0.80000000000000004" alpha="0.54240689210000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="40"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -258,7 +258,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="180" id="i69-hA-C0M"/>
                                         </constraints>
-                                        <color key="textColor" red="0.12549019607843137" green="0.64073831587429497" blue="0.80000000000000004" alpha="0.54240689212328763" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.54240689212328763" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="40"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -301,7 +301,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="edit profile" id="7lP-XJ-koV">
                         <barButtonItem key="rightBarButtonItem" title="logout" id="0ce-WN-Thy">
-                            <color key="tintColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="signoutButtonPressed:" destination="1gP-JS-0Rx" id="ZpI-ub-vS6"/>
                             </connections>
@@ -355,7 +355,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="uCE-eB-7Wy" firstAttribute="top" secondItem="CPf-jd-IWn" secondAttribute="top" id="3iO-m0-X99"/>
                                     <constraint firstAttribute="trailing" secondItem="Dc8-wr-Bha" secondAttribute="trailing" constant="10" id="DPe-Ny-xfz"/>
@@ -466,7 +466,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.82352941180000006" blue="0.80000000000000004" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.16862745098039217" green="0.2627450980392157" blue="0.32549019607843138" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ixv-4v-UkO" firstAttribute="leading" secondItem="EuZ-gV-Fnj" secondAttribute="leading" id="0fS-GD-X2I"/>
                                     <constraint firstAttribute="height" constant="40" id="DMg-QE-4Ig"/>
@@ -540,7 +540,6 @@
     </scenes>
     <resources>
         <image name="Thanos_MCU.0" width="1200" height="800"/>
-        <image name="icons8-add-90" width="90" height="90"/>
         <image name="icons8-chat-30" width="30" height="30"/>
         <image name="icons8-chat-selected-30" width="30" height="30"/>
         <image name="icons8-customer-30" width="30" height="30"/>
@@ -548,6 +547,7 @@
         <image name="icons8-intelligence-30" width="30" height="30"/>
         <image name="icons8-intelligence-filled-30" width="30" height="30"/>
         <image name="icons8-left-30" width="30" height="30"/>
+        <image name="icons8-plus-filled-100" width="100" height="100"/>
         <image name="icons8-region-30" width="30" height="30"/>
         <image name="icons8-region-filled-30" width="30" height="30"/>
         <image name="icons8-safety-float-64" width="64" height="64"/>
