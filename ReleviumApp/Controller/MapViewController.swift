@@ -32,7 +32,6 @@ class MapViewController: UIViewController {
     @IBOutlet weak var locationButton: UIButton! // Warning
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var mainLabel: UILabel!
-    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -62,13 +61,35 @@ class MapViewController: UIViewController {
             
         }
         else {
-            let glyphtitle = getTitle(tag: sender.tag)
+            UIView.animate(withDuration: 0.4) {
+                self.setButtonAtStartLocation()
+            }
+            isButtonVisible = false
+            var glyphTitle:String = getTitle(tag: sender.tag)
+            var describeTextField = UITextField()
             let glyphlocation = mapView.centerCoordinate
             let glyphId = UUID.init().uuidString
-            let userId = Auth.auth().currentUser?.uid ?? ""
-            uploadGeoLocation(location: CLLocation(latitude: glyphlocation.latitude, longitude: glyphlocation.longitude),
-                              id: glyphId, child: "GeoFirePingLocations")
-            uploadPinDetails(glyphId: glyphId, userId: userId, tag: sender.tag, glyphTitle: glyphtitle)
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("can not get UID while adding mark from button")
+                return
+            }
+            let alert = UIAlertController(title: "Description", message: "set you mark desctription", preferredStyle: .alert)
+            alert.addTextField { (textField) in
+                textField.placeholder = "enter description here"
+                describeTextField = textField
+            }
+            let actionAccept = UIAlertAction(title: "Save", style: .default) { [unowned self](action) in
+                if let description = describeTextField.text {
+                    glyphTitle = description
+                }
+                self.uploadGeoLocation(location: CLLocation(latitude: glyphlocation.latitude, longitude: glyphlocation.longitude),
+                                  id: glyphId, child: "GeoFirePingLocations")
+                self.uploadPinDetails(glyphId: glyphId, userId: userId, tag: sender.tag, glyphTitle: glyphTitle)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(actionAccept)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
         }
         
     }
@@ -90,13 +111,12 @@ class MapViewController: UIViewController {
                 let glyphTitle = json["mDescription"].stringValue
                 let imageID = json["mImageId"].intValue
                 
-                geoFire.getLocationForKey(glyphId, withCallback: { (location, error) in
+                geoFire.getLocationForKey(glyphId, withCallback: { [unowned self](location, error) in
                     if error == nil{
                         guard let coordinate = location?.coordinate else{ return }
                         if let glyphImage = self.getGlyph(tag: imageID){
                             let artwork = Artwork(title: glyphTitle, coordinate: coordinate,uid: glyphId,image: glyphImage,state: "glyph",anonymity: false)
                             self.mapView.addAnnotation(artwork)
-                            print("sign added to map with glyph")
                         } else {
                             print("failed to get glyph")
                         }
@@ -115,7 +135,7 @@ class MapViewController: UIViewController {
         case 3:
             return "Warning!"
         default:
-            return "Undefined"
+            return "did not set yet"
         }
     }
     
@@ -192,7 +212,7 @@ extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{ return }
         guard let userID = getUserId() else { return }
-        print("=============location changed.......")
+        print("location changed.......")
         uploadGeoLocation(location: location, id: userID,child: "User-Location")
         showOtherUsersWithinRadius(center: location, radius: 100.0)
     }
@@ -382,19 +402,18 @@ extension MapViewController: MKMapViewDelegate{
     }
     
     private func addGlyphToMap(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage){
-        print("add Glyphs to map called")
-        let button = UserOnMapButton(type: UIButton.ButtonType.system)
-        //Adding upload description info to button....
+        let routeButton = UserOnMapButton(type: UIButton.ButtonType.custom)
+        //Adding Route info to button....
         
-        button.receiverID = uid // glyph id
-        button.receivername = name // glyph description
-        button.sizeThatFits(CGSize(width: 10, height: 10))
-        button.translatesAutoresizingMaskIntoConstraints = false
-        let imageButton = UIImage(named: "icons8-add-text-filled-50")
-        button.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 5, height: 5))
-        button.setImage(imageButton, for: .normal)
-        button.setTitle("\t edit Description: \(name)", for: .normal)
-        button.addTarget(self, action: #selector(goToChat(sender:)), for: .touchUpInside)
+        routeButton.sizeThatFits(CGSize(width: 10, height: 10))
+        routeButton.translatesAutoresizingMaskIntoConstraints = false
+        let imageButton = UIImage(named: "icons8-route-30")
+        routeButton.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 5, height: 5))
+        routeButton.setImage(imageButton, for: .normal)
+        routeButton.setTitle("\t Route To: \(name)", for: .normal)
+        routeButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        routeButton.addTarget(self, action: #selector(getRouteTo(sender:)), for: .touchUpInside)
+        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true
@@ -402,25 +421,13 @@ extension MapViewController: MKMapViewDelegate{
         annatotationView.layer.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         annatotationView.addSubview(imageView)
         annatotationView.layer.zPosition = 2
-        annatotationView.conteiner(arrangedSubviews: [button])
+        annatotationView.conteiner(arrangedSubviews: [routeButton])
         
     }
     
-    @objc func uploadDescription(sender: UserOnMapButton) {
-        guard let description = sender.receivername else {
-            print("failed to get description")
-            return
-        }
-        guard let id = sender.receivername else {
-            print("failed to get id for glyph")
-            return
-        }
-        print("Description \(description)")
-        print("ID \(id)")
-    }
+    
     
     private func addUserImage(annatotationView: MKAnnotationView,name: String, uid: String,image:UIImage) {
-            print("add USer Image Called +++++++++++")
             guard let currentUser = getUserId() else {
                 print("failed to get current user")
                 return
@@ -443,6 +450,20 @@ extension MapViewController: MKMapViewDelegate{
             button.setImage(imageButton, for: .normal)
             button.setTitle("\t message: \(name)", for: .normal)
             button.addTarget(self, action: #selector(goToChat(sender:)), for: .touchUpInside)
+        
+            let routeButton = UserOnMapButton(type: UIButton.ButtonType.custom)
+            //Adding Route info info to button....
+        
+        
+            routeButton.sizeThatFits(CGSize(width: 10, height: 10))
+            routeButton.translatesAutoresizingMaskIntoConstraints = false
+            let imageRoute = UIImage(named: "icons8-route-30")
+            routeButton.imageRect(forContentRect: CGRect(x: 0, y: 0, width: 5, height: 5))
+            routeButton.setImage(imageRoute, for: .normal)
+            routeButton.setTitle("\t Route To: \(name)", for: .normal)
+            routeButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+            routeButton.addTarget(self, action: #selector(getRouteTo(sender:)), for: .touchUpInside)
+        
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             imageView.layer.cornerRadius = 25
             imageView.layer.masksToBounds = true
@@ -450,7 +471,7 @@ extension MapViewController: MKMapViewDelegate{
             annatotationView.layer.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             annatotationView.addSubview(imageView)
             annatotationView.layer.zPosition = 2
-            annatotationView.conteiner(arrangedSubviews: [button])
+            annatotationView.conteiner(arrangedSubviews: [button,routeButton])
     }
     
     @objc private func goToChat(sender: UserOnMapButton){
@@ -465,6 +486,19 @@ extension MapViewController: MKMapViewDelegate{
         self.receiverName = receiverName
         performSegue(withIdentifier: "goToChat", sender: self)
        
+    }
+    
+    @objc func getRouteTo(sender: UserOnMapButton) {
+        guard let description = sender.receivername else {
+            print("failed to get description")
+            return
+        }
+        guard let id = sender.receivername else {
+            print("failed to get id for glyph")
+            return
+        }
+        print("Description \(description)")
+        print("ID \(id)")
     }
     
 }
