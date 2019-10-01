@@ -10,7 +10,6 @@
 * plot other users on map
 * plot danger zones on map
 * Chat from user icon on map
-* build user profile
-* tuning the UI
+* user profile
 * chat with users
 * Voice Recognition 
