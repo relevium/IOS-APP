@@ -1,17 +1,10 @@
 # Relevium App IOS Version
 
-# To Do
-
-* login with third parties
-
-# In Progress
-* Voice Recognition 
-
-# Done
+# Features
 
 * login
 * register with email
-* agent prototype
+* Life Assistant
 * get user location
 * plot user location on map
 * plot other users on map
@@ -20,3 +13,4 @@
 * build user profile
 * tuning the UI
 * chat with users
+* Voice Recognition 
